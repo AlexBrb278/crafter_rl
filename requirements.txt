@@ -1,0 +1,6 @@
+# Core stack is installed by scripts/setup.sh (jax[cuda12], torch cu128, crafter, craftax).
+# Versions verified 2026-10-17: jax 0.11.2, flax 0.12.10, torch 2.11.0+cu128, numpy 2.5.4
+gymnasium
+tensorboard
+wandb
+pandas

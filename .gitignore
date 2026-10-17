@@ -1,0 +1,22 @@
+# Game sources (re-created by scripts/setup.sh)
+game/
+
+# Environments
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Run outputs (large) -- summaries go in results/
+runs/
+wandb/
+checkpoints/
+*.ckpt
+*.pt
+*.npz
+*.mp4
+*.gif
+logs/
+
+# Upstream method repos (record the commit in each method README)
+methods/*/upstream/
