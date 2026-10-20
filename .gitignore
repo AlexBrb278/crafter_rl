@@ -8,15 +8,33 @@ __pycache__/
 *.egg-info/
 
 # Run outputs (large) -- summaries go in results/
-runs/
 wandb/
-checkpoints/
+/checkpoints/
+/logs/
 *.ckpt
 *.pt
 *.npz
 *.mp4
 *.gif
-logs/
 
 # Upstream method repos (record the commit in each method README)
 methods/*/upstream/
+
+# runs/: commit each run's logs, final weights (epoch 250 = 1.024M steps) and final episode,
+# plus the report. Resume state (latest.pt), earlier checkpoints and training clips stay local.
+# *.pt and *.mp4 go through Git LFS (.gitattributes). Keep this block last: it overrides the rules above.
+runs/**
+!runs/**/
+!runs/*/config.json
+!runs/*/final.json
+!runs/*/status.json
+!runs/*/metrics.jsonl
+!runs/*/episodes.jsonl
+!runs/*/train.log
+!runs/*/tb/events.out.tfevents.*
+!runs/*/checkpoints/agent-e250.pt
+!runs/*/videos/final_episode.mp4
+!runs/report/*.html
+!runs/report/*.json
+!runs/report/media/**
+runs/report/*test*

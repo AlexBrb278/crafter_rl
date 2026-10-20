@@ -1,0 +1,1 @@
+{"run": "ad-ppo_ad-s0", "epoch": 250, "nepoch": 250, "step": 1024000, "elapsed_min": 414.4, "eta_min": 0.0, "score": 17.706287797989184, "recent_score": 25.114969663379433, "clips": 22, "updated": 1792342325.055955}

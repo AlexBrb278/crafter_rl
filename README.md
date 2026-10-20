@@ -9,7 +9,9 @@ game/        Crafter + Craftax sources (gitignored; recreate with scripts/setup.
 methods/     one folder per RL method (01_ppo_rnn … 07_world_model_itc, _template)
 common/      shared code: Crafter score, wrappers, logging
 scripts/     setup.sh, smoke_test.py
-results/     small committed summaries (CSV/plots); raw runs go to runs/ (gitignored)
+results/     small committed summaries (CSV/plots)
+runs/        per-run logs, final weights (agent-e250.pt) and final episode, plus report/;
+             resume state, earlier checkpoints and training clips stay local (see .gitignore)
 paper/       research_survey.md (literature), work_log.md (what we tried, append-only)
 ```
 
@@ -19,6 +21,7 @@ paper/       research_survey.md (literature), work_log.md (what we tried, append
 source .venv/bin/activate
 ```
 On Windows (no WSL): `powershell -ExecutionPolicy Bypass -File scripts\setup_windows.ps1`. PyTorch uses the GPU; JAX/Craftax runs on CPU only.
+Model weights and videos (`*.pt`, `*.mp4`) are stored with Git LFS: run `git lfs install` before cloning, or `git lfs pull` afterwards.
 
 ## Tools
 - `scripts/dashboard.py`: live dashboard on http://localhost:8765 (curves, achievement bars, agent clips).

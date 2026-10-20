@@ -1,0 +1,1 @@
+{"run": "ppo-rarity2-s1", "epoch": 250, "nepoch": 250, "step": 1024000, "elapsed_min": 76.7, "eta_min": 0.0, "score": 20.198493061542923, "recent_score": 29.85830798055159, "clips": 25, "updated": 1792404626.3011248}

@@ -1,0 +1,305 @@
+PPOModel: 3.95M params on cuda:0
+[ppo-s0] ep   1/250 step 0.004M | score  1.26 (recent  1.26) | reward 1.20 | eps   21 | 206 sps (roll 8.6s upd 11.3s) | mem 2.42GB | 0m, eta 83m
+[ppo-s0] ep   2/250 step 0.008M | score  1.72 (recent  1.72) | reward 1.98 | eps   46 | 210 sps (roll 8.5s upd 11.0s) | mem 2.42GB | 1m, eta 81m
+[ppo-s0] ep   3/250 step 0.012M | score  1.78 (recent  1.78) | reward 1.62 | eps   71 | 239 sps (roll 6.2s upd 11.0s) | mem 2.42GB | 1m, eta 78m
+[ppo-s0] ep   4/250 step 0.016M | score  1.99 (recent  1.99) | reward 2.43 | eps   95 | 251 sps (roll 5.3s upd 11.0s) | mem 2.42GB | 1m, eta 75m
+[ppo-s0] ep   5/250 step 0.020M | score  2.00 (recent  2.09) | reward 2.50 | eps  120 | 246 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 1m, eta 73m
+[ppo-s0] ep   6/250 step 0.025M | score  2.04 (recent  2.17) | reward 2.55 | eps  142 | 247 sps (roll 5.5s upd 11.1s) | mem 2.42GB | 2m, eta 72m
+[ppo-s0] ep   7/250 step 0.029M | score  2.16 (recent  2.39) | reward 2.64 | eps  166 | 240 sps (roll 6.1s upd 11.0s) | mem 2.42GB | 2m, eta 71m
+[ppo-s0] ep   8/250 step 0.033M | score  2.16 (recent  2.28) | reward 2.64 | eps  192 | 235 sps (roll 6.4s upd 11.0s) | mem 2.42GB | 2m, eta 71m
+[ppo-s0] ep   9/250 step 0.037M | score  2.15 (recent  2.31) | reward 2.81 | eps  216 | 248 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 3m, eta 70m
+[ppo-s0] ep  10/250 step 0.041M | score  2.18 (recent  2.32) | reward 2.68 | eps  240 | 191 sps (roll 10.3s upd 11.1s) | mem 2.42GB | 3m, eta 71m
+[ppo-s0] ep  11/250 step 0.045M | score  2.33 (recent  2.53) | reward 3.55 | eps  260 | 234 sps (roll 6.4s upd 11.0s) | mem 2.42GB | 3m, eta 71m
+[ppo-s0] ep  12/250 step 0.049M | score  2.34 (recent  2.54) | reward 3.25 | eps  280 | 251 sps (roll 5.3s upd 11.0s) | mem 2.42GB | 4m, eta 70m
+[ppo-s0] ep  13/250 step 0.053M | score  2.46 (recent  2.98) | reward 3.46 | eps  305 | 236 sps (roll 6.3s upd 11.1s) | mem 2.42GB | 4m, eta 70m
+[ppo-s0] ep  14/250 step 0.057M | score  2.59 (recent  3.34) | reward 3.06 | eps  329 | 236 sps (roll 6.3s upd 11.1s) | mem 2.42GB | 4m, eta 69m
+[ppo-s0] ep  15/250 step 0.061M | score  2.64 (recent  3.32) | reward 3.38 | eps  354 | 243 sps (roll 5.8s upd 11.1s) | mem 2.42GB | 4m, eta 69m
+[ppo-s0] ep  16/250 step 0.066M | score  2.69 (recent  3.29) | reward 3.40 | eps  377 | 247 sps (roll 5.5s upd 11.1s) | mem 2.42GB | 5m, eta 68m
+[ppo-s0] ep  17/250 step 0.070M | score  2.73 (recent  3.21) | reward 3.46 | eps  399 | 248 sps (roll 5.4s upd 11.1s) | mem 2.42GB | 5m, eta 68m
+[ppo-s0] ep  18/250 step 0.074M | score  2.83 (recent  3.34) | reward 3.56 | eps  423 | 237 sps (roll 6.2s upd 11.1s) | mem 2.42GB | 5m, eta 68m
+[ppo-s0] ep  19/250 step 0.078M | score  2.87 (recent  3.35) | reward 3.81 | eps  447 | 236 sps (roll 6.3s upd 11.1s) | mem 2.42GB | 6m, eta 67m
+[ppo-s0] ep  20/250 step 0.082M | score  2.95 (recent  3.58) | reward 4.05 | eps  467 | 246 sps (roll 5.6s upd 11.1s) | mem 2.42GB | 6m, eta 67m
+[ppo-s0] ep  21/250 step 0.086M | score  3.07 (recent  3.95) | reward 4.01 | eps  490 | 245 sps (roll 5.7s upd 11.1s) | mem 2.42GB | 6m, eta 66m
+[ppo-s0] ep  22/250 step 0.090M | score  3.11 (recent  4.03) | reward 3.93 | eps  514 | 243 sps (roll 5.8s upd 11.1s) | mem 2.42GB | 6m, eta 66m
+[ppo-s0] ep  23/250 step 0.094M | score  3.17 (recent  4.10) | reward 4.15 | eps  536 | 216 sps (roll 7.8s upd 11.1s) | mem 2.42GB | 7m, eta 66m
+[ppo-s0] ep  24/250 step 0.098M | score  3.24 (recent  4.32) | reward 3.86 | eps  557 | 192 sps (roll 10.3s upd 11.0s) | mem 2.42GB | 7m, eta 66m
+[ppo-s0] ep  25/250 step 0.102M | score  3.37 (recent  4.62) | reward 4.80 | eps  580 | 239 sps (roll 6.1s upd 11.0s) | mem 2.42GB | 7m, eta 66m
+[ppo-s0] ep  26/250 step 0.106M | score  3.47 (recent  4.84) | reward 4.33 | eps  606 | 245 sps (roll 5.7s upd 11.0s) | mem 2.42GB | 8m, eta 66m
+[ppo-s0] ep  27/250 step 0.111M | score  3.56 (recent  5.11) | reward 4.91 | eps  627 | 248 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 8m, eta 65m
+[ppo-s0] ep  28/250 step 0.115M | score  3.64 (recent  5.21) | reward 4.72 | eps  648 | 248 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 8m, eta 65m
+[ppo-s0] ep  29/250 step 0.119M | score  3.79 (recent  5.65) | reward 5.60 | eps  666 | 245 sps (roll 5.7s upd 11.0s) | mem 2.42GB | 8m, eta 64m
+[ppo-s0] ep  30/250 step 0.123M | score  3.86 (recent  5.76) | reward 5.05 | eps  688 | 238 sps (roll 6.1s upd 11.0s) | mem 2.42GB | 9m, eta 64m
+[ppo-s0] ep  31/250 step 0.127M | score  3.96 (recent  5.86) | reward 5.22 | eps  714 | 241 sps (roll 6.0s upd 11.0s) | mem 2.42GB | 9m, eta 64m
+[ppo-s0] ep  32/250 step 0.131M | score  4.10 (recent  6.38) | reward 5.72 | eps  735 | 245 sps (roll 5.7s upd 11.0s) | mem 2.42GB | 9m, eta 63m
+[ppo-s0] ep  33/250 step 0.135M | score  4.16 (recent  5.91) | reward 5.27 | eps  758 | 177 sps (roll 12.1s upd 11.1s) | mem 2.42GB | 10m, eta 64m
+[ppo-s0] ep  34/250 step 0.139M | score  4.29 (recent  6.52) | reward 4.97 | eps  782 | 248 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 10m, eta 63m
+[ppo-s0] ep  35/250 step 0.143M | score  4.53 (recent  7.34) | reward 6.10 | eps  802 | 245 sps (roll 5.7s upd 11.0s) | mem 2.42GB | 10m, eta 63m
+[ppo-s0] ep  36/250 step 0.147M | score  4.64 (recent  7.54) | reward 5.56 | eps  826 | 237 sps (roll 6.3s upd 11.0s) | mem 2.42GB | 11m, eta 63m
+[ppo-s0] ep  37/250 step 0.152M | score  4.77 (recent  7.75) | reward 5.47 | eps  850 | 244 sps (roll 5.8s upd 11.0s) | mem 2.42GB | 11m, eta 62m
+[ppo-s0] ep  38/250 step 0.156M | score  4.92 (recent  8.77) | reward 6.24 | eps  871 | 249 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 11m, eta 62m
+[ppo-s0] ep  39/250 step 0.160M | score  5.07 (recent  8.55) | reward 6.00 | eps  892 | 248 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 11m, eta 61m
+[ppo-s0] ep  40/250 step 0.164M | score  5.23 (recent  9.20) | reward 6.20 | eps  913 | 248 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 12m, eta 61m
+[ppo-s0] ep  41/250 step 0.168M | score  5.44 (recent  9.86) | reward 6.55 | eps  935 | 236 sps (roll 6.3s upd 11.0s) | mem 2.42GB | 12m, eta 61m
+[ppo-s0] ep  42/250 step 0.172M | score  5.56 (recent 10.42) | reward 5.69 | eps  957 | 173 sps (roll 12.6s upd 11.0s) | mem 2.42GB | 12m, eta 61m
+[ppo-s0] ep  43/250 step 0.176M | score  5.72 (recent 10.48) | reward 6.45 | eps  977 | 242 sps (roll 5.9s upd 11.0s) | mem 2.42GB | 13m, eta 61m
+[ppo-s0] ep  44/250 step 0.180M | score  5.77 (recent  9.48) | reward 6.10 | eps 1000 | 245 sps (roll 5.7s upd 11.0s) | mem 2.42GB | 13m, eta 60m
+[ppo-s0] ep  45/250 step 0.184M | score  5.87 (recent  9.64) | reward 5.95 | eps 1020 | 249 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 13m, eta 60m
+[ppo-s0] ep  46/250 step 0.188M | score  5.95 (recent  9.21) | reward 6.35 | eps 1044 | 247 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 13m, eta 59m
+[ppo-s0] ep  47/250 step 0.193M | score  6.07 (recent  9.06) | reward 6.35 | eps 1068 | 237 sps (roll 6.2s upd 11.0s) | mem 2.42GB | 14m, eta 59m
+[ppo-s0] ep  48/250 step 0.197M | score  6.12 (recent  8.65) | reward 6.20 | eps 1089 | 239 sps (roll 6.1s upd 11.0s) | mem 2.42GB | 14m, eta 59m
+[ppo-s0] ep  49/250 step 0.201M | score  6.21 (recent  8.64) | reward 6.32 | eps 1112 | 212 sps (roll 8.2s upd 11.1s) | mem 2.42GB | 14m, eta 59m
+[ppo-s0] ep  50/250 step 0.205M | score  6.42 (recent 10.33) | reward 7.10 | eps 1132 | 213 sps (roll 8.2s upd 11.0s) | mem 2.42GB | 15m, eta 59m
+[ppo-s0] ep  51/250 step 0.209M | score  6.52 (recent 10.58) | reward 6.22 | eps 1156 | 244 sps (roll 5.6s upd 11.1s) | mem 2.42GB | 15m, eta 58m
+[ppo-s0] ep  52/250 step 0.213M | score  6.62 (recent 10.94) | reward 7.04 | eps 1174 | 251 sps (roll 5.3s upd 11.0s) | mem 2.42GB | 15m, eta 58m
+[ppo-s0] ep  53/250 step 0.217M | score  6.71 (recent 11.49) | reward 6.32 | eps 1201 | 233 sps (roll 6.6s upd 11.0s) | mem 2.42GB | 15m, eta 58m
+[ppo-s0] ep  54/250 step 0.221M | score  6.76 (recent  9.99) | reward 6.32 | eps 1224 | 238 sps (roll 6.2s upd 11.0s) | mem 2.42GB | 16m, eta 57m
+[ppo-s0] ep  55/250 step 0.225M | score  6.88 (recent 10.36) | reward 7.48 | eps 1245 | 248 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 16m, eta 57m
+[ppo-s0] ep  56/250 step 0.229M | score  6.95 (recent 10.47) | reward 6.53 | eps 1268 | 246 sps (roll 5.7s upd 11.0s) | mem 2.42GB | 16m, eta 57m
+[ppo-s0] ep  57/250 step 0.233M | score  7.04 (recent 10.49) | reward 7.89 | eps 1287 | 247 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 17m, eta 56m
+[ppo-s0] ep  58/250 step 0.238M | score  7.19 (recent 11.68) | reward 7.34 | eps 1308 | 242 sps (roll 6.0s upd 11.0s) | mem 2.42GB | 17m, eta 56m
+[ppo-s0] ep  59/250 step 0.242M | score  7.29 (recent 12.20) | reward 7.63 | eps 1327 | 240 sps (roll 6.0s upd 11.0s) | mem 2.42GB | 17m, eta 56m
+[ppo-s0] ep  60/250 step 0.246M | score  7.33 (recent 11.72) | reward 7.15 | eps 1346 | 246 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 17m, eta 55m
+[ppo-s0] ep  61/250 step 0.250M | score  7.47 (recent 12.46) | reward 7.53 | eps 1367 | 229 sps (roll 6.9s upd 11.1s) | mem 2.42GB | 18m, eta 55m
+[ppo-s0] ep  62/250 step 0.254M | score  7.54 (recent 12.36) | reward 7.49 | eps 1385 | 188 sps (roll 10.8s upd 11.0s) | mem 2.42GB | 18m, eta 55m
+[ppo-s0] ep  63/250 step 0.258M | score  7.61 (recent 11.77) | reward 6.89 | eps 1404 | 250 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 18m, eta 55m
+[ppo-s0] ep  64/250 step 0.262M | score  7.67 (recent 11.38) | reward 7.33 | eps 1426 | 242 sps (roll 5.9s upd 11.0s) | mem 2.42GB | 19m, eta 54m
+[ppo-s0] ep  65/250 step 0.266M | score  7.75 (recent 11.44) | reward 7.43 | eps 1450 | 234 sps (roll 6.5s upd 11.0s) | mem 2.42GB | 19m, eta 54m
+[ppo-s0] ep  66/250 step 0.270M | score  7.80 (recent 10.84) | reward 6.77 | eps 1471 | 242 sps (roll 5.9s upd 11.0s) | mem 2.42GB | 19m, eta 54m
+[ppo-s0] ep  67/250 step 0.274M | score  7.89 (recent 11.27) | reward 7.75 | eps 1491 | 249 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 20m, eta 53m
+[ppo-s0] ep  68/250 step 0.279M | score  7.92 (recent 10.84) | reward 7.10 | eps 1510 | 250 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 20m, eta 53m
+[ppo-s0] ep  69/250 step 0.283M | score  8.00 (recent 11.43) | reward 7.63 | eps 1529 | 241 sps (roll 6.0s upd 11.0s) | mem 2.42GB | 20m, eta 53m
+[ppo-s0] ep  70/250 step 0.287M | score  8.05 (recent 11.58) | reward 7.99 | eps 1547 | 181 sps (roll 11.7s upd 11.0s) | mem 2.42GB | 20m, eta 53m
+[ppo-s0] ep  71/250 step 0.291M | score  8.08 (recent 11.24) | reward 7.48 | eps 1568 | 238 sps (roll 6.2s upd 11.0s) | mem 2.42GB | 21m, eta 52m
+[ppo-s0] ep  72/250 step 0.295M | score  8.12 (recent 10.79) | reward 7.20 | eps 1589 | 244 sps (roll 5.8s upd 11.0s) | mem 2.42GB | 21m, eta 52m
+[ppo-s0] ep  73/250 step 0.299M | score  8.15 (recent  9.65) | reward 6.37 | eps 1615 | 241 sps (roll 6.0s upd 11.0s) | mem 2.42GB | 21m, eta 52m
+[ppo-s0] ep  74/250 step 0.303M | score  8.24 (recent 10.54) | reward 7.84 | eps 1634 | 245 sps (roll 5.7s upd 11.0s) | mem 2.42GB | 22m, eta 51m
+[ppo-s0] ep  75/250 step 0.307M | score  8.26 (recent 10.29) | reward 7.86 | eps 1651 | 250 sps (roll 5.3s upd 11.0s) | mem 2.42GB | 22m, eta 51m
+[ppo-s0] ep  76/250 step 0.311M | score  8.30 (recent 10.69) | reward 7.65 | eps 1671 | 236 sps (roll 6.3s upd 11.1s) | mem 2.42GB | 22m, eta 51m
+[ppo-s0] ep  77/250 step 0.315M | score  8.33 (recent 10.80) | reward 8.10 | eps 1688 | 241 sps (roll 6.0s upd 11.1s) | mem 2.42GB | 22m, eta 50m
+[ppo-s0] ep  78/250 step 0.319M | score  8.37 (recent 11.24) | reward 8.10 | eps 1705 | 248 sps (roll 5.5s upd 11.1s) | mem 2.42GB | 23m, eta 50m
+[ppo-s0] ep  79/250 step 0.324M | score  8.42 (recent 11.74) | reward 8.10 | eps 1723 | 247 sps (roll 5.5s upd 11.1s) | mem 2.42GB | 23m, eta 50m
+[ppo-s0] ep  80/250 step 0.328M | score  8.48 (recent 11.07) | reward 8.05 | eps 1743 | 246 sps (roll 5.6s upd 11.1s) | mem 2.42GB | 23m, eta 49m
+[ppo-s0] ep  81/250 step 0.332M | score  8.51 (recent 11.56) | reward 7.32 | eps 1761 | 243 sps (roll 5.8s upd 11.1s) | mem 2.42GB | 24m, eta 49m
+[ppo-s0] ep  82/250 step 0.336M | score  8.58 (recent 11.63) | reward 7.73 | eps 1780 | 235 sps (roll 6.3s upd 11.1s) | mem 2.42GB | 24m, eta 49m
+[ppo-s0] ep  83/250 step 0.340M | score  8.64 (recent 12.08) | reward 7.72 | eps 1801 | 239 sps (roll 6.1s upd 11.1s) | mem 2.42GB | 24m, eta 48m
+[ppo-s0] ep  84/250 step 0.344M | score  8.72 (recent 12.89) | reward 8.57 | eps 1820 | 229 sps (roll 6.7s upd 11.1s) | mem 2.42GB | 24m, eta 48m
+[ppo-s0] ep  85/250 step 0.348M | score  8.76 (recent 13.07) | reward 7.45 | eps 1837 | 186 sps (roll 11.0s upd 11.1s) | mem 2.42GB | 25m, eta 48m
+[ppo-s0] ep  86/250 step 0.352M | score  8.79 (recent 13.10) | reward 8.10 | eps 1855 | 246 sps (roll 5.6s upd 11.1s) | mem 2.42GB | 25m, eta 48m
+[ppo-s0] ep  87/250 step 0.356M | score  8.82 (recent 12.95) | reward 7.60 | eps 1875 | 244 sps (roll 5.7s upd 11.1s) | mem 2.42GB | 25m, eta 47m
+[ppo-s0] ep  88/250 step 0.360M | score  8.88 (recent 12.91) | reward 7.33 | eps 1897 | 236 sps (roll 6.3s upd 11.1s) | mem 2.42GB | 26m, eta 47m
+[ppo-s0] ep  89/250 step 0.365M | score  8.91 (recent 11.42) | reward 7.89 | eps 1916 | 240 sps (roll 6.0s upd 11.1s) | mem 2.42GB | 26m, eta 47m
+[ppo-s0] ep  90/250 step 0.369M | score  8.98 (recent 11.83) | reward 8.65 | eps 1936 | 241 sps (roll 5.9s upd 11.1s) | mem 2.42GB | 26m, eta 47m
+[ppo-s0] ep  91/250 step 0.373M | score  9.02 (recent 12.20) | reward 8.63 | eps 1955 | 203 sps (roll 9.0s upd 11.2s) | mem 2.42GB | 27m, eta 46m
+[ppo-s0] ep  92/250 step 0.377M | score  9.07 (recent 12.65) | reward 8.30 | eps 1975 | 211 sps (roll 8.4s upd 11.0s) | mem 2.42GB | 27m, eta 46m
+[ppo-s0] ep  93/250 step 0.381M | score  9.13 (recent 12.47) | reward 8.63 | eps 1992 | 246 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 27m, eta 46m
+[ppo-s0] ep  94/250 step 0.385M | score  9.16 (recent 12.46) | reward 7.58 | eps 2013 | 235 sps (roll 6.4s upd 11.0s) | mem 2.42GB | 27m, eta 45m
+[ppo-s0] ep  95/250 step 0.389M | score  9.23 (recent 12.42) | reward 9.39 | eps 2034 | 237 sps (roll 6.3s upd 11.0s) | mem 2.42GB | 28m, eta 45m
+[ppo-s0] ep  96/250 step 0.393M | score  9.27 (recent 12.28) | reward 7.51 | eps 2051 | 250 sps (roll 5.3s upd 11.0s) | mem 2.42GB | 28m, eta 45m
+[ppo-s0] ep  97/250 step 0.397M | score  9.31 (recent 12.25) | reward 7.70 | eps 2071 | 246 sps (roll 5.6s upd 11.1s) | mem 2.42GB | 28m, eta 45m
+[ppo-s0] ep  98/250 step 0.401M | score  9.32 (recent 11.83) | reward 7.70 | eps 2091 | 247 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 29m, eta 44m
+[ppo-s0] ep  99/250 step 0.406M | score  9.36 (recent 11.88) | reward 8.58 | eps 2112 | 241 sps (roll 6.0s upd 11.0s) | mem 2.42GB | 29m, eta 44m
+[ppo-s0] ep 100/250 step 0.410M | score  9.45 (recent 12.64) | reward 8.52 | eps 2131 | 238 sps (roll 6.2s upd 11.0s) | mem 2.42GB | 29m, eta 44m
+[ppo-s0] ep 101/250 step 0.414M | score  9.48 (recent 12.57) | reward 8.45 | eps 2151 | 202 sps (roll 9.2s upd 11.1s) | mem 2.42GB | 29m, eta 43m
+[ppo-s0] ep 102/250 step 0.418M | score  9.53 (recent 13.02) | reward 7.77 | eps 2172 | 211 sps (roll 8.5s upd 11.0s) | mem 2.42GB | 30m, eta 43m
+[ppo-s0] ep 103/250 step 0.422M | score  9.61 (recent 13.90) | reward 9.16 | eps 2188 | 249 sps (roll 5.3s upd 11.1s) | mem 2.42GB | 30m, eta 43m
+[ppo-s0] ep 104/250 step 0.426M | score  9.65 (recent 14.01) | reward 7.77 | eps 2212 | 245 sps (roll 5.7s upd 11.0s) | mem 2.42GB | 30m, eta 43m
+[ppo-s0] ep 105/250 step 0.430M | score  9.69 (recent 13.37) | reward 8.52 | eps 2231 | 245 sps (roll 5.7s upd 11.0s) | mem 2.42GB | 31m, eta 42m
+[ppo-s0] ep 106/250 step 0.434M | score  9.72 (recent 13.38) | reward 7.55 | eps 2251 | 237 sps (roll 6.3s upd 11.0s) | mem 2.42GB | 31m, eta 42m
+[ppo-s0] ep 107/250 step 0.438M | score  9.75 (recent 12.93) | reward 8.38 | eps 2269 | 247 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 31m, eta 42m
+[ppo-s0] ep 108/250 step 0.442M | score  9.79 (recent 11.88) | reward 8.10 | eps 2291 | 246 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 31m, eta 41m
+[ppo-s0] ep 109/250 step 0.446M | score  9.81 (recent 12.05) | reward 7.33 | eps 2313 | 247 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 32m, eta 41m
+[ppo-s0] ep 110/250 step 0.451M | score  9.86 (recent 12.06) | reward 8.69 | eps 2330 | 249 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 32m, eta 41m
+[ppo-s0] ep 111/250 step 0.455M | score  9.88 (recent 12.20) | reward 8.58 | eps 2351 | 236 sps (roll 6.4s upd 11.0s) | mem 2.42GB | 32m, eta 40m
+[ppo-s0] ep 112/250 step 0.459M | score  9.89 (recent 11.86) | reward 7.15 | eps 2371 | 241 sps (roll 6.0s upd 11.0s) | mem 2.42GB | 33m, eta 40m
+[ppo-s0] ep 113/250 step 0.463M | score  9.90 (recent 11.59) | reward 8.31 | eps 2390 | 243 sps (roll 5.9s upd 11.0s) | mem 2.42GB | 33m, eta 40m
+[ppo-s0] ep 114/250 step 0.467M | score  9.92 (recent 11.45) | reward 7.15 | eps 2411 | 179 sps (roll 11.8s upd 11.0s) | mem 2.42GB | 33m, eta 40m
+[ppo-s0] ep 115/250 step 0.471M | score  9.94 (recent 11.04) | reward 8.16 | eps 2427 | 251 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 33m, eta 39m
+[ppo-s0] ep 116/250 step 0.475M | score  9.98 (recent 11.57) | reward 8.00 | eps 2447 | 248 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 34m, eta 39m
+[ppo-s0] ep 117/250 step 0.479M | score 10.01 (recent 12.33) | reward 8.31 | eps 2466 | 239 sps (roll 6.1s upd 11.0s) | mem 2.42GB | 34m, eta 39m
+[ppo-s0] ep 118/250 step 0.483M | score 10.05 (recent 13.05) | reward 9.03 | eps 2481 | 243 sps (roll 5.9s upd 11.0s) | mem 2.42GB | 34m, eta 38m
+[ppo-s0] ep 119/250 step 0.487M | score 10.07 (recent 13.29) | reward 8.50 | eps 2496 | 249 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 35m, eta 38m
+[ppo-s0] ep 120/250 step 0.492M | score 10.09 (recent 13.21) | reward 7.47 | eps 2515 | 250 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 35m, eta 38m
+[ppo-s0] ep 121/250 step 0.496M | score 10.11 (recent 12.84) | reward 7.45 | eps 2535 | 246 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 35m, eta 37m
+[ppo-s0] ep 122/250 step 0.500M | score 10.13 (recent 13.03) | reward 7.98 | eps 2552 | 226 sps (roll 7.0s upd 11.1s) | mem 2.42GB | 35m, eta 37m
+[ppo-s0] ep 123/250 step 0.504M | score 10.15 (recent 12.64) | reward 7.95 | eps 2572 | 188 sps (roll 10.8s upd 11.0s) | mem 2.42GB | 36m, eta 37m
+[ppo-s0] ep 124/250 step 0.508M | score 10.17 (recent 12.09) | reward 8.26 | eps 2591 | 241 sps (roll 6.0s upd 11.0s) | mem 2.42GB | 36m, eta 37m
+[ppo-s0] ep 125/250 step 0.512M | score 10.17 (recent 11.86) | reward 7.29 | eps 2612 | 248 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 36m, eta 36m
+[ppo-s0] ep 126/250 step 0.516M | score 10.20 (recent 12.24) | reward 8.53 | eps 2633 | 243 sps (roll 5.8s upd 11.0s) | mem 2.42GB | 37m, eta 36m
+[ppo-s0] ep 127/250 step 0.520M | score 10.26 (recent 12.78) | reward 8.39 | eps 2650 | 249 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 37m, eta 36m
+[ppo-s0] ep 128/250 step 0.524M | score 10.27 (recent 12.42) | reward 7.91 | eps 2671 | 245 sps (roll 5.7s upd 11.0s) | mem 2.42GB | 37m, eta 35m
+[ppo-s0] ep 129/250 step 0.528M | score 10.28 (recent 12.51) | reward 8.38 | eps 2689 | 241 sps (roll 6.0s upd 11.0s) | mem 2.42GB | 38m, eta 35m
+[ppo-s0] ep 130/250 step 0.532M | score 10.31 (recent 12.62) | reward 8.91 | eps 2710 | 210 sps (roll 8.4s upd 11.1s) | mem 2.42GB | 38m, eta 35m
+[ppo-s0] ep 131/250 step 0.537M | score 10.32 (recent 12.62) | reward 8.66 | eps 2728 | 204 sps (roll 9.1s upd 11.0s) | mem 2.42GB | 38m, eta 35m
+[ppo-s0] ep 132/250 step 0.541M | score 10.34 (recent 12.20) | reward 8.24 | eps 2749 | 247 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 38m, eta 34m
+[ppo-s0] ep 133/250 step 0.545M | score 10.36 (recent 11.80) | reward 8.78 | eps 2768 | 249 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 39m, eta 34m
+[ppo-s0] ep 134/250 step 0.549M | score 10.39 (recent 12.30) | reward 8.57 | eps 2785 | 248 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 39m, eta 34m
+[ppo-s0] ep 135/250 step 0.553M | score 10.40 (recent 12.21) | reward 7.85 | eps 2805 | 237 sps (roll 6.3s upd 11.0s) | mem 2.42GB | 39m, eta 33m
+[ppo-s0] ep 136/250 step 0.557M | score 10.43 (recent 12.85) | reward 8.63 | eps 2822 | 242 sps (roll 5.9s upd 11.0s) | mem 2.42GB | 40m, eta 33m
+[ppo-s0] ep 137/250 step 0.561M | score 10.46 (recent 13.41) | reward 8.77 | eps 2837 | 183 sps (roll 11.4s upd 11.0s) | mem 2.42GB | 40m, eta 33m
+[ppo-s0] ep 138/250 step 0.565M | score 10.48 (recent 13.42) | reward 8.31 | eps 2856 | 249 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 40m, eta 33m
+[ppo-s0] ep 139/250 step 0.569M | score 10.51 (recent 13.87) | reward 9.54 | eps 2872 | 250 sps (roll 5.3s upd 11.0s) | mem 2.42GB | 40m, eta 32m
+[ppo-s0] ep 140/250 step 0.573M | score 10.53 (recent 13.65) | reward 8.10 | eps 2890 | 250 sps (roll 5.3s upd 11.0s) | mem 2.42GB | 41m, eta 32m
+[ppo-s0] ep 141/250 step 0.578M | score 10.55 (recent 14.18) | reward 8.60 | eps 2906 | 244 sps (roll 5.8s upd 11.0s) | mem 2.42GB | 41m, eta 32m
+[ppo-s0] ep 142/250 step 0.582M | score 10.57 (recent 12.99) | reward 8.72 | eps 2927 | 238 sps (roll 6.2s upd 11.1s) | mem 2.42GB | 41m, eta 31m
+[ppo-s0] ep 143/250 step 0.586M | score 10.58 (recent 12.71) | reward 7.85 | eps 2943 | 248 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 42m, eta 31m
+[ppo-s0] ep 144/250 step 0.590M | score 10.58 (recent 11.71) | reward 7.39 | eps 2964 | 246 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 42m, eta 31m
+[ppo-s0] ep 145/250 step 0.594M | score 10.61 (recent 12.26) | reward 9.63 | eps 2981 | 249 sps (roll 5.4s upd 11.1s) | mem 2.42GB | 42m, eta 31m
+[ppo-s0] ep 146/250 step 0.598M | score 10.62 (recent 12.13) | reward 7.96 | eps 3002 | 171 sps (roll 12.9s upd 11.0s) | mem 2.42GB | 43m, eta 30m
+[ppo-s0] ep 147/250 step 0.602M | score 10.65 (recent 12.76) | reward 8.60 | eps 3018 | 247 sps (roll 5.5s upd 11.1s) | mem 2.42GB | 43m, eta 30m
+[ppo-s0] ep 148/250 step 0.606M | score 10.67 (recent 13.03) | reward 8.89 | eps 3037 | 237 sps (roll 6.2s upd 11.0s) | mem 2.42GB | 43m, eta 30m
+[ppo-s0] ep 149/250 step 0.610M | score 10.67 (recent 13.02) | reward 8.48 | eps 3053 | 241 sps (roll 5.9s upd 11.1s) | mem 2.42GB | 43m, eta 29m
+[ppo-s0] ep 150/250 step 0.614M | score 10.72 (recent 13.99) | reward 9.43 | eps 3068 | 248 sps (roll 5.4s upd 11.1s) | mem 2.42GB | 44m, eta 29m
+[ppo-s0] ep 151/250 step 0.618M | score 10.75 (recent 13.77) | reward 8.72 | eps 3089 | 242 sps (roll 5.8s upd 11.1s) | mem 2.42GB | 44m, eta 29m
+[ppo-s0] ep 152/250 step 0.623M | score 10.77 (recent 14.30) | reward 8.50 | eps 3104 | 250 sps (roll 5.3s upd 11.1s) | mem 2.42GB | 44m, eta 29m
+[ppo-s0] ep 153/250 step 0.627M | score 10.80 (recent 14.66) | reward 8.88 | eps 3122 | 242 sps (roll 5.8s upd 11.1s) | mem 2.42GB | 45m, eta 28m
+[ppo-s0] ep 154/250 step 0.631M | score 10.82 (recent 14.78) | reward 8.78 | eps 3141 | 233 sps (roll 6.5s upd 11.1s) | mem 2.42GB | 45m, eta 28m
+[ppo-s0] ep 155/250 step 0.635M | score 10.83 (recent 14.77) | reward 8.16 | eps 3159 | 240 sps (roll 6.0s upd 11.1s) | mem 2.42GB | 45m, eta 28m
+[ppo-s0] ep 156/250 step 0.639M | score 10.86 (recent 13.80) | reward 8.21 | eps 3178 | 181 sps (roll 11.5s upd 11.1s) | mem 2.42GB | 45m, eta 27m
+[ppo-s0] ep 157/250 step 0.643M | score 10.89 (recent 14.32) | reward 8.15 | eps 3198 | 229 sps (roll 6.8s upd 11.1s) | mem 2.42GB | 46m, eta 27m
+[ppo-s0] ep 158/250 step 0.647M | score 10.92 (recent 13.98) | reward 8.34 | eps 3215 | 249 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 46m, eta 27m
+[ppo-s0] ep 159/250 step 0.651M | score 10.96 (recent 14.70) | reward 8.71 | eps 3233 | 249 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 46m, eta 27m
+[ppo-s0] ep 160/250 step 0.655M | score 10.98 (recent 14.46) | reward 8.63 | eps 3250 | 238 sps (roll 6.2s upd 11.0s) | mem 2.42GB | 47m, eta 26m
+[ppo-s0] ep 161/250 step 0.659M | score 10.99 (recent 14.42) | reward 7.86 | eps 3271 | 236 sps (roll 6.4s upd 11.0s) | mem 2.42GB | 47m, eta 26m
+[ppo-s0] ep 162/250 step 0.664M | score 11.00 (recent 13.84) | reward 8.15 | eps 3290 | 243 sps (roll 5.8s upd 11.0s) | mem 2.42GB | 47m, eta 26m
+[ppo-s0] ep 163/250 step 0.668M | score 11.04 (recent 14.08) | reward 9.79 | eps 3306 | 246 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 47m, eta 25m
+[ppo-s0] ep 164/250 step 0.672M | score 11.05 (recent 13.85) | reward 7.81 | eps 3327 | 246 sps (roll 5.6s upd 11.1s) | mem 2.42GB | 48m, eta 25m
+[ppo-s0] ep 165/250 step 0.676M | score 11.08 (recent 13.58) | reward 8.66 | eps 3345 | 244 sps (roll 5.7s upd 11.0s) | mem 2.42GB | 48m, eta 25m
+[ppo-s0] ep 166/250 step 0.680M | score 11.11 (recent 13.78) | reward 9.16 | eps 3363 | 235 sps (roll 6.4s upd 11.0s) | mem 2.42GB | 48m, eta 24m
+[ppo-s0] ep 167/250 step 0.684M | score 11.12 (recent 14.17) | reward 8.90 | eps 3383 | 244 sps (roll 5.8s upd 11.0s) | mem 2.42GB | 49m, eta 24m
+[ppo-s0] ep 168/250 step 0.688M | score 11.14 (recent 14.13) | reward 8.39 | eps 3397 | 254 sps (roll 5.1s upd 11.0s) | mem 2.42GB | 49m, eta 24m
+[ppo-s0] ep 169/250 step 0.692M | score 11.15 (recent 13.42) | reward 8.10 | eps 3415 | 238 sps (roll 6.2s upd 11.0s) | mem 2.42GB | 49m, eta 24m
+[ppo-s0] ep 170/250 step 0.696M | score 11.17 (recent 13.69) | reward 9.00 | eps 3436 | 186 sps (roll 11.0s upd 11.0s) | mem 2.42GB | 50m, eta 23m
+[ppo-s0] ep 171/250 step 0.700M | score 11.17 (recent 12.89) | reward 7.93 | eps 3454 | 244 sps (roll 5.7s upd 11.0s) | mem 2.42GB | 50m, eta 23m
+[ppo-s0] ep 172/250 step 0.705M | score 11.20 (recent 12.72) | reward 8.50 | eps 3474 | 238 sps (roll 6.2s upd 11.0s) | mem 2.42GB | 50m, eta 23m
+[ppo-s0] ep 173/250 step 0.709M | score 11.21 (recent 12.99) | reward 9.16 | eps 3492 | 244 sps (roll 5.7s upd 11.0s) | mem 2.42GB | 50m, eta 22m
+[ppo-s0] ep 174/250 step 0.713M | score 11.25 (recent 13.40) | reward 9.29 | eps 3508 | 249 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 51m, eta 22m
+[ppo-s0] ep 175/250 step 0.717M | score 11.29 (recent 14.24) | reward 9.54 | eps 3526 | 247 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 51m, eta 22m
+[ppo-s0] ep 176/250 step 0.721M | score 11.31 (recent 14.71) | reward 9.41 | eps 3542 | 252 sps (roll 5.3s upd 11.0s) | mem 2.42GB | 51m, eta 22m
+[ppo-s0] ep 177/250 step 0.725M | score 11.32 (recent 14.84) | reward 8.66 | eps 3560 | 201 sps (roll 9.3s upd 11.1s) | mem 2.42GB | 52m, eta 21m
+[ppo-s0] ep 178/250 step 0.729M | score 11.32 (recent 14.18) | reward 8.16 | eps 3577 | 216 sps (roll 8.0s upd 11.0s) | mem 2.42GB | 52m, eta 21m
+[ppo-s0] ep 179/250 step 0.733M | score 11.37 (recent 15.62) | reward 9.57 | eps 3594 | 247 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 52m, eta 21m
+[ppo-s0] ep 180/250 step 0.737M | score 11.40 (recent 15.45) | reward 9.30 | eps 3609 | 255 sps (roll 5.1s upd 11.0s) | mem 2.42GB | 52m, eta 20m
+[ppo-s0] ep 181/250 step 0.741M | score 11.41 (recent 14.51) | reward 9.04 | eps 3627 | 248 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 53m, eta 20m
+[ppo-s0] ep 182/250 step 0.745M | score 11.42 (recent 14.26) | reward 8.77 | eps 3645 | 246 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 53m, eta 20m
+[ppo-s0] ep 183/250 step 0.750M | score 11.44 (recent 14.52) | reward 8.57 | eps 3660 | 238 sps (roll 6.2s upd 11.0s) | mem 2.42GB | 53m, eta 19m
+[ppo-s0] ep 184/250 step 0.754M | score 11.47 (recent 15.00) | reward 9.34 | eps 3681 | 175 sps (roll 12.5s upd 11.0s) | mem 2.42GB | 54m, eta 19m
+[ppo-s0] ep 185/250 step 0.758M | score 11.48 (recent 14.14) | reward 8.69 | eps 3698 | 248 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 54m, eta 19m
+[ppo-s0] ep 186/250 step 0.762M | score 11.52 (recent 14.94) | reward 8.90 | eps 3713 | 251 sps (roll 5.3s upd 11.0s) | mem 2.42GB | 54m, eta 19m
+[ppo-s0] ep 187/250 step 0.766M | score 11.56 (recent 15.67) | reward 8.99 | eps 3731 | 248 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 54m, eta 18m
+[ppo-s0] ep 188/250 step 0.770M | score 11.57 (recent 15.86) | reward 9.30 | eps 3746 | 254 sps (roll 5.1s upd 11.0s) | mem 2.42GB | 55m, eta 18m
+[ppo-s0] ep 189/250 step 0.774M | score 11.59 (recent 15.61) | reward 9.63 | eps 3763 | 239 sps (roll 6.1s upd 11.0s) | mem 2.42GB | 55m, eta 18m
+[ppo-s0] ep 190/250 step 0.778M | score 11.60 (recent 15.51) | reward 9.43 | eps 3778 | 243 sps (roll 5.9s upd 11.0s) | mem 2.42GB | 55m, eta 17m
+[ppo-s0] ep 191/250 step 0.782M | score 11.61 (recent 15.22) | reward 8.55 | eps 3800 | 245 sps (roll 5.7s upd 11.0s) | mem 2.42GB | 56m, eta 17m
+[ppo-s0] ep 192/250 step 0.786M | score 11.64 (recent 14.02) | reward 9.66 | eps 3816 | 250 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 56m, eta 17m
+[ppo-s0] ep 193/250 step 0.791M | score 11.69 (recent 15.65) | reward 10.70 | eps 3831 | 253 sps (roll 5.2s upd 11.0s) | mem 2.42GB | 56m, eta 17m
+[ppo-s0] ep 194/250 step 0.795M | score 11.70 (recent 15.54) | reward 9.23 | eps 3847 | 243 sps (roll 5.9s upd 11.0s) | mem 2.42GB | 56m, eta 16m
+[ppo-s0] ep 195/250 step 0.799M | score 11.73 (recent 16.00) | reward 9.20 | eps 3867 | 194 sps (roll 10.0s upd 11.1s) | mem 2.42GB | 57m, eta 16m
+[ppo-s0] ep 196/250 step 0.803M | score 11.75 (recent 16.01) | reward 8.57 | eps 3882 | 213 sps (roll 8.2s upd 11.0s) | mem 2.42GB | 57m, eta 16m
+[ppo-s0] ep 197/250 step 0.807M | score 11.76 (recent 16.28) | reward 9.38 | eps 3900 | 251 sps (roll 5.3s upd 11.0s) | mem 2.42GB | 57m, eta 15m
+[ppo-s0] ep 198/250 step 0.811M | score 11.78 (recent 15.84) | reward 9.45 | eps 3917 | 250 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 58m, eta 15m
+[ppo-s0] ep 199/250 step 0.815M | score 11.79 (recent 14.50) | reward 9.10 | eps 3934 | 249 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 58m, eta 15m
+[ppo-s0] ep 200/250 step 0.819M | score 11.80 (recent 14.43) | reward 8.93 | eps 3952 | 240 sps (roll 6.1s upd 11.0s) | mem 2.42GB | 58m, eta 15m
+[ppo-s0] ep 201/250 step 0.823M | score 11.81 (recent 13.71) | reward 9.27 | eps 3970 | 240 sps (roll 6.1s upd 11.0s) | mem 2.42GB | 58m, eta 14m
+[ppo-s0] ep 202/250 step 0.827M | score 11.82 (recent 13.21) | reward 9.17 | eps 3985 | 250 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 59m, eta 14m
+[ppo-s0] ep 203/250 step 0.831M | score 11.85 (recent 14.29) | reward 9.33 | eps 3998 | 252 sps (roll 5.2s upd 11.1s) | mem 2.42GB | 59m, eta 14m
+[ppo-s0] ep 204/250 step 0.836M | score 11.86 (recent 14.07) | reward 8.71 | eps 4016 | 248 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 59m, eta 13m
+[ppo-s0] ep 205/250 step 0.840M | score 11.86 (recent 13.70) | reward 8.27 | eps 4034 | 249 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 60m, eta 13m
+[ppo-s0] ep 206/250 step 0.844M | score 11.86 (recent 13.51) | reward 8.57 | eps 4051 | 240 sps (roll 6.1s upd 11.0s) | mem 2.42GB | 60m, eta 13m
+[ppo-s0] ep 207/250 step 0.848M | score 11.88 (recent 14.05) | reward 9.94 | eps 4070 | 175 sps (roll 12.4s upd 11.0s) | mem 2.42GB | 60m, eta 13m
+[ppo-s0] ep 208/250 step 0.852M | score 11.91 (recent 14.53) | reward 8.99 | eps 4088 | 235 sps (roll 6.4s upd 11.0s) | mem 2.42GB | 60m, eta 12m
+[ppo-s0] ep 209/250 step 0.856M | score 11.91 (recent 13.44) | reward 8.23 | eps 4103 | 254 sps (roll 5.1s upd 11.0s) | mem 2.42GB | 61m, eta 12m
+[ppo-s0] ep 210/250 step 0.860M | score 11.93 (recent 14.01) | reward 8.83 | eps 4118 | 254 sps (roll 5.1s upd 11.0s) | mem 2.42GB | 61m, eta 12m
+[ppo-s0] ep 211/250 step 0.864M | score 11.93 (recent 14.15) | reward 8.60 | eps 4138 | 244 sps (roll 5.8s upd 11.0s) | mem 2.42GB | 61m, eta 11m
+[ppo-s0] ep 212/250 step 0.868M | score 11.94 (recent 14.27) | reward 8.74 | eps 4152 | 240 sps (roll 6.1s upd 11.0s) | mem 2.42GB | 62m, eta 11m
+[ppo-s0] ep 213/250 step 0.872M | score 11.94 (recent 13.63) | reward 8.30 | eps 4172 | 241 sps (roll 6.0s upd 11.0s) | mem 2.42GB | 62m, eta 11m
+[ppo-s0] ep 214/250 step 0.877M | score 11.96 (recent 13.39) | reward 9.35 | eps 4188 | 253 sps (roll 5.2s upd 11.0s) | mem 2.42GB | 62m, eta 10m
+[ppo-s0] ep 215/250 step 0.881M | score 11.98 (recent 14.23) | reward 9.73 | eps 4204 | 249 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 62m, eta 10m
+[ppo-s0] ep 216/250 step 0.885M | score 11.98 (recent 13.46) | reward 8.71 | eps 4222 | 247 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 63m, eta 10m
+[ppo-s0] ep 217/250 step 0.889M | score 11.99 (recent 13.69) | reward 9.66 | eps 4240 | 239 sps (roll 6.1s upd 11.0s) | mem 2.42GB | 63m, eta 10m
+[ppo-s0] ep 218/250 step 0.893M | score 12.01 (recent 13.98) | reward 8.92 | eps 4257 | 239 sps (roll 6.2s upd 11.0s) | mem 2.42GB | 63m, eta 9m
+[ppo-s0] ep 219/250 step 0.897M | score 12.01 (recent 13.60) | reward 9.10 | eps 4275 | 251 sps (roll 5.3s upd 11.0s) | mem 2.42GB | 64m, eta 9m
+[ppo-s0] ep 220/250 step 0.901M | score 12.01 (recent 12.59) | reward 7.70 | eps 4290 | 251 sps (roll 5.3s upd 11.0s) | mem 2.42GB | 64m, eta 9m
+[ppo-s0] ep 221/250 step 0.905M | score 12.02 (recent 12.66) | reward 9.92 | eps 4307 | 232 sps (roll 6.6s upd 11.0s) | mem 2.42GB | 64m, eta 8m
+[ppo-s0] ep 222/250 step 0.909M | score 12.03 (recent 13.03) | reward 8.88 | eps 4325 | 190 sps (roll 10.6s upd 11.0s) | mem 2.42GB | 64m, eta 8m
+[ppo-s0] ep 223/250 step 0.913M | score 12.04 (recent 13.12) | reward 9.79 | eps 4338 | 248 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 65m, eta 8m
+[ppo-s0] ep 224/250 step 0.918M | score 12.06 (recent 13.00) | reward 8.77 | eps 4356 | 237 sps (roll 6.3s upd 11.0s) | mem 2.42GB | 65m, eta 8m
+[ppo-s0] ep 225/250 step 0.922M | score 12.07 (recent 13.07) | reward 9.70 | eps 4371 | 251 sps (roll 5.3s upd 11.0s) | mem 2.42GB | 65m, eta 7m
+[ppo-s0] ep 226/250 step 0.926M | score 12.08 (recent 13.29) | reward 8.98 | eps 4387 | 252 sps (roll 5.2s upd 11.0s) | mem 2.42GB | 66m, eta 7m
+[ppo-s0] ep 227/250 step 0.930M | score 12.10 (recent 14.60) | reward 9.45 | eps 4404 | 251 sps (roll 5.3s upd 11.0s) | mem 2.42GB | 66m, eta 7m
+[ppo-s0] ep 228/250 step 0.934M | score 12.13 (recent 15.33) | reward 9.60 | eps 4420 | 247 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 66m, eta 6m
+[ppo-s0] ep 229/250 step 0.938M | score 12.16 (recent 15.62) | reward 8.42 | eps 4439 | 236 sps (roll 6.3s upd 11.0s) | mem 2.42GB | 66m, eta 6m
+[ppo-s0] ep 230/250 step 0.942M | score 12.17 (recent 15.95) | reward 9.24 | eps 4453 | 246 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 67m, eta 6m
+[ppo-s0] ep 231/250 step 0.946M | score 12.18 (recent 15.78) | reward 9.60 | eps 4469 | 252 sps (roll 5.3s upd 11.0s) | mem 2.42GB | 67m, eta 6m
+[ppo-s0] ep 232/250 step 0.950M | score 12.19 (recent 16.13) | reward 9.17 | eps 4484 | 253 sps (roll 5.2s upd 11.0s) | mem 2.42GB | 67m, eta 5m
+[ppo-s0] ep 233/250 step 0.954M | score 12.21 (recent 15.83) | reward 9.10 | eps 4500 | 249 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 68m, eta 5m
+[ppo-s0] ep 234/250 step 0.958M | score 12.21 (recent 15.30) | reward 9.35 | eps 4516 | 242 sps (roll 5.9s upd 11.0s) | mem 2.42GB | 68m, eta 5m
+[ppo-s0] ep 235/250 step 0.963M | score 12.23 (recent 15.00) | reward 10.03 | eps 4530 | 230 sps (roll 6.8s upd 11.0s) | mem 2.42GB | 68m, eta 4m
+[ppo-s0] ep 236/250 step 0.967M | score 12.24 (recent 14.95) | reward 9.51 | eps 4547 | 185 sps (roll 11.1s upd 11.0s) | mem 2.42GB | 68m, eta 4m
+[ppo-s0] ep 237/250 step 0.971M | score 12.26 (recent 15.24) | reward 8.73 | eps 4563 | 249 sps (roll 5.5s upd 11.0s) | mem 2.42GB | 69m, eta 4m
+[ppo-s0] ep 238/250 step 0.975M | score 12.29 (recent 14.97) | reward 9.49 | eps 4581 | 250 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 69m, eta 3m
+[ppo-s0] ep 239/250 step 0.979M | score 12.29 (recent 14.22) | reward 8.20 | eps 4602 | 246 sps (roll 5.7s upd 11.0s) | mem 2.42GB | 69m, eta 3m
+[ppo-s0] ep 240/250 step 0.983M | score 12.30 (recent 14.22) | reward 9.29 | eps 4618 | 246 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 70m, eta 3m
+[ppo-s0] ep 241/250 step 0.987M | score 12.31 (recent 14.05) | reward 8.10 | eps 4636 | 239 sps (roll 6.1s upd 11.0s) | mem 2.42GB | 70m, eta 3m
+[ppo-s0] ep 242/250 step 0.991M | score 12.32 (recent 14.38) | reward 8.66 | eps 4654 | 247 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 70m, eta 2m
+[ppo-s0] ep 243/250 step 0.995M | score 12.33 (recent 14.06) | reward 9.32 | eps 4672 | 250 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 70m, eta 2m
+[ppo-s0] ep 244/250 step 0.999M | score 12.34 (recent 13.98) | reward 9.60 | eps 4688 | 253 sps (roll 5.2s upd 11.0s) | mem 2.42GB | 71m, eta 2m
+[ppo-s0] ep 245/250 step 1.004M | score 12.35 (recent 14.11) | reward 8.85 | eps 4704 | 247 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 71m, eta 1m
+[ppo-s0] ep 246/250 step 1.008M | score 12.36 (recent 14.10) | reward 8.89 | eps 4723 | 237 sps (roll 6.3s upd 11.0s) | mem 2.42GB | 71m, eta 1m
+[ppo-s0] ep 247/250 step 1.012M | score 12.36 (recent 14.08) | reward 8.81 | eps 4737 | 248 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 72m, eta 1m
+[ppo-s0] ep 248/250 step 1.016M | score 12.37 (recent 14.11) | reward 9.69 | eps 4754 | 249 sps (roll 5.4s upd 11.0s) | mem 2.42GB | 72m, eta 1m
+[ppo-s0] ep 249/250 step 1.020M | score 12.38 (recent 14.02) | reward 8.50 | eps 4774 | 247 sps (roll 5.6s upd 11.0s) | mem 2.42GB | 72m, eta 0m
+[ppo-s0] ep 250/250 step 1.024M | score 12.40 (recent 14.48) | reward 9.26 | eps 4793 | 210 sps (roll 8.4s upd 11.1s) | mem 2.42GB | 72m, eta 0m
+{
+  "run": "ppo-s0",
+  "config": "ppo",
+  "seed": 0,
+  "steps": 1024000,
+  "episodes": 4793,
+  "score": 12.401134544855061,
+  "success_rate": {
+    "collect_coal": 14.083037763404965,
+    "collect_diamond": 0.0,
+    "collect_drink": 53.286042144794486,
+    "collect_iron": 0.0,
+    "collect_sapling": 86.62633006467766,
+    "collect_stone": 36.448988107657,
+    "collect_wood": 91.82140621740038,
+    "defeat_skeleton": 2.8791988316294597,
+    "defeat_zombie": 59.878990194032966,
+    "eat_cow": 57.50052159399124,
+    "eat_plant": 0.06259127894846651,
+    "make_iron_pickaxe": 0.0,
+    "make_iron_sword": 0.0,
+    "make_stone_pickaxe": 0.8762779052785312,
+    "make_stone_sword": 1.2309618193198415,
+    "make_wood_pickaxe": 66.36761944502399,
+    "make_wood_sword": 70.39432505737534,
+    "place_furnace": 2.5871061965366158,
+    "place_plant": 85.06154809096599,
+    "place_stone": 35.36407260588358,
+    "place_table": 86.35510118923429,
+    "wake_up": 85.70832464010014
+  },
+  "wall_clock_h": 1.21,
+  "reward_mean_all": 7.456144377216775,
+  "reward_mean_last100": 9.01,
+  "eval_episode": {
+    "length": 274,
+    "return": 11.100000000000003,
+    "died": true,
+    "achievements": [
+      "collect_coal",
+      "collect_sapling",
+      "collect_stone",
+      "collect_wood",
+      "defeat_zombie",
+      "eat_cow",
+      "make_wood_pickaxe",
+      "make_wood_sword",
+      "place_furnace",
+      "place_plant",
+      "place_stone",
+      "place_table"
+    ]
+  }
+}

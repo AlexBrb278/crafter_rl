@@ -1,0 +1,53 @@
+{
+  "run": "ppo-s1",
+  "config": "ppo",
+  "seed": 1,
+  "steps": 1024000,
+  "episodes": 4861,
+  "score": 16.67200365126696,
+  "success_rate": {
+    "collect_coal": 30.79613248302818,
+    "collect_diamond": 0.0,
+    "collect_drink": 50.01028594939313,
+    "collect_iron": 0.3291503805801275,
+    "collect_sapling": 88.19173009668792,
+    "collect_stone": 52.60234519646163,
+    "collect_wood": 91.68895289035179,
+    "defeat_skeleton": 12.692861551121167,
+    "defeat_zombie": 45.258177329767534,
+    "eat_cow": 55.00925735445381,
+    "eat_plant": 0.0,
+    "make_iron_pickaxe": 0.0,
+    "make_iron_sword": 0.0,
+    "make_stone_pickaxe": 3.4560789960913394,
+    "make_stone_sword": 3.867516971816499,
+    "make_wood_pickaxe": 69.8004525817733,
+    "make_wood_sword": 61.22197078790372,
+    "place_furnace": 33.18247274223411,
+    "place_plant": 86.71055338407734,
+    "place_stone": 49.681135568813,
+    "place_table": 86.13454021806213,
+    "wake_up": 63.27916066652952
+  },
+  "wall_clock_h": 1.21,
+  "reward_mean_all": 7.930693272989095,
+  "reward_mean_last100": 10.499999999999995,
+  "eval_episode": {
+    "length": 297,
+    "return": 10.100000000000003,
+    "died": true,
+    "achievements": [
+      "collect_coal",
+      "collect_drink",
+      "collect_stone",
+      "collect_wood",
+      "defeat_zombie",
+      "make_wood_pickaxe",
+      "make_wood_sword",
+      "place_furnace",
+      "place_stone",
+      "place_table",
+      "wake_up"
+    ]
+  }
+}
