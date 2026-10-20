@@ -26,7 +26,7 @@ Model weights and videos (`*.pt`, `*.mp4`) are stored with Git LFS: run `git lfs
 ## Tools
 - `scripts/dashboard.py`: live dashboard on http://localhost:8765 (curves, achievement bars, agent clips).
 - `scripts/spectator.py <run>`: films the latest checkpoint of a running job every ~15 min.
-- `scripts/queue.ps1`: runs one configuration for several seeds back to back. Finished runs are skipped; interrupted runs resume.
+- `scripts/queue.ps1` (Windows) / `scripts/queue.sh` (Linux): runs one configuration for several seeds back to back. Finished runs are skipped; interrupted runs resume.
 - `scripts/plot_results.py`, `scripts/aggregate_seeds.py`: PNG plots and CSV summaries into `results/`.
 - `scripts/report_data.py` + `scripts/make_report.py`: the self-contained HTML report (`runs/report/`).
 

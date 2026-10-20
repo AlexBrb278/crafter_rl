@@ -199,3 +199,7 @@ Mistake on the way: `[int[]]` parsed `-Seeds 0,1,2` (one string under `powershel
   Tested by resuming a 2-epoch PPO + β = 2 run for a third epoch: the 45 saved episodes were restored and the window grew to 68, and the bonus total went 101.07 → 154.12 instead of restarting.
   None of the 15 runs was ever resumed (no "resumed from" in any `train.log`), so their results are unaffected.
 - `scripts/setup.sh` (Linux) did not clone the AD upstream that `train.py` imports. It now clones it @ `9abbce6`, as `setup_windows.ps1` already did.
+- Guard: `train.py` appends to `metrics.jsonl` / `episodes.jsonl`, so a fresh run under a used name (e.g. the committed `ad-rarity2-s0`) would have mixed into the old logs and averaged its reward over both runs.
+  It now refuses to start if the folder has logs, unless `--resume` finds `checkpoints/latest.pt`.
+- `scripts/queue.sh`: Linux version of `queue.ps1` (same skip / resume behaviour). It does not force micro-batching, which the 24 GB RTX 5090 does not need.
+- Tested end to end from Git Bash: a 2-seed queue, a rerun that skips both finished seeds, the three guard cases, and a refusal on the committed `ppo-s0`, which was left untouched.

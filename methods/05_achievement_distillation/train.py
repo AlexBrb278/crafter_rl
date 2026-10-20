@@ -217,6 +217,15 @@ def main(args):
     run_name = args.run_name or f"ad-{args.config}-s{args.seed}"
     run_dir = os.path.join(ROOT, "runs", run_name)
     ckpt_dir = os.path.join(run_dir, "checkpoints")
+    latest = os.path.join(ckpt_dir, "latest.pt")
+    # The logs are appended to, so a fresh start in a used folder would mix two runs (and
+    # overwrite a committed one). Only --resume from a checkpoint may reuse a folder.
+    used = [f for f in ("metrics.jsonl", "episodes.jsonl", "final.json")
+            if os.path.isfile(os.path.join(run_dir, f)) and os.path.getsize(os.path.join(run_dir, f))]
+    if used and not (args.resume and os.path.exists(latest)):
+        why = "there is no checkpoints/latest.pt to resume from" if args.resume else "--resume was not given"
+        sys.exit(f"runs/{run_name} already has {', '.join(used)}, but {why}. "
+                 "Pick a new --run_name, or delete the folder to start over.")
     os.makedirs(ckpt_dir, exist_ok=True)
     os.makedirs(os.path.join(run_dir, "videos"), exist_ok=True)
     sys.stdout = Tee(sys.stdout, os.path.join(run_dir, "train.log"))
@@ -282,7 +291,6 @@ def main(args):
 
     # --- resume ---
     start_epoch, total_successes, t_offset = 1, np.zeros((0, 22), np.int32), 0.0
-    latest = os.path.join(ckpt_dir, "latest.pt")
     if args.resume and os.path.exists(latest):
         ck = th.load(latest, map_location=device, weights_only=False)
         model.load_state_dict(ck["model"])
