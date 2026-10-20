@@ -90,6 +90,8 @@ class MBPPOADAlgorithm(_MicroBatchMixin, PPOADAlgorithm):
         self.model.train()
 
         keys = ["obs", "actions", "states", "returns", "masks", "rewards", "successes"]
+        if hasattr(storage, "hiddens"):  # recurrent.py (GRU model): keep per-step GRU input states
+            keys.append("hiddens")
         self.buffer.insert({key: storage[key].cpu() for key in keys})
 
         train_stats = self._ppo_phase(storage)
@@ -165,6 +167,12 @@ class MBPPOADAlgorithm(_MicroBatchMixin, PPOADAlgorithm):
         c = (self.pi_dist_coef, self.vf_dist_coef)
         totals = {"match_loss": 0.0, "pred_loss": 0.0, "pi_dist": 0.0, "vf_dist": 0.0}
         n_match = n_pred = 0
+        # The value normaliser updates its EWMA on every mse_loss call. With aux micro-batches of
+        # 512/k samples it would update k times per optimizer step; aux_norm_k (set by train.py for
+        # the GRU runs) keeps upstream's time constant during the aux phase.
+        norm = self.model.vf_head.normalizer
+        beta0 = norm.beta
+        norm.beta = beta0 ** (1.0 / getattr(self, "aux_norm_k", 1))
         for _ in range(self.aux_nepoch):
             for batch, src in fa.match_batches(self.buffer, self.model, device):
                 def match_fn(mb, src=src):
@@ -182,6 +190,7 @@ class MBPPOADAlgorithm(_MicroBatchMixin, PPOADAlgorithm):
                 for k in ("pred_loss", "pi_dist", "vf_dist"):
                     totals[k] += s[k]
                 n_pred += 1
+        norm.beta = beta0
         train_stats.update({
             "match_loss": totals["match_loss"] / max(n_match, 1),
             "pred_loss": totals["pred_loss"] / max(n_pred, 1),

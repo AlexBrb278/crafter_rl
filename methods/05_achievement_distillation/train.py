@@ -159,6 +159,7 @@ def record_episode(model, cfg, device, path, seed=123, max_steps=3000, label="")
     hud = HUD(384)
     model.eval()
     states = th.zeros(1, cfg["model_kwargs"]["hidsize"], device=device)
+    mem = {"hiddens": model.initial_hiddens(1, device)} if hasattr(model, "initial_hiddens") else {}
     frames, ret, prev, info = [], 0.0, set(), None
 
     def to_t(o):
@@ -166,7 +167,9 @@ def record_episode(model, cfg, device, path, seed=123, max_steps=3000, label="")
 
     for t in range(1, max_steps + 1):
         frame = env.render((384, 384))
-        out = model.act(to_t(obs), states=states)
+        out = model.act(to_t(obs), states=states, **mem)
+        if mem:
+            mem["hiddens"] = out["hiddens"]
         obs, r, done, info = env.step(int(out["actions"].item()))
         ret += r
         ach = {k for k, v in info["achievements"].items() if v > 0}
@@ -177,7 +180,7 @@ def record_episode(model, cfg, device, path, seed=123, max_steps=3000, label="")
             frame, f"{label}  evaluation episode   t={t}   return {ret:.1f}",
             f"health {inv['health']}  food {inv['food']}  drink {inv['drink']}  "
             f"energy {inv['energy']}   achievements: {len(ach)}/22", new))
-        if new and cfg["model_cls"] == "PPOADModel":
+        if new and cfg["model_cls"] in ("PPOADModel", "PPOADGRUModel"):
             with th.no_grad():
                 next_lat = model.encode(to_t(obs))
             states = F.normalize(next_lat - out["latents"], dim=-1)
@@ -213,6 +216,10 @@ def main(args):
         cfg = yaml.safe_load(f)
     if args.nepoch:
         cfg["nepoch"] = args.nepoch
+    if args.gamma is not None:  # improvement experiment: longer horizon (paper: 0.95)
+        cfg["gamma"] = args.gamma
+    if args.gae_lambda is not None:
+        cfg["gae_lambda"] = args.gae_lambda
 
     run_name = args.run_name or f"ad-{args.config}-s{args.seed}"
     run_dir = os.path.join(ROOT, "runs", run_name)
@@ -267,7 +274,9 @@ def main(args):
     obs = env.reset()
 
     # --- model / algorithm (upstream) ---
-    model_cls = {"PPOModel": PPOModel, "PPOADModel": PPOADModel}[cfg["model_cls"]]
+    from recurrent import PPOADGRUModel, RecurrentBuffer, RecurrentRolloutStorage
+    model_cls = {"PPOModel": PPOModel, "PPOADModel": PPOADModel, "PPOADGRUModel": PPOADGRUModel}[cfg["model_cls"]]
+    recurrent = cfg["model_cls"] == "PPOADGRUModel"
     model = model_cls(observation_space=obs_space, action_space=act_space,
                       **cfg["model_kwargs"]).to(device)
     algo_cls = {"PPOAlgorithm": MBPPOAlgorithm, "PPOADAlgorithm": MBPPOADAlgorithm}[cfg["algorithm_cls"]]
@@ -284,9 +293,18 @@ def main(args):
     nparams = sum(p.numel() for p in model.parameters())
     print(f"{cfg['model_cls']}: {nparams/1e6:.2f}M params on {device}", flush=True)
 
-    storage = RolloutStorage(nstep=cfg["nstep"], nproc=cfg["nproc"], observation_space=obs_space,
-                             action_space=act_space, hidsize=cfg["model_kwargs"]["hidsize"],
-                             device=device)
+    storage_kw = dict(nstep=cfg["nstep"], nproc=cfg["nproc"], observation_space=obs_space,
+                      action_space=act_space, hidsize=cfg["model_kwargs"]["hidsize"], device=device)
+    if recurrent:
+        assert not args.micro_batch, "micro-batching splits sequences; not implemented for the GRU model"
+        storage = RecurrentRolloutStorage(gru_size=cfg["model_kwargs"]["gru_size"],
+                                          seq_len=cfg["seq_len"], **storage_kw)
+        algorithm.buffer = RecurrentBuffer(maxlen=cfg["algorithm_kwargs"]["aux_freq"])
+        if args.aux_micro_batch:  # see algos._fast_aux_phase
+            algorithm.aux_norm_k = math.ceil(512 / args.aux_micro_batch)
+        assert args.fast_aux, "the GRU model's aux losses are implemented in fast_aux.py"
+    else:
+        storage = RolloutStorage(**storage_kw)
     storage.obs[0].copy_(obs)
 
     # --- resume ---
@@ -436,6 +454,8 @@ if __name__ == "__main__":
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--run_name", default=None)
     ap.add_argument("--nepoch", type=int, default=None, help="override (debug)")
+    ap.add_argument("--gamma", type=float, default=None, help="override the config's discount (paper: 0.95)")
+    ap.add_argument("--gae_lambda", type=float, default=None, help="override the config's GAE lambda (paper: 0.65)")
     ap.add_argument("--micro_batch", type=int, default=None,
                     help="split minibatches into chunks of this size (gradient accumulation)")
     ap.add_argument("--aux_micro_batch", type=int, default=None,

@@ -1,0 +1,5 @@
+config,label,n,score_mean,score_std,reward,train_len_last300,make_stone_pickaxe,collect_iron,make_iron_pickaxe,wake_up,eval_episodes,eval_median_len,alive_300,zombie_deaths,night_deaths,night_asleep,scores
+ppo,PPO, γ = 0.95,3,15.75,2.99,7.82,239.46,4.92,0.47,0.01,74.83,600,234.00,22.00,48.50,55.17,4.09,12.40/16.67/18.17
+ppo-rarity2,PPO + rarity β=2, γ = 0.95 (home laptop),3,20.99,0.87,8.61,241.77,17.36,2.50,0.00,68.52,600,230.50,17.00,56.17,56.67,6.06,20.85/20.20/21.92
+ppo-rarity2-5090,PPO + rarity β=2, γ = 0.95 (rerun here),1,20.90,,8.53,247.38,19.43,4.21,0.02,63.67,200,231.50,13.50,50.50,57.50,1.07,20.90
+ppo-rarity2-g99,PPO + rarity β=2, γ = 0.99,3,16.94,2.55,7.81,234.12,9.06,1.22,0.00,68.04,600,228.00,18.50,55.17,53.00,5.43,19.79/14.90/16.12

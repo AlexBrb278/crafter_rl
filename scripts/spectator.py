@@ -25,6 +25,7 @@ def main(args):
     import numpy as np
     import torch as th
     from achievement_distillation.model import PPOADModel, PPOModel
+    from recurrent import PPOADGRUModel
     from train import record_episode
 
     th.set_num_threads(args.threads)
@@ -46,7 +47,7 @@ def main(args):
                 continue
             if ck["epoch"] != last_epoch:
                 cfg = json.load(open(os.path.join(run_dir, "config.json")))["config"]
-                cls = {"PPOADModel": PPOADModel, "PPOModel": PPOModel}[cfg["model_cls"]]
+                cls = {"PPOADModel": PPOADModel, "PPOModel": PPOModel, "PPOADGRUModel": PPOADGRUModel}[cfg["model_cls"]]
                 model = cls(observation_space=gymnasium.spaces.Box(0, 1, (3, 64, 64)),
                             action_space=gymnasium.spaces.Discrete(17), **cfg["model_kwargs"])
                 model.load_state_dict(ck["model"])

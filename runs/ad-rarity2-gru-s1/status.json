@@ -1,0 +1,1 @@
+{"run": "ad-rarity2-gru-s1", "epoch": 250, "nepoch": 250, "step": 1024000, "elapsed_min": 320.0, "eta_min": 0.0, "score": 21.86197537939214, "recent_score": 32.36793737607654, "clips": 25, "updated": 1792512550.7396984}

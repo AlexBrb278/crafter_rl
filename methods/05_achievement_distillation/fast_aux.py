@@ -26,8 +26,16 @@ def precompute_old_logits(buffer, old_model, device, bs=1024):
         for s in range(0, len(traj["obs"]), bs):
             o = traj["obs"][s:s + bs].to(device)
             st = traj["old_states"][s:s + bs].to(device)
-            out.append(old_model.forward(o, states=st)["pi_logits"].cpu())
+            h = _h(traj, slice(s, s + bs), device)
+            out.append(old_model.forward(o, states=st, **h)["pi_logits"].cpu())
         traj["old_pi_logits"] = th.cat(out)
+
+
+def _h(traj, idx, device, prefix=""):
+    """GRU model only: the stored per-step input state, as a forward() kwarg."""
+    if "old_hiddens" not in traj:
+        return {}
+    return {prefix + "hiddens": traj["old_hiddens"][idx].to(device)}
 
 
 def _segment_anchors(traj):
@@ -67,15 +75,19 @@ def pred_batches(buffer, model, device, max_batch_size=512):
                 "neg_obs": obs[neg].to(device), "neg_actions": actions[neg].to(device),
                 "neg_old_states": old_states[neg].to(device), "neg_old_vtargs": old_vtargs[neg].to(device),
                 "neg_old_logits": old_logits[neg].to(device),
+                **_h(traj, inds, device, "pos_old_"), **_h(traj, neg, device, "neg_old_"),
             }
 
 
 def pred_losses(model, anc_states, pos_obs, pos_actions, pos_old_states, pos_old_vtargs, pos_old_logits,
-                neg_obs, neg_actions, neg_old_states, neg_old_vtargs, neg_old_logits):
+                neg_obs, neg_actions, neg_old_states, neg_old_vtargs, neg_old_logits,
+                pos_old_hiddens=None, neg_old_hiddens=None):
     """PPOADModel.compute_pred_losses with precomputed anchors / old logits."""
-    pos_out = model.forward(pos_obs, states=pos_old_states)
+    hp = {} if pos_old_hiddens is None else {"hiddens": pos_old_hiddens}
+    hn = {} if neg_old_hiddens is None else {"hiddens": neg_old_hiddens}
+    pos_out = model.forward(pos_obs, states=pos_old_states, **hp)
     pos_preds = model.get_next_goal_preds(pos_out["latents"], pos_actions, pos_old_states)
-    neg_out = model.forward(neg_obs, states=neg_old_states)
+    neg_out = model.forward(neg_obs, states=neg_old_states, **hn)
     neg_preds = model.get_next_goal_preds(neg_out["latents"], neg_actions, neg_old_states)
     logits = th.stack([th.einsum("bk,bk->b", anc_states, pos_preds),
                        th.einsum("bk,bk->b", anc_states, neg_preds)], dim=-1) / model.temperature
@@ -141,6 +153,7 @@ def match_batches(buffer, model, device, max_batch_size=512, ntarget=16):
         old_states = traj_s["old_states"][rand_inds]
         old_vtargs = traj_s["old_vtargs"][rand_inds]
         old_logits = traj_s["old_pi_logits"][rand_inds]
+        old_h = _h(traj_s, rand_inds, "cpu", "old_")
         sampler = BatchSampler(SubsetRandomSampler(range(ndata)), batch_size=max_batch_size, drop_last=False)
         for k, inds in enumerate(sampler):
             inds = th.as_tensor(inds)
@@ -157,18 +170,20 @@ def match_batches(buffer, model, device, max_batch_size=512, ntarget=16):
                 "pos_states": pos_states, "neg_states": neg_states,
                 "obs": obs[inds].to(device), "old_states": old_states[inds].to(device),
                 "old_vtargs": old_vtargs[inds].to(device), "old_logits": old_logits[inds].to(device),
+                **{k: v[inds].to(device) for k, v in old_h.items()},
             }
             yield batch, (gobs_s, gnext_s)
 
 
-def match_losses(model, src_goals, anc_idx, pos_states, neg_states, obs, old_states, old_vtargs, old_logits):
+def match_losses(model, src_goals, anc_idx, pos_states, neg_states, obs, old_states, old_vtargs, old_logits,
+                 old_hiddens=None):
     """PPOADModel.compute_match_losses; anchors = distinct source goals encoded once (with grad)."""
     u, inv = th.unique(anc_idx, return_inverse=True)
     anc_states = model.get_states(src_goals[0][u], src_goals[1][u])[inv]
     logits = th.stack([th.einsum("bk,bk->b", anc_states, pos_states),
                        th.einsum("bk,bk->b", anc_states, neg_states)], dim=-1) / model.temperature
     match_loss = F.cross_entropy(logits, th.zeros(len(logits), dtype=th.long, device=logits.device))
-    out = model.forward(obs, states=old_states)
+    out = model.forward(obs, states=old_states, **({} if old_hiddens is None else {"hiddens": old_hiddens}))
     pi_dist = model.pi_head.kl_divergence(out["pi_logits"], old_logits).mean()
     vf_dist = model.vf_head.mse_loss(out["vpreds"], old_vtargs).mean()
     return {"match_loss": match_loss, "pi_dist": pi_dist, "vf_dist": vf_dist}

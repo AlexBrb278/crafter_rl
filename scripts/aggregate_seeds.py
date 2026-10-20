@@ -20,7 +20,8 @@ from common.crafter_score import ACHIEVEMENTS  # noqa: E402
 
 KEY = ["make_stone_pickaxe", "collect_iron", "place_furnace", "defeat_skeleton", "wake_up"]
 LABELS = {"ppo": "PPO", "ppo-rarity1": "PPO + rarity bonus (β = 1)", "ppo-rarity2": "PPO + rarity bonus (β = 2)", "ppo-rarity4": "PPO + rarity bonus (β = 4)",
-          "ad-ppo_ad": "Achievement Distillation", "ad-rarity1": "AD + rarity bonus (β = 1)", "ad-rarity2": "AD + rarity bonus (β = 2)"}
+          "ad-ppo_ad": "Achievement Distillation", "ad-rarity1": "AD + rarity bonus (β = 1)", "ad-rarity2": "AD + rarity bonus (β = 2)",
+          "ppo-rarity2-g99": "PPO + rarity bonus (β = 2), γ = 0.99", "ad-rarity2-gru": "AD + rarity bonus (β = 2) + GRU memory"}
 
 
 def runs_of(prefix):

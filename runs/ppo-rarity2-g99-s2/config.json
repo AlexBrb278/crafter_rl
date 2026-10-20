@@ -1,0 +1,65 @@
+{
+  "config": {
+    "save_freq": 50,
+    "nstep": 512,
+    "nproc": 8,
+    "nepoch": 250,
+    "gamma": 0.99,
+    "gae_lambda": 0.65,
+    "model_cls": "PPOModel",
+    "model_kwargs": {
+      "hidsize": 1024,
+      "impala_kwargs": {
+        "chans": [
+          64,
+          128,
+          128
+        ],
+        "outsize": 256,
+        "nblock": 2,
+        "post_pool_groups": 1,
+        "init_norm_kwargs": {
+          "batch_norm": false,
+          "group_norm_groups": 1
+        }
+      },
+      "dense_init_norm_kwargs": {
+        "layer_norm": true
+      }
+    },
+    "algorithm_cls": "PPOAlgorithm",
+    "algorithm_kwargs": {
+      "ppo_nepoch": 3,
+      "ppo_nbatch": 8,
+      "clip_param": 0.2,
+      "vf_loss_coef": 0.5,
+      "ent_coef": 0.01,
+      "lr": 0.0003,
+      "max_grad_norm": 0.5
+    }
+  },
+  "args": {
+    "config": "ppo",
+    "seed": 2,
+    "run_name": "ppo-rarity2-g99-s2",
+    "nepoch": null,
+    "gamma": 0.99,
+    "gae_lambda": null,
+    "micro_batch": null,
+    "aux_micro_batch": null,
+    "fast_aux": 1,
+    "check_fast_aux": false,
+    "vram_frac": 0.85,
+    "amp": false,
+    "rarity_bonus": 2.0,
+    "rarity_window": 200,
+    "recent": 100,
+    "clip_every": 40000,
+    "clip_len": 400,
+    "final_video": 1,
+    "resume": true
+  },
+  "params": 3948309,
+  "device": "NVIDIA GeForce RTX 5090 Laptop GPU",
+  "upstream_commit": "9abbce6"
+}

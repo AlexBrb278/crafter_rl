@@ -1,0 +1,1 @@
+{"run": "ppo-rarity2-g99-s2", "epoch": 250, "nepoch": 250, "step": 1024000, "elapsed_min": 57.0, "eta_min": 0.0, "score": 16.11627785808196, "recent_score": 21.482790904590118, "clips": 24, "updated": 1792488596.3712068}

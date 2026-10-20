@@ -1,12 +1,12 @@
 {
  "DATE": "2026-10-18 → 10-20",
- "LEDE": "Achievement Distillation (Moon et al., NeurIPS 2023) is the strongest published model-free agent on Crafter. We trained it and its PPO baseline for the standard 1M environment steps on a Windows laptop with an RTX 3050 and 4 GB of GPU memory, then added one change of our own: extra reward for achievements the agent rarely gets. Over three seeds it lifts PPO from 15.8 to 21.0. On Achievement Distillation it lifts our seed from 17.7 to 23.1, above the paper's 21.8.",
+ "LEDE": "Achievement Distillation (Moon et al., NeurIPS 2023) is the strongest published model-free agent on Crafter. We trained it and its PPO baseline for the standard 1M environment steps on a Windows laptop with an RTX 3050 and 4 GB of GPU memory, then added one change of our own: extra reward for achievements the agent rarely gets. Over three seeds it lifts PPO from 15.8 to 21.0. On Achievement Distillation it reaches 23.7 ± 1.1 over three seeds, against 17.7 for our single plain-AD seed and the paper's 21.8.",
  "RESULT_TEXT": "The charts and tree below compare the seed-0 runs. Seed 0 is a weak seed for the baselines: PPO scores 12.4 there, against 16.7 and 18.2 on seeds 1 and 2, and AD scores 17.7 against the paper's 21.8. Both baselines get stuck at the stone pickaxe on this seed, which locks them out of iron. The rarity bonus breaks that wall: with AD and β = 2, stone pickaxes go from 1.6% of episodes to 25%, iron from 0.2% to 5.6%, and defeated skeletons from 15% to 23%. The next table shows how much of the gain holds across seeds.",
  "FINDINGS": "<div class=\"finding\"><span class=\"metric\">180 → 1,620 steps/s</span><h3>World generation was the bottleneck</h3><p>Resetting Crafter took about a second, because world generation calls a pure-Python noise function 82,000 times. Early episodes last ~170 steps and the 8 environments step in lockstep, so resets stalled everything. Installing numba, which the noise library uses automatically, cut a reset to 50 ms. The generated maps are bit-identical.</p></div><div class=\"finding\"><span class=\"metric\">4.3 GB → 2.2 GB</span><h3>The paper's batch does not fit in 4 GB</h3><p>A 512-sample minibatch needs 4.3 GB in fp32. Windows then pages GPU memory to system RAM instead of failing, and training runs 15× slower. Each minibatch is now split into two halves whose gradients are summed, which gives the same update.</p></div><div class=\"finding\"><span class=\"metric\">934 s → ~600 s</span><h3>The distillation phase repeated work</h3><p>Every 8 rollouts AD trains 6 epochs on its contrastive losses. The official loop re-runs the frozen old policy on every sample in every epoch, encodes the same goal frames once per time step, and makes 16 tiny GPU calls per trajectory. Doing each once gives the same losses and gradients (relative difference 2.7e-5 in exact fp32) and is 1.7× faster.</p></div><div class=\"finding\"><span class=\"metric\">85% VRAM cap</span><h3>Silent memory paging</h3><p>The first fast version was slower than the original. Memory cached from the PPO phase plus the aux phase's varied batch shapes pushed past 4 GB, and Windows paged the excess. Capping PyTorch at 85% of VRAM and clearing its cache before the aux phase fixed it.</p></div><div class=\"finding\"><span class=\"metric\">same seed, different game</span><h3>Crafter is not bit-reproducible</h3><p>Creatures are stored in Python sets ordered by memory address, and the game picks which zombie to despawn from that order. A fixed seed therefore diverges between processes after a few dozen steps. The rules are unaffected, but step-by-step comparisons between runs are not meaningful.</p></div>",
  "IMPROVE_TITLE": "Our change: reward rare achievements",
  "IMPROVE_TEXT": "<p>The Crafter score is a geometric mean, so achievements stuck near 0% cost the most. When an achievement is unlocked for the first time in an episode, we add β · (1 − p) to the reward, where p is the share of the last 200 episodes that unlocked it. With β = 2, a common achievement keeps roughly its +1 and one the agent has never managed is worth +3. The score is still computed from the unmodified game. It is about 30 lines (<code>RarityBonus</code> in <code>train.py</code>, flag <code>--rarity_bonus</code>).</p><p>We wrote the prediction down before the first run: stone pickaxe, iron and eat plant would rise above zero. The first two did, in every configuration. Iron tools were made only in bonus runs, a handful of times. Eat plant and diamonds stayed at zero: eating a plant means planting a sapling and coming back hundreds of steps later, which a bonus cannot teach if the agent never does it once. The price is sleep: waking up drops from about 88% to 70% of episodes, because the agent spends that time on the tech tree.</p><ul class=\"plain\"><li><b>PPO, 3 seeds:</b> 15.75 → 18.58 (β = 1) → <b>20.99</b> (β = 2) → 20.14 (β = 4). About 1.3 hours per run.</li><li><b>Achievement Distillation, seed 0:</b> 17.71 → 22.80 (β = 1) → <b>23.08</b> (β = 2). About 7 hours per run.</li><li>With AD, β = 2 starts slower than β = 1. It trails until about 600k steps, then overtakes it once the stone pickaxe takes off (63% of recent episodes at 780k steps, against 51%).</li></ul><p>Seed 0 is unusually bad for the baselines, so the AD gain on that seed is probably larger than typical. The cleanest evidence is the three-seed PPO sweep. The next step would be two more AD seeds per arm, about 28 GPU-hours on this laptop.</p>",
- "REPRO": "# Windows, from the repo root (game sources and .venv are recreated by the setup script)\npowershell -ExecutionPolicy Bypass -File scripts/setup_windows.ps1\n\n# Achievement Distillation, paper config, 1M steps (~7 h on an RTX 3050 Laptop)\n.venv/Scripts/python methods/05_achievement_distillation/train.py --config ppo_ad --seed 0 --micro_batch 256 --aux_micro_batch 128\n\n# the same with the rarity bonus (our change, best at beta = 2)\n.venv/Scripts/python methods/05_achievement_distillation/train.py --config ppo_ad --seed 0 --micro_batch 256 --aux_micro_batch 128 --rarity_bonus 2.0 --run_name ad-rarity2-s0\n\n# PPO and PPO + rarity bonus, seeds 0-2, back to back (~1.3 h per run)\npowershell -ExecutionPolicy Bypass -File scripts/queue.ps1 -Config ppo -Bonus 0 -Prefix ppo -Seeds 0,1,2\npowershell -ExecutionPolicy Bypass -File scripts/queue.ps1 -Config ppo -Bonus 2.0 -Prefix ppo-rarity2 -Seeds 0,1,2\n\n# live dashboard (http://localhost:8765) and periodic checkpoint videos\n.venv/Scripts/python scripts/dashboard.py\n.venv/Scripts/python scripts/spectator.py ad-ppo_ad-s0\n\n# plots and summary table into results/\n.venv/Scripts/python scripts/plot_results.py ppo-s0 ppo-rarity2-s0 ad-ppo_ad-s0 ad-rarity1-s0 ad-rarity2-s0\n.venv/Scripts/python scripts/aggregate_seeds.py ppo ppo-rarity1 ppo-rarity2 ppo-rarity4 ad-ppo_ad ad-rarity1 ad-rarity2 --html runs/report/seeds.html --beta ppo=0 ppo-rarity1=1 ppo-rarity2=2 ppo-rarity4=4 --plot",
- "FOOTER": "15 runs of 1M steps, 36 hours of training in total, on one RTX 3050 Laptop GPU (4 GB) with a Core i5-12500H. Crafter 1.8.3, Achievement-Distillation @ 9abbce6 with the paper's hyperparameters, PyTorch 2.11 + CUDA 12.8, Python 3.13. Code, logs and the work log are in the crafter_rl repository under methods/05_achievement_distillation, results/ and paper/work_log.md.",
+ "REPRO": "# Windows, from the repo root (game sources and .venv are recreated by the setup script)\npowershell -ExecutionPolicy Bypass -File scripts/setup_windows.ps1\n\n# Achievement Distillation, paper config, 1M steps (~7 h on an RTX 3050 Laptop)\n.venv/Scripts/python methods/05_achievement_distillation/train.py --config ppo_ad --seed 0 --micro_batch 256 --aux_micro_batch 128\n\n# the same with the rarity bonus (our change, best at beta = 2)\n.venv/Scripts/python methods/05_achievement_distillation/train.py --config ppo_ad --seed 0 --micro_batch 256 --aux_micro_batch 128 --rarity_bonus 2.0 --run_name ad-rarity2-s0\n\n# PPO and PPO + rarity bonus, seeds 0-2, back to back (~1.3 h per run)\npowershell -ExecutionPolicy Bypass -File scripts/queue.ps1 -Config ppo -Bonus 0 -Prefix ppo -Seeds 0,1,2\npowershell -ExecutionPolicy Bypass -File scripts/queue.ps1 -Config ppo -Bonus 2.0 -Prefix ppo-rarity2 -Seeds 0,1,2\n\n# live dashboard (http://localhost:8765) and periodic checkpoint videos\n.venv/Scripts/python scripts/dashboard.py\n.venv/Scripts/python scripts/spectator.py ad-ppo_ad-s0\n\n# plots and summary table into results/\n.venv/Scripts/python scripts/plot_results.py ppo-s0 ppo-rarity2-s0 ad-ppo_ad-s0 ad-rarity1-s0 ad-rarity2-s0\n.venv/Scripts/python scripts/aggregate_seeds.py ppo ppo-rarity1 ppo-rarity2 ppo-rarity4 ad-ppo_ad ad-rarity1 ad-rarity2 --html runs/report/seeds.html --beta ppo=0 ppo-rarity1=1 ppo-rarity2=2 ppo-rarity4=4 --plot\n\n# death diagnosis: replay each run's final weights with Crafter's damage code hooked (Linux paths)\n.venv/bin/python scripts/diagnose_deaths.py ppo-s0 ppo-s1 ppo-s2 ad-rarity2-s0 --episodes 200 --video_runs ad-rarity2-s0\n.venv/bin/python scripts/analyze_deaths.py",
+ "FOOTER": "15 runs of 1M steps, 36 hours of training in total, on one RTX 3050 Laptop GPU (4 GB) with a Core i5-12500H. Crafter 1.8.3, Achievement-Distillation @ 9abbce6 with the paper's hyperparameters, PyTorch 2.11 + CUDA 12.8, Python 3.13. Code, logs and the work log are in the crafter_rl repository under methods/05_achievement_distillation, results/ and paper/work_log.md. The death diagnosis (Why the agent dies) was run on 2026-10-20 on a second machine (RTX 5090 Laptop, Linux) from the committed final weights: scripts/diagnose_deaths.py and scripts/analyze_deaths.py.",
  "videos": [
   {
    "run": "ad-ppo_ad-s0",
@@ -39,5 +39,126 @@
    "desc": "274 steps, return 14.1, 15 achievements: stone pickaxe, iron, coal, furnace, skeleton."
   }
  ],
- "SEEDS_TEXT": "The three PPO seeds average 15.75, almost exactly the paper's 15.60, so the setup reproduces the published baseline. The bonus helps in proportion to its strength up to β = 2 and then levels off. At β = 1 the gain is uneven: +7.9, +1.7 and −1.1 seed by seed, large when the baseline gets stuck before the stone pickaxe and gone when it finds the pickaxe on its own. At β = 2 it is +8.4, +3.5 and +3.7, so every seed improves. The mean rises to 20.99 and the spread between seeds shrinks from 3.0 to 0.9. At β = 4 the mean drops slightly, to 20.14. Three seeds per arm is still a small sample (paired t = 3.3 for β = 2). AD has one seed per arm, because each AD run takes 7 hours."
+ "SEEDS_TEXT": "The three PPO seeds average 15.75, almost exactly the paper's 15.60, so the setup reproduces the published baseline. The bonus helps in proportion to its strength up to β = 2 and then levels off. At β = 1 the gain is uneven: +7.9, +1.7 and −1.1 seed by seed, large when the baseline gets stuck before the stone pickaxe and gone when it finds the pickaxe on its own. At β = 2 it is +8.4, +3.5 and +3.7, so every seed improves. The mean rises to 20.99 and the spread between seeds shrinks from 3.0 to 0.9. At β = 4 the mean drops slightly, to 20.14. Three seeds per arm is still a small sample (paired t = 3.3 for β = 2). AD + rarity β = 2 now has three seeds; seeds 1 and 2 were trained on the RTX 5090 laptop with the same settings as seed 0. It scores 23.65 ± 1.05 (23.08, 24.87, 23.01), above the paper's Achievement Distillation at 21.79 ± 1.37 over 10 seeds. Plain AD and AD + rarity β = 1 still have one seed each, because an AD run takes 7 hours on the 4 GB laptop.",
+ "DEATHS_TEXT": "<p>Every episode in every run ends in death; none reaches Crafter's 10,000-step limit. The median agent lives about 236 steps, and the first night is darkest at step 210. Diamonds need the whole tech tree in one life, so how the agent dies matters as much as what it learns. We replayed the final weights of all 24 runs (4,800 episodes, including the follow-up runs in the sections below) with Crafter's damage code hooked, so every lost health point is attributed to its source.</p><p><b>Zombies cause about half of all deaths, and 69% of those happen at night.</b> The agent is almost always awake when it is killed: it spends only 4% of night-time asleep. Sleeping in the open is dangerous, since a zombie does 7 damage to a sleeping player and 2 to an awake one, out of 9 health. But the agent's answer is to stay up, not to build a shelter. With AD the rarity bonus makes this worse: the share of episodes in which it sleeps at all drops from 85% to 50%, which is why wake up falls in the success-rate table.</p><p><b>The second killer is neglect.</b> In 54% of deaths food, water or energy is at 0. Then health stops regenerating, and a zombie or an arrow finishes the job. Water is the worst: it is empty in 43% of deaths. Skeleton arrows (15–23% of deaths) hit the agent in caves, which is exactly where it has to go for iron and diamonds. Lava takes another 4–8%.</p><p>Why it does not plan for any of this: training uses a discount factor γ = 0.95, so the agent effectively looks about 20 steps ahead, while a night lasts about 90. Its network also sees only the current frame, so it cannot remember where it last saw water. The next experiments target these two things.</p>",
+ "death_videos": [
+  {
+   "run": "ppo-s0",
+   "file": "death_zombie_1.mp4",
+   "title": "Zombies at night (PPO)",
+   "desc": "The most common death: awake on open grass after dark, with low water. Zombies close in at step 184."
+  },
+  {
+   "run": "ppo-rarity2-s0",
+   "file": "death_zombie_asleep_1.mp4",
+   "title": "Asleep in the open (PPO + rarity β=2)",
+   "desc": "Falls asleep on open ground at night. A zombie hits a sleeping player for 7 of its 9 health; dead at step 215."
+  },
+  {
+   "run": "ad-rarity2-s0",
+   "file": "death_thirst_1.mp4",
+   "title": "Thirst (AD + rarity β=2)",
+   "desc": "Water runs out and is not refilled. At 0 water health drains away, and it dies at step 210 in the dark."
+  },
+  {
+   "run": "ad-rarity2-s0",
+   "file": "death_arrow_1.mp4",
+   "title": "Skeleton arrow in a cave (AD + rarity β=2)",
+   "desc": "Mining next to coal and water, it is shot by a skeleton at step 135. Caves are where iron and diamonds are."
+  },
+  {
+   "run": "ad-rarity2-s0",
+   "file": "death_lava_1.mp4",
+   "title": "Lava (AD + rarity β=2)",
+   "desc": "At full health at step 127, it walks into lava, which kills instantly."
+  },
+  {
+   "run": "ad-rarity2-s0",
+   "file": "death_hunger-fatigue_2.mp4",
+   "title": "17 achievements, then starved (AD + rarity β=2)",
+   "desc": "One of its best episodes: 435 steps and 17 achievements. It builds several furnaces side by side, then dies with food and energy at 0 beside a lake."
+  }
+ ],
+ "experiments": [
+  {
+   "title": "Longer horizon: γ = 0.99 (negative result)",
+   "html": "<p>The death diagnosis suggested that the agent cannot value surviving the night: γ = 0.95 makes it look only about 20 steps ahead, and a night lasts about 90. We changed only the discount, to γ = 0.99 (a horizon of about 100 steps), and kept everything else as in PPO + rarity β = 2: same code, same bonus, 1M steps, 3 seeds. These runs were trained on a second machine (RTX 5090 laptop, Linux). To check that machine gives the same results, we reran γ = 0.95 seed 0 there. It scored 20.90, against 20.85 on the 4 GB laptop.</p><p><b>γ = 0.99 is worse and does not help survival.</b> The score drops from 20.99 ± 0.87 to 16.94 ± 2.55, and it is lower on every seed (19.8 vs 20.8, 14.9 vs 20.2, 16.1 vs 21.9). The agent dies just as early (median 228 steps vs 230), from the same causes (zombies 55% vs 56% of deaths), and it still sleeps through only about 5% of the night. On two of the three seeds it even falls back behind the stone-pickaxe wall that the rarity bonus had broken (stone pickaxe in 4.8% and 1.6% of episodes, against 17% with γ = 0.95). A longer horizon alone does not teach it to survive the night. Most likely it makes the value targets noisier and the one-off bonus a smaller share of the return, so learning slows down.</p><p>One caveat: training uses GAE with λ = 0.65, so the advantage mostly reflects the next few steps whatever γ is. A complete test of a long horizon would also raise λ (for example γ = 0.99, λ = 0.95). The checkpoint videos show a second problem: <b>agents walk right past diamonds.</b> In two of the videos below a diamond is in view, but the agent has no iron pickaxe and dies a few steps later. One of them made a stone sword but never a stone pickaxe, so the iron next to it was out of reach. Remembering where diamonds, iron and water are is the next experiment.</p>",
+   "table": "runs/report/gamma.html",
+   "caption": "* Mean length of the last 300 training episodes. † From the death diagnosis: final weights, 200 fresh episodes per run. Score and success-rate columns use all training episodes in 1M steps, averaged over seeds.",
+   "videos": [
+    {
+     "run": "ppo-rarity2-5090-s0",
+     "file": "spectator_004_step0901120.mp4",
+     "title": "γ = 0.95 rerun, checkpoint at 901k steps",
+     "desc": "380 steps and 15 achievements, including a stone sword but no stone pickaxe. It ends at 1 health with food, water and energy at 0, four tiles from a diamond, next to two iron ores and two skeletons."
+    },
+    {
+     "run": "ppo-rarity2-g99-s0",
+     "file": "death_zombie_1.mp4",
+     "title": "γ = 0.99: killed at night beside a diamond",
+     "desc": "At step 168 a zombie catches it in the dark between two furnaces it built, with a diamond one tile away. It has a stone pickaxe but no iron."
+    },
+    {
+     "run": "ppo-rarity2-g99-s0",
+     "file": "final_episode.mp4",
+     "title": "γ = 0.99 seed 0, final agent",
+     "desc": "119 steps and 13 achievements including a stone pickaxe and a skeleton, then it walks into lava at full health."
+    }
+   ]
+  },
+  {
+   "title": "Memory: AD + rarity β = 2 + GRU (negative result)",
+   "html": "<p>Agents walk past diamonds and die of thirst after leaving water behind. The AD network cannot remember either: it sees only the current frame plus the embedding of its last achievement. We added a GRU memory (512 units) between the encoder and the policy and value heads. It is carried from step to step within an episode and reset when a new one starts. PPO trains it with backpropagation through 64-step chunks; AD's contrastive losses are unchanged. γ stays at 0.95 and everything else is the AD + rarity β = 2 configuration: 3 seeds, 1M steps each, about 5.3 hours per run with three in parallel on the RTX 5090 laptop. Before training, a test on real rollouts confirmed that replaying the chunks reproduces the rollout's action probabilities to 1e-5.</p><p><b>Memory lowers the score at 1M steps.</b> The three GRU seeds score 20.91, 21.86 and 18.07 (20.28 ± 1.97). The same configuration without memory scores 23.08, 24.87 and 23.01 (23.65 ± 1.05), so the GRU loses 2.2, 3.0 and 4.9 points seed by seed. It learns more slowly and trails through all of training. At the end its last-100-episode score is 29.9–32.4, against 32.5–34.3 without memory. Survival does not change: median life 234 steps against 242, zombies cause 48% of deaths against 46%, thirst 21% against 18%, and water is empty in 48% of deaths against 45%. Two of the three GRU seeds also sleep much less (they wake up in 47% and 42% of episodes, against 70–74% without memory).</p><p><b>Iron tools stay rare either way.</b> The GRU runs made a few more iron pickaxes: about 6 training episodes across the three seeds against 1, and 3 against 1 in 800 fresh evaluation episodes per configuration. But they made fewer iron swords (1 against 3 in training), and both collect iron equally often (206 and 204 of those 800 episodes). With counts this small that is not a real difference. No run found a diamond. The best GRU episode, below, shows where the agents that get furthest fail. It finishes an iron pickaxe and an iron sword with a diamond four tiles away, then dies one step later of thirst and exhaustion. It had also built three furnaces around itself.</p><p>So memory, at least in this form and within 1M steps, is not what holds the agent back. The extra parameters and the recurrent training signal slow learning down. The best agents fail because water, food and energy run out, which points to a survival signal as the next experiment.</p>",
+   "table": "runs/report/gru.html",
+   "caption": "* Mean length of the last 300 training episodes. † From the death diagnosis: final weights, 200 fresh episodes per run. Score and success-rate columns use all training episodes in 1M steps, averaged over seeds. AD is a single seed from the 4 GB laptop; AD + rarity β = 2 seed 0 is from the 4 GB laptop and seeds 1–2 from the RTX 5090 laptop, with the same settings.",
+   "videos": [
+    {
+     "run": "ad-rarity2-gru-s1",
+     "file": "highlight_make_iron_pickaxe_1.mp4",
+     "title": "Iron pickaxe and sword, a diamond in sight (GRU, seed 1)",
+     "desc": "Final weights, 404 steps and 17 achievements. At step 403 it makes an iron pickaxe and an iron sword, four tiles from a diamond, with 1 health and no water or energy left. It dies of thirst and fatigue on the next step."
+    },
+    {
+     "run": "ad-rarity2-gru-s0",
+     "file": "highlight_make_iron_pickaxe_1.mp4",
+     "title": "Iron pickaxe, then starved (GRU, seed 0)",
+     "desc": "322 steps and 15 achievements including an iron pickaxe. It dies with food, water and energy all at 0, carrying six stone swords."
+    },
+    {
+     "run": "ad-rarity2-s0",
+     "file": "highlight_make_iron_pickaxe_1.mp4",
+     "title": "Without memory: an iron pickaxe too (AD + rarity β = 2, seed 0)",
+     "desc": "One of the two iron-tool episodes the baseline produced in 800 fresh episodes: 207 steps, an iron pickaxe, then a skeleton's arrow kills it at night."
+    },
+    {
+     "run": "ad-rarity2-gru-s0",
+     "file": "final_episode.mp4",
+     "title": "GRU seed 0, final agent",
+     "desc": "344 steps and 15 achievements: stone pickaxe and sword, coal, furnace, a skeleton, drinking and eating."
+    },
+    {
+     "run": "ad-rarity2-gru-s1",
+     "file": "spectator_017_step0901120.mp4",
+     "title": "GRU seed 1, checkpoint at 901k steps",
+     "desc": "315 steps and 15 achievements, including a stone pickaxe and sword, a furnace and a skeleton killed underground."
+    },
+    {
+     "run": "ad-rarity2-gru-s2",
+     "file": "spectator_014_step0778240.mp4",
+     "title": "Sword but no pickaxe (GRU, seed 2, 778k steps)",
+     "desc": "10 achievements including a stone sword and a furnace, but no stone pickaxe, so no way to iron. Seed 2 stays stuck here longest."
+    }
+   ]
+  }
+ ],
+ "tree_extra": [
+  {
+   "label": "AD + rarity β=2 (3 seeds)",
+   "prefix": "ad-rarity2"
+  },
+  {
+   "label": "AD + rarity β=2 + GRU (3 seeds)",
+   "prefix": "ad-rarity2-gru"
+  }
+ ]
 }

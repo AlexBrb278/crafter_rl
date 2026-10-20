@@ -203,3 +203,229 @@ Mistake on the way: `[int[]]` parsed `-Seeds 0,1,2` (one string under `powershel
   It now refuses to start if the folder has logs, unless `--resume` finds `checkpoints/latest.pt`.
 - `scripts/queue.sh`: Linux version of `queue.ps1` (same skip / resume behaviour). It does not force micro-batching, which the 24 GB RTX 5090 does not need.
 - Tested end to end from Git Bash: a 2-seed queue, a rerun that skips both finished seeds, the three guard cases, and a refusal on the committed `ppo-s0`, which was left untouched.
+
+---
+
+_Entries below were written on the Linux RTX 5090 machine in parallel with the Windows entries above._
+
+## 2026-10-17 (evening) — PPO-RNN baseline, overnight 1B runs
+
+**Why this first:** it's the official Craftax baseline with verified numbers (Craftax-1B: 15.3% of max; Classic-1B: ~90%). Matching them validates our stack (JAX on the RTX 5090, logging, scoring) before we try anything new.
+
+**Setup**
+- Cloned Craftax_Baselines @ `7ce36fa` into `methods/01_ppo_rnn/upstream/` and left it unmodified.
+- Added deps: distrax 0.1.9, optax 0.2.8, gymnax 0.0.9, chex 0.1.92, orbax-checkpoint 0.12.7. Upstream pins orbax 0.5.0, but the newer version works; it only emits a deprecation warning when saving.
+- Wrote `methods/01_ppo_rnn/train.py`. Upstream only logs to wandb, so we run wandb offline and patch `Run.log` to also write `metrics.jsonl`.
+  - First attempt patched `wandb.log`, which logged nothing: `wandb.init()` rebinds the module-level `wandb.log`.
+- Hyperparameters: all upstream defaults (table in `methods/01_ppo_rnn/README.md`).
+
+**Smoke tests** (seed 0)
+- Classic-Symbolic, 20M steps (4 min):
+  - reward 14.7/22 (66.9%), score 37.3 (averaged over updates, not the official protocol).
+  - 18 of 22 achievements unlocked. Never unlocked: diamond, eat_plant, iron pickaxe, iron sword.
+- Craftax-Symbolic, 10M steps (4 min): 4.4% of max reward.
+- Checkpoint saving (`--save_policy`) works with orbax 0.12.
+
+**Throughput finding**
+- PPO-RNN trains at 92k SPS on Classic and 55k on full Craftax, about 3× slower than the ~280k the paper implies for an RTX 4090.
+- The GPU is 98% utilised but capped at 95 W (max 175 W). The power profile is "balanced", on AC.
+- Try the "performance" profile and re-measure. The user has to change it.
+
+**Overnight queue** (`scripts/overnight_ppo_rnn.sh`, started 20:06, run under `systemd-inhibit` against sleep and lid close)
+1. `classic_1b_s0`: Craftax-Classic-Symbolic, 1B steps, seed 0 (~3 h)
+2. `craftax_1b_s0`: Craftax-Symbolic, 1B steps, seed 0 (~5 h)
+3. `classic_1b_s1`: Craftax-Classic-Symbolic, 1B steps, seed 1 (~3 h)
+
+Outputs go to `runs/ppo_rnn/<name>/`. Summarise with `python methods/01_ppo_rnn/summarize.py`.
+
+**Next (morning)**
+- Compare against the paper and note the per-achievement gaps (diamond, eat_plant, deeper Craftax floors).
+- Then decide between more seeds of PPO-RNN or moving on to PQN / GTrXL.
+
+---
+
+## 2026-10-19 — Overnight PPO-RNN results: baseline reproduced
+
+All 3 runs finished with rc=0 (queue ran 2026-10-17 20:06 → 2026-10-18 07:01).
+
+| run | steps | reward | % of max | score* | paper | wall-clock | SPS |
+|---|---|---|---|---|---|---|---|
+| classic_1b_s0 | 1B | 19.43 / 22 | 88.3 | 87.5 | ~90% | 2 h 55 min | 95k |
+| classic_1b_s1 | 1B | 19.28 / 22 | 87.7 | 85.1 | ~90% | 2 h 56 min | 95k |
+| craftax_1b_s0 | 1B | 36.45 / 226 | **16.1** | – | 15.3% | 5 h 04 min | 55k |
+
+\* Rates averaged over the last 1% of updates (≈10M steps), not the official all-training-episodes protocol.
+
+**Observations**
+- **Classic:** 20 of 22 achievements are at ≥94%. The only bottlenecks are **collect_diamond** (30.5 / 20.2%) and **eat_plant** (20.1 / 16.0%), exactly as the Craftax paper reports. The two seeds agree closely (±0.3% reward).
+  - Most of the learning happens in the first ~50M steps (≈80% of max). The remaining 950M add only ~8 points.
+- **Full Craftax:** the agent masters the overworld and floor 1 (enter_dungeon 89%, bow/arrows ~87%, orc kills 55–70%).
+  - It **never enters floor 2** (gnomish mines 0%) and never learns magic (fireball/iceball 0%) or enchanting.
+  - Diamond 14.8%, ruby/sapphire ~12.5%, iron pickaxe only 18%.
+  - Reward is still slowly rising at 1B, so it has not plateaued.
+- All runs saved final checkpoints.
+
+**Implications for what to try next**
+- Our stack is validated, so new methods can be compared against these numbers.
+- Full Craftax is where RL headroom is: the bottleneck is deep exploration and long-horizon credit assignment (floor 2+, magic). On Classic, the remaining problem is just two rare achievements.
+
+---
+
+## 2026-10-20 — Death diagnosis: why no agent gets near a diamond
+
+**Question.** Diamond is 0.00% in all 15 runs. The training logs show that every episode ends in death (none reaches the 10,000-step limit), with a median length of 220–236 steps. The first night is darkest at step 210. So we need to know what kills the agent.
+
+**Method** (`scripts/diagnose_deaths.py`, `scripts/analyze_deaths.py`; Linux RTX 5090 machine, from the committed `agent-e250.pt` weights)
+- Hooked Crafter's three damage paths so every lost health point is logged with its source:
+  - `Zombie.update`: 7 damage if the player is asleep, 2 if awake.
+  - `Arrow.update`: skeletons, 2 damage.
+  - `Player.update`: lava (health → 0), or hunger/thirst/fatigue (health −1 every ~15 steps while food, drink or energy is 0).
+- Cause of death = the source of the hit that took health to 0.
+- 200 fresh episodes per run, all 15 runs (3,000 episodes), using the stochastic policy as in training. Each run takes ~50 s on the GPU with 32 envs in lockstep.
+- Night = daylight < 0.3, which is ~30% of each 300-step cycle (Crafter: `daylight = 1 − |cos(π·((t/300) mod 1 + 0.3))|³`).
+- Also needed here: numba, imageio-ffmpeg, POT, and git-lfs (taken from the Ubuntu .deb into ~/.local/bin, no sudo) to get the real `.pt`/`.mp4` files.
+
+**Results** (`results/deaths/summary.csv`, `causes.png`, `timing.png`)
+
+| config | n | median steps | alive at 300 | zombie awake | zombie asleep | arrow | thirst | hunger/fatigue | lava | water 0 at death |
+|---|---|---|---|---|---|---|---|---|---|---|
+| PPO (3 seeds) | 600 | 234 | 22.0% | 46% | 2% | 23% | 17% | 8% | 4% | 38.5% |
+| PPO + rarity β=2 (3 seeds) | 600 | 230 | 17.0% | 52% | 4% | 18% | 12% | 6% | 8% | 39.8% |
+| AD (1 seed) | 200 | 258 | 22.0% | 52% | 0% | 15% | 22% | 5% | 5% | 58.0% |
+| AD + rarity β=2 (1 seed) | 200 | 240 | 17.5% | 49% | 0% | 18% | 18% | 6% | 8% | 50.0% |
+
+Over all 3,000 episodes:
+- 100% die.
+- Zombies cause 52% of deaths; 69% of those happen at night.
+- In 54% of deaths, food, water or energy is at 0 (water alone: 42%).
+- The agent spends only **4% of night-time asleep**, and only 5% of deaths happen in sleep.
+- Not one diamond or iron pickaxe.
+
+**Interpretation**
+- The expected failure, "sleeps in the open and gets eaten", is rare. The agent mostly **stays awake at night** on open ground, where zombies spawn more in the dark, and is killed awake.
+- Neglecting vitals is the second big factor. At 0 food, water or energy, health stops regenerating, so any zombie or arrow becomes lethal.
+- The rarity bonus reduces sleep further for AD: episodes with any sleep drop from 84.5% to 49.5%, which matches wake_up falling from 87.9% to 70.1% in training.
+- Skeleton arrows (15–23%) and lava (4–8%) hit the agent in caves, which is exactly where iron and diamonds are.
+- Likely root causes:
+  - γ = 0.95: effective horizon ~20 steps, but a night lasts ~90.
+  - A memoryless CNN policy that cannot remember where water was.
+
+**Report:** added a "Why the agent dies" section to `runs/report/crafter_report.html`: tiles, a cause-of-death chart, a death-timing chart with night shading, a per-config table and 6 death videos. The videos are re-encoded copies in `runs/report/media/<run>/videos/death_*.mp4`; the originals are in `runs/<run>/videos/death_*.mp4`, with an index in `deaths.jsonl`.
+
+**Next:** γ = 0.99 (horizon), then memory (GRU), then a tech-tree-aware bonus. Use PPO + rarity β=2 as the base, 3 seeds each. Track survival and cause of death alongside the score.
+
+---
+
+## 2026-10-20 (afternoon) — Longer horizon γ = 0.99: negative result
+
+**Hypothesis** (from the death diagnosis): γ = 0.95 gives an effective horizon of ~20 steps, but a night lasts ~90. So the agent cannot value surviving the night, and γ = 0.99 (~100 steps) should make it survive longer.
+
+**Setup** (Linux RTX 5090 machine, real Crafter 1.8.3, home code `methods/05_achievement_distillation/train.py`)
+- Added `--gamma` / `--gae_lambda` overrides to train.py. The value is recorded in `config.json`.
+- PPO + rarity β = 2, the same as the home `ppo-rarity2` runs. Only γ changes: 0.95 → 0.99. λ stays 0.65.
+- Runs: `ppo-rarity2-g99-s0/1/2`, plus the control `ppo-rarity2-5090-s0` (γ = 0.95 rerun on this machine).
+- No micro-batching here. Without it each run reserves 6–7 GB of GPU memory, so the 4th run hit OOM when started alongside the other three. Seed 0 was then started after the control finished.
+- ~1 h per run with 3 in parallel (0.43 h alone). Spectator checkpoint videos every 10 min. Death diagnosis on all 4 (200 episodes each).
+
+**Results** (`results/gamma_summary.csv`, `runs/report/gamma.html`)
+
+| config | seeds | score | per seed | eval median steps | alive at 300 | zombie deaths | stone pickaxe | iron |
+|---|---|---|---|---|---|---|---|---|
+| PPO + rarity β=2, γ 0.95 (home) | 3 | **20.99 ± 0.87** | 20.85 / 20.20 / 21.92 | 230 | 17.0% | 56% | 17.4% | 2.5% |
+| same, rerun here | 1 | 20.90 | 20.90 | 232 | 13.5% | 50% | 19.4% | 4.2% |
+| PPO + rarity β=2, **γ 0.99** | 3 | 16.94 ± 2.55 | 19.79 / 14.90 / 16.12 | 228 | 18.5% | 55% | 9.1% | 1.2% |
+
+- **The machine check passes.** The control scores 20.90 here against 20.85 at home, so results from both laptops can be compared directly.
+- **γ = 0.99 is worse on every seed** (−4.0 on the mean) and **does not change survival**: same median life, same causes of death, still only ~5% of night-time asleep.
+- Seeds 1 and 2 fall back behind the stone-pickaxe wall (4.8% / 1.6%) that the rarity bonus had broken. One hypothesis: with γ = 0.99 the return sums many more future rewards, so the one-off bonus is a smaller share of the value, and the policy gradient is noisier.
+- Caveat: λ = 0.65 keeps the advantage short-sighted whatever γ is. A complete horizon test would be γ = 0.99 with λ = 0.95. Low priority given this result.
+
+**Observation from the videos** (`runs/report` section "Longer horizon")
+- Agents walk right past diamonds. In the control's 901k-step checkpoint episode, it ends 4 tiles from a diamond and next to 2 iron ores, with only a wood pickaxe: it made a stone sword but no stone pickaxe.
+- In a γ = 0.99 death video, a zombie kills it at night between two furnaces it built, with a diamond one tile away.
+- This supports the memory / "remember where the diamond, iron and water are" idea, and the duplicate-furnace and sword-before-pickaxe complaints.
+
+**Conclusion:** the night problem is not a horizon problem by itself. Next candidates:
+1. Memory (GRU) in the PPO + rarity agent.
+2. Measure how often a diamond/iron/water tile is in view and then lost (needs the semantic view logged in the diagnosis).
+3. A tech-tree-aware bonus (pickaxe > sword).
+
+---
+
+## 2026-10-20 (afternoon) — AD + rarity β=2 + GRU memory: implementation, runs started
+
+**Motivation:**
+- Agents walk past diamonds and die of thirst near water they saw earlier.
+- The AD network only sees the current frame plus the embedding of its last achievement. It has no memory of the world.
+- The user's idea: "attention inside one run", i.e. remember where the diamond / water / iron is.
+
+**Implementation** (`methods/05_achievement_distillation/recurrent.py`, `configs/ppo_ad_gru.yaml`; γ unchanged at 0.95)
+- `PPOADGRUModel`:
+  - `h_t = GRUCell(1024→512)(encode(obs_t), h_{t-1}·[same episode])`. The heads see [latents, AD state, h_t]. 11.61M parameters (AD: 9.23M).
+  - AD's goal embeddings (`get_states`) and next-goal predictor stay encoder-only, so its contrastive losses are unchanged.
+- `RecurrentRolloutStorage`:
+  - Stores each step's input state (zeroed at episode starts).
+  - The PPO loader yields whole 64-step chunks (64 chunks per rollout → 8 minibatches × 8 chunks = 512 samples, as in the paper) with the stored chunk-start state, for BPTT within the chunk.
+- `RecurrentBuffer`: the aux buffer also keeps the per-step stored state (`old_hiddens`). `fast_aux.py` passes it to `forward()`, so pi/V distillation uses it as a fixed input.
+- `test_recurrent.py` (real Crafter rollouts, 8×512 steps). All passed:
+  - Chunk replay reproduces the rollout log-probs and values to <1e-5 (PPO ratio = 1).
+  - The per-step aux inputs reproduce them too (12 complete trajectories).
+  - The state is zero exactly at episode starts.
+  - Zeroing the memory changes the policy.
+- Memory: 3 parallel runs at a 30% VRAM cap went OOM in the aux phase (6.3–6.6 GB + fragmentation). The fix: `--aux_micro_batch 128` (gradient accumulation) plus `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`. Peak is now 4.9 GB per run.
+  - Aux micro-batching would update the value normaliser's EWMA 4× per step, so for the GRU runs β is set to β^(1/4) during the aux phase (`aux_norm_k`).
+  - The cost: an aux phase takes ~390 s with 3 runs in parallel, instead of ~170 s alone.
+- `--ckpt` option for `diagnose_deaths.py`. The spectator and the diagnosis carry the GRU state.
+
+**Runs** (`scripts/queue_gru.sh`, started 13:48, sleep-inhibited, spectator videos every 15 min)
+1. `ad-rarity2-gru-s0/1/2`: AD + rarity β=2 + GRU, in parallel. ~5 h estimated.
+2. Then `ad-rarity2-s1/2`: the AD + rarity β=2 baseline without GRU, home flags (micro 256 / aux 128). The baseline currently has only seed 0 (23.08), so this gives a 3 vs 3 comparison.
+
+**Results** (2026-10-20 19:10; `results/gru_summary.csv`, report section "Memory")
+
+| config | seeds | score | per seed | eval median life | thirst deaths | water 0 at death | wake up (train) | iron pickaxe (train) |
+|---|---|---|---|---|---|---|---|---|
+| AD + rarity β=2 (home) | 1 | 23.08 | 23.08 | 240 | 18% | 50% | 70.1% | 0 episodes |
+| AD + rarity β=2 + GRU | 3 | 20.28 ± 1.97 | 20.91 / 21.86 / 18.07 | 234 | 21% | 48% | 46.9 / 42.4 / 70.1% | ~4 / ~2 / 0 episodes |
+
+- **Memory does not raise the score at 1M steps.**
+  - The GRU runs learn more slowly and trail through most of training.
+  - Final last-100 score: 30.8 / 32.4 / 29.9, against 34.3 for the baseline.
+- **Survival is unchanged.** Same median life, same causes of death. Water is still empty in about half of all deaths, so the memory has not taught it to return to water within 1M steps.
+- **Two of three seeds sleep much less.**
+- **The best GRU seeds reach iron tools slightly more often.**
+  - Iron pickaxes in training: GRU s0 ~4, s1 ~2. That is the most of any run, but iron tools stay at a handful of episodes everywhere (PPO runs had 1–2).
+  - Highlight search (`diagnose_deaths.py --keep_if`, 800 fresh episodes, final GRU weights s0/s1): 3 iron pickaxes, 1 also with an iron sword, 0 diamonds.
+  - In the best episode the agent makes both iron tools at step 403, with a diamond 4 tiles away and 1 health, water 0, energy 0. It dies of thirst and fatigue on the next step. The agents that get furthest die of neglected vitals, not missing skills.
+- **Videos** (report): two iron-pickaxe highlights, the GRU s0 final episode, the s1 901k checkpoint, and an s2 "stone sword but no stone pickaxe" checkpoint. Also visible: duplicate furnaces (3) and 6 stone swords in one inventory.
+- **Preliminary:** the baseline has 1 seed. `ad-rarity2-s1/s2` (home flags) started at 19:09 and should finish ~midnight; then update the table and text.
+- **Next idea suggested by the videos:** a survival / vitals signal (keep water, food and energy up). The memory and skills alone are not the bottleneck for the best agents.
+
+**Final (2026-10-20 22:45)**: the baseline seeds 1–2 finished, so this is now 3 vs 3.
+
+| config | seeds | score | per seed | last-100 score at end | eval median life | thirst / water 0 | wake up | iron pickaxes train / 800 eval | iron swords train / 800 eval | collected iron in 800 eval |
+|---|---|---|---|---|---|---|---|---|---|---|
+| AD + rarity β=2 | 3 | **23.65 ± 1.05** | 23.08 / 24.87 / 23.01 | 34.3 / 32.9 / 32.5 | 242 | 18% / 45% | 70–74% | ~1 / 1 | ~3 / 1 | 204 |
+| + GRU memory | 3 | 20.28 ± 1.97 | 20.91 / 21.86 / 18.07 | 30.8 / 32.4 / 29.9 | 234 | 21% / 48% | 47 / 42 / 70% | ~6 / 3 | ~1 / 1 | 206 |
+
+- **The GRU is worse on every seed** (−2.2 / −3.0 / −4.9). It learns more slowly and does not change survival or how the agent dies.
+- **Iron tools are equally rare.** The earlier "slightly more iron tools" impression came from comparing against one baseline seed; with 3 seeds and the same highlight search on the baseline, the counts are tiny and mixed.
+- **Conclusion:** at 1M steps memory is not the bottleneck. The best agents die of neglected vitals.
+- **Side result: the rarity bonus on AD holds over 3 seeds.** 23.65 ± 1.05 vs the paper's AD 21.79 ± 1.37 (10 seeds). Our own plain AD has only 1 seed (17.71).
+- **Report updated:**
+  - Lede and seeds table: AD + rarity now 3 seeds, plus γ = 0.99 and GRU rows.
+  - GRU section: final text and table, plus the baseline's iron-pickaxe highlight for comparison.
+  - Death section: now 24 runs, 4,800 episodes.
+
+**Next candidate:** a survival / vitals signal. Keep water, food and energy up; that is what kills the agents that reach iron.
+
+---
+
+## 2026-10-20 (night) — Report: pooled tech-tree entries, zoomable learning curves
+
+- **Tech tree:** two new entries pooled over 3 seeds each, "AD + rarity β=2 (3 seeds)" and "AD + rarity β=2 + GRU (3 seeds)" (`tree_extra` in narrative.json, `pooled_rates()` in make_report.py). Boxes below 1% also show the episode count.
+  - Iron pickaxe: GRU 6 eps vs 1 without memory.
+  - Iron sword: 1 vs 3.
+  - Diamond: 0 in both.
+- **Learning curves:** window buttons (all / 0–300k / 300k–700k / 700k–1M / last 120k). The y-axis re-fits to the lines in view; legend clicks toggle runs.
+- **Git:** the 4 commits pushed from the Windows laptop carry `Co-Authored-By: Claude Opus 5.5` trailers, and GitHub credits that address to Claude. The user rewrites the messages and force-pushes. Also needed: the author email on their GitHub account, and `"attribution": {"commit": "", "pr": ""}` in `~/.claude/settings.json` on both machines.
