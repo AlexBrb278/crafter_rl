@@ -1,0 +1,309 @@
+<title>Crafter RL · live</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f4f4f2; --surface: #fcfcfb; --border: #e3e2de;
+  --text: #0b0b0b; --text-2: #52514e; --muted: #7d7c77; --grid: #ecebe7;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100;
+  --s5: #e87ba4; --s6: #008300; --s7: #6250d6; --s8: #e34948;
+  --good: #0ca30c; --track: #e9e8e4;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --bg: #121211; --surface: #1a1a19; --border: #2c2c2a;
+    --text: #f0efec; --text-2: #c3c2b7; --muted: #8e8d86; --grid: #262624;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+    --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767; --track: #2a2a28;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121211; --surface: #1a1a19; --border: #2c2c2a;
+  --text: #f0efec; --text-2: #c3c2b7; --muted: #8e8d86; --grid: #262624;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+  --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767; --track: #2a2a28;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 20px 16px 48px; }
+header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+h1 { font-size: 20px; margin: 0; letter-spacing: -0.01em; }
+h1 small { color: var(--muted); font-weight: 400; font-size: 13px; margin-left: 8px; }
+select { font: inherit; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text); }
+.updated { color: var(--muted); font-size: 12px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+.progress { margin-top: 14px; }
+.bar { height: 8px; background: var(--track); border-radius: 4px; overflow: hidden; margin-top: 8px; }
+.bar > div { height: 100%; background: var(--s1); border-radius: 4px; transition: width .4s; }
+.prow { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--text-2); font-size: 13px; }
+.prow b { color: var(--text); font-weight: 600; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 12px; }
+.tile .lbl { color: var(--text-2); font-size: 12px; }
+.tile .val { font-size: 28px; font-weight: 650; letter-spacing: -0.02em; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.tile .sub { color: var(--muted); font-size: 12px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 12px; margin-top: 12px; }
+.card h2 { font-size: 14px; margin: 0 0 2px; font-weight: 600; }
+.card .note { color: var(--muted); font-size: 12px; margin: 0 0 8px; }
+.chartbox { position: relative; height: 240px; }
+.chartbox.tall { height: 520px; }
+.videos { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 12px; margin-top: 12px; }
+@media (max-width: 860px) { .videos { grid-template-columns: 1fr; } }
+video { width: 100%; border-radius: 8px; background: #000; display: block; }
+.cliplist { display: flex; flex-direction: column; gap: 6px; max-height: 560px; overflow-y: auto; }
+.clip { text-align: left; font: inherit; color: var(--text); background: transparent; border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 10px; cursor: pointer; }
+.clip:hover, .clip.on { border-color: var(--s1); }
+.clip .t { font-weight: 600; font-size: 13px; }
+.clip .d { color: var(--text-2); font-size: 12px; }
+.empty { color: var(--muted); padding: 24px 0; text-align: center; }
+details { margin-top: 12px; }
+summary { cursor: pointer; color: var(--text-2); }
+table { border-collapse: collapse; width: 100%; font-size: 12px; font-variant-numeric: tabular-nums; }
+th, td { padding: 4px 8px; border-bottom: 1px solid var(--border); text-align: right; }
+th:first-child, td:first-child { text-align: left; }
+.tablewrap { overflow-x: auto; }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Crafter RL · live<small id="sub">Achievement Distillation on Crafter, 1M-step protocol</small></h1>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+      <span class="updated" id="updated"></span>
+      <label>Run <select id="runSel"></select></label>
+    </div>
+  </header>
+
+  <div class="card progress">
+    <div class="prow" id="prow"></div>
+    <div class="bar"><div id="pbar" style="width:0%"></div></div>
+  </div>
+
+  <div class="tiles">
+    <div class="card tile"><div class="lbl">Crafter score (all training episodes)</div><div class="val" id="tScore">–</div><div class="sub">paper protocol · AD reports 21.8 at 1M</div></div>
+    <div class="card tile"><div class="lbl">Recent score (last 100 episodes)</div><div class="val" id="tRecent">–</div><div class="sub">how good the agent is right now</div></div>
+    <div class="card tile"><div class="lbl">Episode reward (last update)</div><div class="val" id="tReward">–</div><div class="sub" id="tRewardSub">max ≈ 22</div></div>
+    <div class="card tile"><div class="lbl">Episodes · clips</div><div class="val" id="tEps">–</div><div class="sub" id="tEpsSub"></div></div>
+  </div>
+
+  <div class="videos">
+    <div class="card">
+      <h2 id="vidTitle">Agent clips</h2>
+      <p class="note" id="vidNote">Training clips (random moments) and checkpoint episodes (fresh world, every ~15 min).</p>
+      <video id="player" controls muted autoplay loop playsinline></video>
+      <div class="empty" id="noVid">No clips yet. The first one is recorded after ~2k steps.</div>
+    </div>
+    <div class="card">
+      <h2>All clips</h2>
+      <p class="note">Newest first · click to play</p>
+      <div class="cliplist" id="clips"></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card"><h2>Crafter score</h2><p class="note">Geometric mean of the 22 success rates over all training episodes so far · one line per run</p><div class="chartbox"><canvas id="cScore"></canvas></div></div>
+    <div class="card"><h2>Recent score</h2><p class="note">Same formula over the last 100 episodes · one line per run</p><div class="chartbox"><canvas id="cRecent"></canvas></div></div>
+    <div class="card"><h2>Episode reward</h2><p class="note">Mean over episodes finished in each update · selected run</p><div class="chartbox"><canvas id="cReward"></canvas></div></div>
+    <div class="card"><h2>Episode length</h2><p class="note">Steps survived (cap 10,000) · selected run</p><div class="chartbox"><canvas id="cLength"></canvas></div></div>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <h2>Achievement success rates</h2>
+    <p class="note">% of episodes that unlocked each achievement · selected run</p>
+    <div class="chartbox tall"><canvas id="cAch"></canvas></div>
+    <details><summary>Table view</summary><div class="tablewrap"><table id="achTable"></table></div></details>
+  </div>
+
+  <div class="grid2">
+    <div class="card"><h2>Policy entropy</h2><p class="note">Selected run</p><div class="chartbox"><canvas id="cEnt"></canvas></div></div>
+    <div class="card"><h2>Throughput</h2><p class="note">Env steps per second, including updates · selected run</p><div class="chartbox"><canvas id="cSps"></canvas></div></div>
+  </div>
+</div>
+
+<script>
+const ACH = ["collect_coal","collect_diamond","collect_drink","collect_iron","collect_sapling","collect_stone",
+  "collect_wood","defeat_skeleton","defeat_zombie","eat_cow","eat_plant","make_iron_pickaxe","make_iron_sword",
+  "make_stone_pickaxe","make_stone_sword","make_wood_pickaxe","make_wood_sword","place_furnace","place_plant",
+  "place_stone","place_table","wake_up"];
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const SER = () => [1,2,3,4,5,6,7,8].map(i => css("--s" + i));
+const charts = {};
+let runs = [], current = null, shownClip = null, lastData = null;
+
+function fmtSteps(v) { return v >= 1e6 ? (v/1e6).toFixed(2) + "M" : v >= 1e3 ? Math.round(v/1e3) + "k" : String(v); }
+function fmtMin(m) { if (m == null) return "–"; const h = Math.floor(m/60); return h ? `${h}h ${Math.round(m%60)}m` : `${Math.round(m)}m`; }
+function pretty(a) { return a.replace(/_/g, " "); }
+
+function baseOpts(yTitle, extra = {}) {
+  const grid = css("--grid"), muted = css("--muted");
+  return {
+    responsive: true, maintainAspectRatio: false, animation: false, parsing: false, normalized: true,
+    interaction: { mode: "index", intersect: false, axis: "x" },
+    plugins: {
+      legend: { display: extra.legend ?? false, position: "bottom", labels: { color: css("--text-2"), boxWidth: 12, boxHeight: 2, usePointStyle: false } },
+      tooltip: { callbacks: { title: it => it.length ? "step " + fmtSteps(it[0].parsed.x) : "" } },
+    },
+    scales: {
+      x: { type: "linear", grid: { color: grid, drawTicks: false }, border: { display: false },
+           ticks: { color: muted, callback: v => fmtSteps(v), maxTicksLimit: 6 } },
+      y: { grid: { color: grid, drawTicks: false }, border: { display: false }, beginAtZero: true,
+           ticks: { color: muted, maxTicksLimit: 6 }, title: { display: !!yTitle, text: yTitle, color: muted } },
+    },
+    elements: { point: { radius: 0, hoverRadius: 4 }, line: { borderWidth: 2, tension: 0 } },
+  };
+}
+
+function lineChart(id, yTitle, legend) {
+  charts[id] = new Chart(document.getElementById(id), { type: "line", data: { datasets: [] }, options: baseOpts(yTitle, { legend }) });
+}
+
+function achChart() {
+  const muted = css("--muted"), grid = css("--grid");
+  charts.cAch = new Chart(document.getElementById("cAch"), {
+    type: "bar",
+    data: { labels: ACH.map(pretty), datasets: [] },
+    options: {
+      indexAxis: "y", responsive: true, maintainAspectRatio: false, animation: false,
+      interaction: { mode: "index", intersect: false, axis: "y" },
+      plugins: { legend: { position: "bottom", labels: { color: css("--text-2"), boxWidth: 12 } },
+                 tooltip: { callbacks: { label: c => `${c.dataset.label}: ${c.parsed.x.toFixed(1)}%` } } },
+      scales: {
+        x: { min: 0, max: 100, grid: { color: grid, drawTicks: false }, border: { display: false },
+             ticks: { color: muted, callback: v => v + "%" } },
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: css("--text-2"), autoSkip: false } },
+      },
+      datasets: { bar: { borderRadius: 4, borderSkipped: "start", barPercentage: 0.8, categoryPercentage: 0.8 } },
+    },
+  });
+}
+
+function series(metrics, key) {
+  return metrics.filter(m => m[key] != null).map(m => ({ x: m.step, y: m[key] }));
+}
+
+async function getJSON(u) { const r = await fetch(u, { cache: "no-store" }); return r.json(); }
+
+async function refresh() {
+  try {
+    runs = await getJSON("/api/runs");
+  } catch (e) { document.getElementById("updated").textContent = "dashboard server not reachable"; return; }
+  const sel = document.getElementById("runSel");
+  const names = runs.map(r => r.name);
+  if (!current || !names.includes(current)) {
+    const active = [...runs].sort((a, b) => b.mtime - a.mtime)[0];
+    current = active ? active.name : null;
+  }
+  sel.innerHTML = runs.map(r => `<option ${r.name === current ? "selected" : ""}>${r.name}</option>`).join("");
+  if (!current) return;
+
+  // all-runs comparison charts (color follows the run, by its position in the sorted list)
+  const pal = SER();
+  const all = await Promise.all(runs.map(r => getJSON("/api/run/" + encodeURIComponent(r.name))));
+  for (const [id, key] of [["cScore", "score"], ["cRecent", "recent_score"]]) {
+    charts[id].data.datasets = all.map((d, i) => ({
+      label: runs[i].name, data: series(d.metrics, key),
+      borderColor: pal[i % 8], backgroundColor: pal[i % 8],
+      borderWidth: runs[i].name === current ? 2.5 : 1.5,
+    }));
+    charts[id].options.plugins.legend.display = runs.length > 1;
+    charts[id].update();
+  }
+
+  const d = all[names.indexOf(current)];
+  lastData = d;
+  const M = d.metrics, last = M[M.length - 1] || {};
+  const st = runs.find(r => r.name === current).status || {};
+  const nep = st.nepoch || (d.config && d.config.config.nepoch) || 250;
+  const done = !!d.final;
+  document.getElementById("pbar").style.width = (100 * (last.epoch || 0) / nep).toFixed(1) + "%";
+  document.getElementById("prow").innerHTML =
+    `<span><b>${current}</b></span><span>update <b>${last.epoch || 0}</b> / ${nep}</span>` +
+    `<span><b>${fmtSteps(last.step || 0)}</b> env steps</span><span>elapsed <b>${fmtMin(st.elapsed_min)}</b></span>` +
+    (done ? `<span><b style="color:var(--good)">✓ finished</b> in ${d.final.wall_clock_h} h</span>`
+          : `<span>ETA <b>${fmtMin(st.eta_min)}</b></span>`) +
+    (d.config ? `<span>${d.config.device} · ${(d.config.params/1e6).toFixed(1)}M params</span>` : "");
+  document.getElementById("tScore").textContent = last.score != null ? last.score.toFixed(2) : "–";
+  document.getElementById("tRecent").textContent = last.recent_score != null ? last.recent_score.toFixed(2) : "–";
+  const lastRew = [...M].reverse().find(m => m.reward_mean != null);
+  document.getElementById("tReward").textContent = lastRew ? lastRew.reward_mean.toFixed(2) : "–";
+  document.getElementById("tRewardSub").textContent = lastRew ? `mean episode length ${Math.round(lastRew.length_mean)} steps · max reward ≈ 22` : "max ≈ 22";
+  document.getElementById("tEps").textContent = `${(last.episodes || 0).toLocaleString()} · ${d.clips.length + (d.spectator || []).length}`;
+  document.getElementById("tEpsSub").textContent = last.sps ? `${Math.round(last.sps)} steps/s · GPU mem ${last.gpu_mem_gb} GB` : "";
+
+  const c1 = pal[0];
+  for (const [id, key] of [["cReward", "reward_mean"], ["cLength", "length_mean"], ["cEnt", "entropy"], ["cSps", "sps"]]) {
+    charts[id].data.datasets = [{ label: key, data: series(M, key), borderColor: c1, backgroundColor: c1 }];
+    charts[id].update();
+  }
+
+  const rec = last.recent_success_rate || {}, cum = d.success_rate || {};
+  charts.cAch.data.datasets = [
+    { label: "last 100 episodes", data: ACH.map(a => rec[a] || 0), backgroundColor: pal[0] },
+    { label: "all episodes (protocol)", data: ACH.map(a => cum[a] || 0), backgroundColor: pal[1] },
+  ];
+  charts.cAch.update();
+  document.getElementById("achTable").innerHTML =
+    "<tr><th>achievement</th><th>last 100 eps %</th><th>all eps %</th></tr>" +
+    ACH.map(a => `<tr><td>${pretty(a)}</td><td>${(rec[a] || 0).toFixed(1)}</td><td>${(cum[a] || 0).toFixed(1)}</td></tr>`).join("");
+
+  renderClips(d);
+  document.getElementById("updated").textContent = "updated " + new Date().toLocaleTimeString();
+}
+
+function clipUrl(f) { return `/runs/${encodeURIComponent(current)}/videos/${f}`; }
+
+function renderClips(d) {
+  const uniq = a => [...new Set(a)];
+  const items = d.clips.map(c => ({ file: c.file, step: c.start_step, title: `Training clip · step ${fmtSteps(c.start_step)}`,
+    desc: `env #${c.env} · +${c.reward.toFixed(1)} reward` + (c.unlocked.length ? ` · ${uniq(c.unlocked).map(pretty).join(", ")}` : " · no new achievements") }));
+  for (const c of (d.spectator || [])) items.push({ file: c.file, step: c.step,
+    title: `Checkpoint episode · step ${fmtSteps(c.step)}`,
+    desc: `fresh world · ${c.length} steps${c.died ? " (died)" : ""} · return ${c.return.toFixed(1)} · ${c.achievements.length}/22: ${c.achievements.map(pretty).join(", ")}` });
+  items.sort((a, b) => a.step - b.step);
+  if (d.has_final_video) items.push({ file: "final_episode.mp4", step: Infinity, title: "Final evaluation episode",
+    desc: d.final && d.final.eval_episode ? `${d.final.eval_episode.length} steps · return ${d.final.eval_episode.return.toFixed(1)} · ${d.final.eval_episode.achievements.length}/22 achievements` : "" });
+  items.reverse();
+  const list = document.getElementById("clips");
+  list.innerHTML = items.length ? "" : '<div class="empty">No clips yet</div>';
+  for (const it of items) {
+    const b = document.createElement("button");
+    b.className = "clip" + (it.file === shownClip ? " on" : "");
+    b.innerHTML = `<div class="t">${it.title}</div><div class="d">${it.desc}</div>`;
+    b.onclick = () => play(it);
+    list.appendChild(b);
+  }
+  document.getElementById("noVid").hidden = items.length > 0;
+  document.getElementById("player").hidden = items.length === 0;
+  if (items.length && (!shownClip || autoFollow)) play(items[0], true);
+}
+
+let autoFollow = true;
+function play(it, auto = false) {
+  if (!auto) autoFollow = false;
+  if (shownClip === it.file) return;
+  shownClip = it.file;
+  const p = document.getElementById("player");
+  p.src = clipUrl(it.file);
+  p.play().catch(() => {});
+  document.getElementById("vidTitle").textContent = it.title;
+  document.getElementById("vidNote").textContent = it.desc;
+  document.querySelectorAll(".clip").forEach(el => el.classList.toggle("on", el.querySelector(".t").textContent === it.title));
+}
+
+document.getElementById("runSel").onchange = e => { current = e.target.value; shownClip = null; autoFollow = true; refresh(); };
+
+lineChart("cScore", "score %", true);
+lineChart("cRecent", "score %", true);
+lineChart("cReward", "reward");
+lineChart("cLength", "steps");
+lineChart("cEnt", "nats");
+lineChart("cSps", "steps/s");
+achChart();
+refresh();
+setInterval(refresh, 20000);
+</script>

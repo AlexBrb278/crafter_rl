@@ -1,0 +1,370 @@
+<title>Crafter on 4 GB</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+/* Layout: one reading column (~68ch) for prose; figures break out to a wider 1080px measure. */
+:root {
+  --bg: #eef1ea;          /* pale grass-grey */
+  --surface: #fbfcf8;
+  --ink: #1a2018;
+  --ink-2: #4a5646;
+  --muted: #76826f;
+  --line: #d6ddd0;
+  --accent: #3b7f33;      /* Crafter grass */
+  --accent-ink: #ffffff;
+  --rare: #127f8f;        /* diamond */
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4;
+  --q0: #e4e8e0; --q1: #cde2fb; --q2: #9ec5f4; --q3: #6da7ec; --q4: #3987e5; --q5: #256abf; --q6: #184f95;
+  --font-display: "Pixelify Sans", "Courier New", monospace;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --step--1: 0.8125rem; --step-0: 1rem; --step-1: 1.25rem; --step-2: 1.625rem; --step-3: 2.5rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #111510; --surface: #171c16; --ink: #e9eee5; --ink-2: #b9c4b3; --muted: #8b9785;
+    --line: #2a3227; --accent: #72c264; --accent-ink: #0d1a0b; --rare: #45c6d6;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181;
+    --q0: #232a21; --q1: #184f95; --q2: #1c5cab; --q3: #256abf; --q4: #3987e5; --q5: #6da7ec; --q6: #b7d3f6;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111510; --surface: #171c16; --ink: #e9eee5; --ink-2: #b9c4b3; --muted: #8b9785;
+  --line: #2a3227; --accent: #72c264; --accent-ink: #0d1a0b; --rare: #45c6d6;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181;
+  --q0: #232a21; --q1: #184f95; --q2: #1c5cab; --q3: #256abf; --q4: #3987e5; --q5: #6da7ec; --q6: #b7d3f6;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 var(--step-0)/1.6 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+main { max-width: 1080px; margin: 0 auto; padding-block: 48px 96px; display: flex; flex-direction: column; gap: 56px; }
+.prose { max-width: 68ch; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+h1 { font: 700 var(--step-3)/1.05 var(--font-display); letter-spacing: 0.01em; }
+h2 { font: 600 var(--step-2)/1.2 var(--font-body); letter-spacing: -0.01em; }
+h3 { font: 600 var(--step-1)/1.3 var(--font-body); }
+p { margin: 0; }
+.stack { display: flex; flex-direction: column; gap: 14px; }
+.eyebrow { font: 500 var(--step--1)/1.3 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: var(--step-1); line-height: 1.5; color: var(--ink-2); }
+a { color: var(--accent); }
+code, .mono { font-family: var(--font-mono); font-size: 0.92em; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* header */
+header.top { display: flex; flex-direction: column; gap: 18px; }
+.formula { font: 400 var(--step--1)/1.5 var(--font-mono); color: var(--ink-2); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 6px; padding: 10px 14px; overflow-x: auto; }
+
+/* results strip */
+.scores { display: flex; flex-wrap: wrap; gap: 10px; }
+.score { flex: 1 1 180px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+  padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+.score .k { font: 500 var(--step--1)/1.3 var(--font-body); color: var(--ink-2); display: flex; align-items: center; gap: 8px; }
+.score .v { font: 500 2rem/1 var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.score .d { font-size: var(--step--1); color: var(--muted); }
+.swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; flex: none; }
+.score.ref .v { color: var(--muted); }
+
+/* figures */
+figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+figcaption { font-size: var(--step--1); color: var(--muted); max-width: 80ch; }
+.charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 28px 24px; }
+.chartbox { position: relative; height: 280px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 12px 6px; }
+.chartbox h3 { font: 600 var(--step--1)/1.3 var(--font-body); color: var(--ink); margin: 0 0 6px 4px; }
+.chartbox canvas { position: absolute; left: 12px; right: 12px; top: 34px; bottom: 6px; }
+
+/* tech tree */
+.tree-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px; overflow-x: auto; }
+.tree-head { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.seg button { font: 500 var(--step--1)/1 var(--font-body); color: var(--ink-2); background: transparent; border: 0;
+  padding: 8px 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+.seg button:focus-visible, .clipbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 12px; font: 400 var(--step--1)/1 var(--font-mono); color: var(--ink-2); align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+svg.tree { display: block; min-width: 900px; width: 100%; height: auto; }
+svg.tree text { font-family: var(--font-body); }
+svg.tree .edge { stroke: var(--line); stroke-width: 2; fill: none; }
+svg.tree .lane { font: 500 11px var(--font-mono); fill: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* achievement table */
+.tablewrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+th, td { padding: 7px 12px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font: 500 var(--step--1)/1.2 var(--font-mono); color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+td.val { font-family: var(--font-mono); font-variant-numeric: tabular-nums; width: 180px; }
+.bar { display: inline-block; height: 8px; border-radius: 0 4px 4px 0; vertical-align: middle; margin-right: 8px; min-width: 1px; }
+tr.tier td:first-child { font-weight: 500; }
+
+/* videos */
+.videos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 20px; }
+.video { display: flex; flex-direction: column; gap: 8px; }
+video { width: 100%; max-width: 100%; border-radius: 6px; background: #000; display: block; }
+.video .t { font-weight: 600; font-size: var(--step--1); }
+.video .d { font-size: var(--step--1); color: var(--muted); }
+
+/* findings */
+.findings { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; }
+.finding { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+.finding .metric { font: 500 var(--step-1)/1.2 var(--font-mono); font-variant-numeric: tabular-nums; color: var(--accent); }
+.finding p { font-size: 0.95rem; color: var(--ink-2); }
+ul.plain { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 6px; }
+pre { margin: 0; font: 400 var(--step--1)/1.6 var(--font-mono); background: var(--surface); border: 1px solid var(--line);
+  border-radius: 6px; padding: 12px 14px; overflow-x: auto; }
+footer { color: var(--muted); font-size: var(--step--1); }
+@media (max-width: 520px) { h1 { font-size: 2rem; } .score .v { font-size: 1.75rem; } }
+</style>
+
+<main>
+  <header class="top">
+    <span class="eyebrow">crafter_rl · run log · __DATE__</span>
+    <h1>Crafter on a 4&nbsp;GB laptop GPU</h1>
+    <p class="lede prose">__LEDE__</p>
+    <div class="formula">score = exp( mean<sub>i=1..22</sub> ln(1 + s<sub>i</sub>) ) − 1 &nbsp;·&nbsp; s<sub>i</sub> = % of all training episodes in the first 1M steps that unlocked achievement i</div>
+  </header>
+
+  <section class="stack">
+    <span class="eyebrow">Results at 1M environment steps (seed 0)</span>
+    <div class="scores" id="scores"></div>
+    <p class="prose" style="color:var(--ink-2)">__RESULT_TEXT__</p>
+  </section>
+
+  <section class="stack">
+    <h2>Across seeds</h2>
+    <p class="prose">__SEEDS_TEXT__</p>
+    <div class="tablewrap"><table>__SEEDS__</table></div>
+    <figcaption>Success rates are averaged over seeds, each over all training episodes in 1M steps.</figcaption>
+    <div class="chartbox" id="betaBox" style="max-width:640px"><h3>PPO score vs bonus strength β (dots: seeds, line: mean)</h3><canvas id="cBeta"></canvas></div>
+  </section>
+
+  <section class="stack">
+    <h2>How far up the tech tree each agent got</h2>
+    <p class="prose">Crafter's achievements form a crafting tree. Each box is shaded by the share of training episodes that unlocked it. Because the score is a geometric mean, the pale boxes on the right decide most of it.</p>
+    <div class="tree-wrap">
+      <div class="tree-head">
+        <div class="seg" role="group" aria-label="Choose run" id="treeRuns"></div>
+        <div class="seg" role="group" aria-label="Choose window" id="treeWindow">
+          <button type="button" data-w="all" aria-pressed="true">All 1M steps</button>
+          <button type="button" data-w="last">Last 300 episodes</button>
+        </div>
+        <div class="legend" id="treeLegend"></div>
+      </div>
+      <svg class="tree" id="tree" viewBox="0 0 1100 490" role="img" aria-label="Crafter achievement tree shaded by success rate"></svg>
+    </div>
+  </section>
+
+  <section class="stack">
+    <h2>Learning curves</h2>
+    <div class="charts">
+      <div class="chartbox"><h3>Crafter score, all training episodes so far</h3><canvas id="cScore"></canvas></div>
+      <div class="chartbox"><h3>Crafter score, last 100 episodes</h3><canvas id="cRecent"></canvas></div>
+      <div class="chartbox"><h3>Episode reward (100-episode average)</h3><canvas id="cReward"></canvas></div>
+      <div class="chartbox"><h3>Episode length in steps (100-episode average)</h3><canvas id="cLength"></canvas></div>
+    </div>
+    <figcaption>Dashed lines: published 1M-step scores. Achievement Distillation is 21.79 ± 1.37 and PPO (same paper) is 15.60 ± 1.66, both averaged over 10 seeds. Ours are single seeds.</figcaption>
+  </section>
+
+  <section class="stack">
+    <h2>Success rate per achievement</h2>
+    <div class="tablewrap"><table id="achTable"></table></div>
+    <figcaption>Percent of all training episodes within 1M steps that unlocked the achievement (the protocol's s<sub>i</sub>). Rows follow the crafting order.</figcaption>
+  </section>
+
+  <section class="stack">
+    <h2>The agent playing</h2>
+    <p class="prose">Rendered at 384 px from the same game the agent sees at 64 × 64. The top bar shows the training step, episode time, return and vitals. Achievements pop up on the right as they unlock.</p>
+    <div class="videos" id="videos">__VIDEOS__</div>
+  </section>
+
+  <section class="stack">
+    <h2>What it took to run this on a 4 GB laptop</h2>
+    <p class="prose">The method's maths is the official code's. Every change below is engineering, and each was checked against the original.</p>
+    <div class="findings">__FINDINGS__</div>
+  </section>
+
+  <section class="stack">
+    <h2>__IMPROVE_TITLE__</h2>
+    <div class="prose stack">__IMPROVE_TEXT__</div>
+  </section>
+
+  <section class="stack">
+    <h2>Reproduce</h2>
+    <pre>__REPRO__</pre>
+  </section>
+
+  <footer>__FOOTER__</footer>
+</main>
+
+<script id="data" type="application/json">__DATA__</script>
+<script id="beta" type="application/json">__BETA__</script>
+<script>
+const RUNS = JSON.parse(document.getElementById("data").textContent);
+const SER = ["--s1", "--s2", "--s3", "--s4", "--s5"];
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const pretty = a => a.replace(/_/g, " ");
+const fmtSteps = v => v >= 1e6 ? (v / 1e6).toFixed(1) + "M" : v === 0 ? "0" : Math.round(v / 1e3) + "k";
+const PAPER = [{ label: "AD, paper", v: 21.79 }, { label: "PPO, paper", v: 15.60 }];
+
+// ---------- score strip ----------
+(function scores() {
+  const el = document.getElementById("scores");
+  el.innerHTML = RUNS.map((r, i) => `<div class="score">
+      <span class="k"><span class="swatch" style="background:var(${SER[i]})"></span>${r.label}</span>
+      <span class="v">${r.score.toFixed(1)}</span>
+      <span class="d">reward ${r.reward_all.toFixed(1)} avg · ${r.reward_last300.toFixed(1)} last 300 eps · ${r.hours.toFixed(1)} h</span>
+    </div>`).join("") + PAPER.map(p => `<div class="score ref">
+      <span class="k">${p.label} (10 seeds)</span><span class="v">${p.v.toFixed(1)}</span>
+      <span class="d">Moon et al., NeurIPS 2023</span></div>`).join("") + `<div class="score ref">
+      <span class="k">Human experts</span><span class="v">50.5</span><span class="d">Hafner, ICLR 2022</span></div>`;
+})();
+
+// ---------- tech tree ----------
+const NODES = {
+  collect_wood: [0, 1], place_table: [1, 1], make_wood_pickaxe: [2, 0.5], make_wood_sword: [2, 1.5],
+  collect_stone: [3, 0], collect_coal: [3, 1], place_stone: [4, -0.5], make_stone_pickaxe: [4, 0.5],
+  make_stone_sword: [4, 1.5], place_furnace: [4, 2.5], collect_iron: [5, 0.5], make_iron_pickaxe: [6, 0.5],
+  make_iron_sword: [6, 1.5], collect_diamond: [7, 0.5],
+  collect_sapling: [0, 4], place_plant: [1, 4], eat_plant: [2, 4],
+  collect_drink: [0, 5.5], eat_cow: [1, 5.5], wake_up: [2, 5.5], defeat_zombie: [3, 5.5], defeat_skeleton: [4, 5.5],
+};
+const EDGES = [["collect_wood", "place_table"], ["place_table", "make_wood_pickaxe"], ["place_table", "make_wood_sword"],
+  ["make_wood_pickaxe", "collect_stone"], ["make_wood_pickaxe", "collect_coal"], ["collect_stone", "place_stone"],
+  ["collect_stone", "make_stone_pickaxe"], ["collect_stone", "make_stone_sword"], ["collect_stone", "place_furnace"],
+  ["make_stone_pickaxe", "collect_iron"], ["collect_iron", "make_iron_pickaxe"], ["collect_iron", "make_iron_sword"],
+  ["collect_coal", "make_iron_pickaxe"], ["place_furnace", "make_iron_pickaxe"], ["make_iron_pickaxe", "collect_diamond"],
+  ["collect_sapling", "place_plant"], ["place_plant", "eat_plant"]];
+const BINS = [[0, "0"], [0.0001, "<1"], [1, "1–5"], [5, "5–20"], [20, "20–50"], [50, "50–80"], [80, "≥80"]];
+const binOf = v => { let b = 0; BINS.forEach(([t], i) => { if (v >= t && !(v === 0 && t > 0)) b = i; }); return v === 0 ? 0 : Math.max(1, b); };
+let treeRun = 0, treeWin = "all";
+const NW = 124, NH = 46, X0 = 14, DX = 136, Y0 = 72, DY = 62;
+function lum(hex) {  // relative luminance of #rrggbb, to pick readable label ink on any fill
+  const c = hex.replace("#", "").match(/../g).map(h => { const v = parseInt(h, 16) / 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; });
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+}
+const pos = n => [X0 + NODES[n][0] * DX, Y0 + NODES[n][1] * DY];
+
+function drawTree() {
+  const r = RUNS[treeRun], rates = treeWin === "all" ? r.rates : r.rates_last300;
+  const svg = document.getElementById("tree");
+  let s = `<text class="lane" x="${X0}" y="${Y0 - 52}">tools &amp; materials →</text>
+           <text class="lane" x="${X0}" y="${Y0 + 3.6 * DY}">farming</text>
+           <text class="lane" x="${X0}" y="${Y0 + 5.1 * DY}">survival &amp; combat</text>`;
+  for (const [a, b] of EDGES) {
+    const [x1, y1] = pos(a), [x2, y2] = pos(b);
+    const sx = x1 + NW, sy = y1 + NH / 2, ex = x2, ey = y2 + NH / 2, mx = (sx + ex) / 2;
+    s += `<path class="edge" d="M${sx},${sy} C${mx},${sy} ${mx},${ey} ${ex},${ey}"/>`;
+  }
+  for (const n of Object.keys(NODES)) {
+    const [x, y] = pos(n), v = rates[n], b = binOf(v);
+    const fill = css("--q" + Math.min(b, 6)), dark = lum(fill) < 0.22;
+    const ink = dark ? "#ffffff" : "#0e130d", sub = dark ? "rgba(255,255,255,.86)" : "rgba(14,19,13,.78)";
+    const val = v === 0 ? "0%" : v < 1 ? v.toFixed(2) + "%" : v.toFixed(1) + "%";
+    s += `<g><title>${pretty(n)}: ${val}</title>
+      <rect x="${x}" y="${y}" width="${NW}" height="${NH}" rx="6" fill="${fill}" stroke="${css("--line")}"/>
+      <text x="${x + 9}" y="${y + 18}" font-size="11.5" font-weight="500" fill="${ink}">${pretty(n)}</text>
+      <text x="${x + 9}" y="${y + 36}" font-size="13" font-family="IBM Plex Mono, monospace" fill="${sub}">${val}</text></g>`;
+  }
+  svg.innerHTML = s;
+  document.getElementById("treeLegend").innerHTML = BINS.map(([, l], i) =>
+    `<span><span class="swatch" style="background:var(--q${i});outline:1px solid var(--line)"></span>${l}%</span>`).join("");
+}
+document.getElementById("treeRuns").innerHTML = RUNS.map((r, i) =>
+  `<button type="button" data-i="${i}" aria-pressed="${i === 0}"><span class="swatch" style="background:var(${SER[i]})"></span>${r.label}</button>`).join("");
+document.getElementById("treeRuns").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  treeRun = +b.dataset.i;
+  document.querySelectorAll("#treeRuns button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  drawTree();
+});
+document.getElementById("treeWindow").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  treeWin = b.dataset.w;
+  document.querySelectorAll("#treeWindow button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  drawTree();
+});
+
+// ---------- table ----------
+(function table() {
+  const order = Object.keys(NODES);
+  const head = `<tr><th>achievement</th>${RUNS.map((r, i) => `<th><span class="swatch" style="background:var(${SER[i]})"></span> ${r.label}</th>`).join("")}</tr>`;
+  const body = order.map(a => `<tr><td>${pretty(a)}</td>${RUNS.map((r, i) => {
+    const v = r.rates[a];
+    return `<td class="val"><span class="bar" style="width:${Math.max(1, v * 0.9)}px;background:var(${SER[i]})"></span>${v < 1 && v > 0 ? v.toFixed(2) : v.toFixed(1)}%</td>`;
+  }).join("")}</tr>`).join("");
+  const score = `<tr><td><b>Crafter score</b></td>${RUNS.map(r => `<td class="val"><b>${r.score.toFixed(2)}</b></td>`).join("")}</tr>`;
+  document.getElementById("achTable").innerHTML = head + body + score;
+})();
+
+// ---------- charts ----------
+const CHARTS = [];
+function lineChart(id, key, opts = {}) {
+  if (!window.Chart) return;
+  const grid = css("--line"), muted = css("--muted");
+  const ds = RUNS.map((r, i) => ({ label: r.label, data: r[key].map(([x, y]) => ({ x, y })),
+    borderColor: css(SER[i]), backgroundColor: css(SER[i]), borderWidth: 2, pointRadius: 0, pointHoverRadius: 4, tension: 0 }));
+  if (opts.paper) for (const p of PAPER) ds.push({ label: `${p.label} ${p.v}`, data: [{ x: 0, y: p.v }, { x: 1.024e6, y: p.v }],
+    borderColor: muted, borderDash: [5, 4], borderWidth: 1.25, pointRadius: 0, pointHoverRadius: 0 });
+  CHARTS.push(new Chart(document.getElementById(id), {
+    type: "line", data: { datasets: ds },
+    options: { responsive: true, maintainAspectRatio: false, animation: false, parsing: false,
+      interaction: { mode: "nearest", axis: "x", intersect: false },
+      plugins: { legend: { display: true, position: "bottom", labels: { color: css("--ink-2"), boxWidth: 14, boxHeight: 2, font: { family: "IBM Plex Sans" } } },
+        tooltip: { callbacks: { title: it => it.length ? "step " + fmtSteps(it[0].parsed.x) : "",
+          label: c => `${c.dataset.label}: ${c.parsed.y.toFixed(opts.dp ?? 2)}` } } },
+      scales: { x: { type: "linear", min: 0, max: 1.024e6, grid: { color: grid }, border: { display: false },
+                     ticks: { color: muted, callback: fmtSteps, maxTicksLimit: 6, font: { family: "IBM Plex Mono" } } },
+                y: { beginAtZero: true, grid: { color: grid }, border: { display: false },
+                     ticks: { color: muted, maxTicksLimit: 6, font: { family: "IBM Plex Mono" } } } } } }));
+}
+function betaChart() {
+  const pts = JSON.parse(document.getElementById("beta").textContent || "[]");
+  const box = document.getElementById("betaBox");
+  if (!window.Chart || pts.length < 2) { box.hidden = true; return; }
+  const grid = css("--line"), muted = css("--muted"), c1 = css("--s1"), ink2 = css("--ink-2");
+  CHARTS.push(new Chart(document.getElementById("cBeta"), {
+    type: "scatter",
+    data: { datasets: [
+      { label: "seed", data: pts.flatMap(p => p.scores.map(y => ({ x: p.beta, y }))), backgroundColor: c1, borderColor: css("--surface"),
+        borderWidth: 2, pointRadius: 6, pointHoverRadius: 8 },
+      { label: "mean", type: "line", data: pts.map(p => ({ x: p.beta, y: p.mean })), borderColor: ink2, backgroundColor: ink2,
+        borderWidth: 2, pointRadius: 3, tension: 0 } ] },
+    options: { responsive: true, maintainAspectRatio: false, animation: false,
+      plugins: { legend: { position: "bottom", labels: { color: ink2, font: { family: "IBM Plex Sans" } } },
+        tooltip: { callbacks: { label: c => `β = ${c.parsed.x}: ${c.parsed.y.toFixed(2)}` } } },
+      scales: { x: { type: "linear", min: -0.3, max: Math.max(...pts.map(p => p.beta)) + 0.3, grid: { color: grid }, border: { display: false },
+                     title: { display: true, text: "β (bonus for a never-seen achievement)", color: muted },
+                     ticks: { color: muted, stepSize: 1, callback: v => Number.isInteger(v) ? v : "", font: { family: "IBM Plex Mono" } } },
+                y: { grid: { color: grid }, border: { display: false }, title: { display: true, text: "Crafter score", color: muted },
+                     ticks: { color: muted, font: { family: "IBM Plex Mono" } } } } } }));
+}
+function charts() {
+  CHARTS.splice(0).forEach(c => c.destroy());
+  betaChart();
+  lineChart("cScore", "score_curve", { paper: true });
+  lineChart("cRecent", "recent_curve", { paper: true });
+  lineChart("cReward", "reward_curve", { dp: 2 });
+  lineChart("cLength", "length_curve", { dp: 0 });
+}
+drawTree();
+// Videos loop silently unless the viewer prefers reduced motion (then they wait for a click).
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches)
+  document.querySelectorAll("video").forEach(v => { v.autoplay = true; v.play().catch(() => {}); });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(charts); else charts();
+// Colors are read from the theme tokens at draw time, so redraw when the theme changes.
+const redraw = () => { drawTree(); charts(); };
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", redraw);
+new MutationObserver(redraw).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+</script>

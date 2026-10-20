@@ -1,0 +1,6 @@
+run,label,steps,episodes,score,reward_mean_all,reward_mean_last100,length_mean_last100,wall_clock_h,collect_coal,collect_diamond,collect_drink,collect_iron,collect_sapling,collect_stone,collect_wood,defeat_skeleton,defeat_zombie,eat_cow,eat_plant,make_iron_pickaxe,make_iron_sword,make_stone_pickaxe,make_stone_sword,make_wood_pickaxe,make_wood_sword,place_furnace,place_plant,place_stone,place_table,wake_up
+ppo-s0,PPO,1024000,4793,12.401,7.456,9.01,236.8,1.21,14.08,0.0,53.29,0.0,86.63,36.45,91.82,2.88,59.88,57.5,0.06,0.0,0.0,0.88,1.23,66.37,70.39,2.59,85.06,35.36,86.36,85.71
+ppo-rarity2-s0,PPO + rarity β=2,1024000,4858,20.845,8.593,11.37,236.5,1.26,31.86,0.0,51.15,2.18,85.76,54.63,93.17,15.91,54.43,58.44,0.04,0.0,0.0,17.29,23.65,73.16,67.46,32.89,83.84,50.19,87.05,67.52
+ad-ppo_ad-s0,Achievement Distillation,1024000,4554,17.706,8.715,11.76,258.1,6.91,36.74,0.0,61.11,0.15,84.04,56.24,92.05,14.8,61.35,55.51,0.11,0.0,0.0,1.65,5.6,76.2,70.0,35.84,82.81,54.02,87.02,87.92
+ad-rarity1-s0,AD + rarity β=1,1024000,4526,22.798,9.243,13.01,265.9,6.87,41.32,0.0,66.7,3.27,81.82,59.39,93.0,21.06,61.8,57.73,0.0,0.0,0.02,19.07,28.97,75.14,71.14,41.58,80.11,55.86,88.02,68.65
+ad-rarity2-s0,AD + rarity β=2,1024000,4586,23.08,9.177,13.07,269.5,6.9,37.81,0.0,57.41,5.6,89.66,57.74,92.72,22.68,61.67,59.42,0.02,0.0,0.02,25.19,22.26,72.2,66.09,36.72,88.42,55.47,86.87,70.1

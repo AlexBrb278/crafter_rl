@@ -1,6 +1,13 @@
-# Core stack is installed by scripts/setup.sh (jax[cuda12], torch cu128, crafter, craftax).
+# Core stack is installed by scripts/setup.sh (jax[cuda12], torch cu128, crafter, craftax)
+# or scripts/setup_windows.ps1 (CPU jax, torch cu128).
 # Versions verified 2026-10-17: jax 0.11.2, flax 0.12.10, torch 2.11.0+cu128, numpy 2.5.4
+# Windows check 2026-10-18 (Python 3.13): torch 2.11.0+cu128, numpy 2.5.2, numba 0.68.0, POT 0.9.7
 gymnasium
 tensorboard
 wandb
 pandas
+pyyaml
+matplotlib
+imageio-ffmpeg   # MP4 clips (common/video.py)
+numba            # JIT for opensimplex: Crafter reset ~1 s -> ~50 ms, identical maps
+POT              # optimal transport, used by Achievement Distillation's matching loss

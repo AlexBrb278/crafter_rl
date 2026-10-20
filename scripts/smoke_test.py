@@ -1,4 +1,9 @@
-"""Smoke test: step Crafter (numpy) and Craftax-Classic (JAX, GPU) and report throughput."""
+"""Smoke test: step Crafter (numpy) and Craftax-Classic (JAX, GPU) and report throughput.
+
+JAX has no CUDA wheels for native Windows, so there Craftax runs on CPU; use e.g.
+`--craftax_envs 64 --craftax_steps 200` to keep the CPU check short.
+"""
+import argparse
 import time
 
 import numpy as np
@@ -44,9 +49,13 @@ def test_craftax(num_envs=1024, steps=1000):
         t = time.time()
         jax.block_until_ready(rollout(rng, state))
         sps = num_envs * steps / (time.time() - t)
-        print(f"{name}: obs {obs.shape[1:]}, actions {n_act}, {sps/1e6:.1f}M steps/s ({num_envs} envs)")
+        print(f"{name}: obs {obs.shape[1:]}, actions {n_act}, {sps/1e6:.3f}M steps/s ({num_envs} envs)")
 
 
 if __name__ == "__main__":
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--craftax_envs", type=int, default=1024)
+    ap.add_argument("--craftax_steps", type=int, default=1000)
+    args = ap.parse_args()
     test_crafter()
-    test_craftax()
+    test_craftax(args.craftax_envs, args.craftax_steps)
