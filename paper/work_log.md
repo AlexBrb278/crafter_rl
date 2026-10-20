@@ -191,3 +191,11 @@ Mistake on the way: `[int[]]` parsed `-Seeds 0,1,2` (one string under `powershel
 - More AD seeds per arm (≈ 28 GPU-hours on this laptop for 2 more seeds × 2 arms).
 - Delayed-reward achievements (eat_plant) need memory or longer-horizon credit assignment, not a bonus.
 - The `RarityBonus` is method-agnostic, so it could be tried on the Craftax-Classic methods (01–04) on a Linux GPU box.
+
+**Repo and resume fixes (same day)**
+- Pushed to GitHub: code, results, and for each run its logs, final weights (`agent-e250.pt`) and `final_episode.mp4` (weights and videos via Git LFS), plus the HTML report. `latest.pt`, earlier checkpoints and training clips stay local.
+- Bug: `latest.pt` did not store the rarity bonus window. A resumed bonus run started with an empty window, so every first unlock (even collect_wood) paid the full β until 200 episodes had finished.
+  Fixed: the checkpoint now stores `rarity_hist` and `rarity_total`.
+  Tested by resuming a 2-epoch PPO + β = 2 run for a third epoch: the 45 saved episodes were restored and the window grew to 68, and the bonus total went 101.07 → 154.12 instead of restarting.
+  None of the 15 runs was ever resumed (no "resumed from" in any `train.log`), so their results are unaffected.
+- `scripts/setup.sh` (Linux) did not clone the AD upstream that `train.py` imports. It now clones it @ `9abbce6`, as `setup_windows.ps1` already did.

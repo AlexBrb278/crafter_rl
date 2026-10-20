@@ -298,7 +298,12 @@ def main(args):
         if recorder is not None:
             recorder.n_clips = ck.get("n_clips", 0)
             recorder.next_start = env.global_step + 2_000
-        print(f"resumed from epoch {ck['epoch']} ({env.global_step} steps)", flush=True)
+        if bonus is not None and "rarity_hist" in ck:
+            # Without this the window restarts empty and every first unlock pays the full beta.
+            bonus.hist.extend(ck["rarity_hist"])
+            bonus.total = ck["rarity_total"]
+        print(f"resumed from epoch {ck['epoch']} ({env.global_step} steps"
+              f"{f', {len(bonus.hist)} rarity episodes' if bonus is not None else ''})", flush=True)
 
     with open(os.path.join(run_dir, "config.json"), "w") as f:
         json.dump({"config": cfg, "args": vars(args), "params": nparams,
@@ -389,6 +394,8 @@ def main(args):
                     ck[name] = getattr(algorithm, name).state_dict()
             if hasattr(algorithm, "ppo_count"):
                 ck["ppo_count"] = algorithm.ppo_count
+            if bonus is not None:
+                ck["rarity_hist"], ck["rarity_total"] = list(bonus.hist), bonus.total
             th.save(ck, latest + ".tmp")
             os.replace(latest + ".tmp", latest)
         if epoch % cfg["save_freq"] == 0 or epoch == cfg["nepoch"]:

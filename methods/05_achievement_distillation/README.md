@@ -47,8 +47,8 @@ KL and value-distillation terms keep the policy and value heads from drifting du
 .venv/Scripts/python scripts/dashboard.py        # live dashboard on http://localhost:8765
 .venv/Scripts/python scripts/plot_results.py ad-ppo_ad-s0 ad-ppo-s0 --labels "PPO + AD" "PPO"
 ```
-Add `--resume` to continue from `runs/<run>/checkpoints/latest.pt` (saved every 10 rollouts).
-Outputs go to `runs/<run>/` (gitignored): `metrics.jsonl` (per rollout), `episodes.jsonl` (per episode, upstream format + step), `tb/`, `videos/` (random clips + `final_episode.mp4`), `checkpoints/`, `final.json`.
+Add `--resume` to continue from `runs/<run>/checkpoints/latest.pt` (saved every 10 rollouts; it includes the rarity bonus window). `latest.pt` is not committed, so to resume on another machine copy the whole `runs/<run>/` folder over.
+Outputs go to `runs/<run>/`: `metrics.jsonl` (per rollout), `episodes.jsonl` (per episode, upstream format + step), `tb/`, `videos/` (random clips + `final_episode.mp4`), `checkpoints/`, `final.json`. The logs, `agent-e250.pt` and `final_episode.mp4` are committed (weights and video via Git LFS); the rest stays local (see `.gitignore`).
 
 ## Runs
 | date | env | steps | seeds | score | reward | wall-clock | notes |
