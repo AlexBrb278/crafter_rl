@@ -88,6 +88,41 @@ class RarityBonus:
         return rews
 
 
+class VitalsShaping:
+    """Improvement experiment (not in the paper): potential-based survival signal.
+
+    Most deaths happen with food, drink or energy at 0 (results/deaths/). With the potential
+        Phi(s) = alpha * sum_{v in food, drink, energy} (1 - ((9 - v) / 9) ** 2)
+    the learner gets F = gamma * Phi(s') - Phi(s) on top of the reward, with Phi = 0 after death.
+    With gamma equal to the learner's discount this is potential-based shaping (Ng, Harada & Russell
+    1999), which leaves the optimal policy unchanged, but it then also costs (1 - gamma) * Phi(s') per
+    step alive. `--vitals_gamma 1` uses Phi(s') - Phi(s) instead: no per-step cost, at the price of the
+    formal guarantee (relative to the invariant form it adds a bonus of (1 - gamma) * Phi(s') per step). It
+    only rewards topping up a low vital (most when it is nearly empty), costs a little as vitals
+    run down, and costs Phi(s) on death. Timeouts are not deaths. Logged rewards stay the game's.
+    """
+    VITALS = ("food", "drink", "energy")
+
+    def __init__(self, num_envs, alpha, gamma, vmax=9):
+        self.alpha, self.gamma, self.vmax = alpha, gamma, vmax
+        self.full = self.phi(dict.fromkeys(self.VITALS, vmax))  # every episode starts at 9/9/9
+        self.prev = np.full(num_envs, self.full)
+        self.total = 0.0
+
+    def phi(self, inv):
+        return self.alpha * sum(1.0 - ((self.vmax - inv[v]) / self.vmax) ** 2 for v in self.VITALS)
+
+    def __call__(self, rews, dones, infos):
+        rews = rews.copy()
+        for i, info in enumerate(infos):
+            nxt = 0.0 if info["discount"] == 0 else self.phi(info["inventory"])
+            f = self.gamma * nxt - self.prev[i]
+            rews[i] += f
+            self.total += f
+            self.prev[i] = self.full if dones[i] else nxt
+        return rews
+
+
 class TorchVecEnv:
     """Adapts CrafterVecEnv to the interface of upstream's VecPyTorch (+ clip recording)."""
 
@@ -270,7 +305,20 @@ def main(args):
         ep_log.write(json.dumps(rec) + "\n")
 
     bonus = RarityBonus(cfg["nproc"], args.rarity_bonus, args.rarity_window) if args.rarity_bonus > 0 else None
-    env = TorchVecEnv(venv, device, recorder, on_episode, reward_fn=bonus)
+    vgamma = cfg["gamma"] if args.vitals_gamma is None else args.vitals_gamma
+    vitals = VitalsShaping(cfg["nproc"], args.vitals, vgamma) if args.vitals > 0 else None
+    if vitals is not None and cfg["algorithm_cls"] == "PPOADAlgorithm":
+        # AD must find achievement steps from the success flags, not from the shaped reward
+        from achievement_distillation.algorithm.ppo_ad import Buffer
+        from algos import goals_from_successes
+        Buffer.get_goals = goals_from_successes
+    shapers = [f for f in (bonus, vitals) if f is not None]
+
+    def reward_fn(rews, dones, infos):
+        for f in shapers:
+            rews = f(rews, dones, infos)
+        return rews
+    env = TorchVecEnv(venv, device, recorder, on_episode, reward_fn=reward_fn if shapers else None)
     obs = env.reset()
 
     # --- model / algorithm (upstream) ---
@@ -375,6 +423,7 @@ def main(args):
             "gpu_reserved_gb": round(th.cuda.max_memory_reserved() / 1e9, 2) if device.type == "cuda" else 0,
             **{k: float(v) for k, v in train_stats.items()},
             **({"rarity_bonus_total": bonus.total} if bonus is not None else {}),
+            **({"vitals_shaping_total": vitals.total} if vitals is not None else {}),
             "success_rate": {a: float(r) for a, r in zip(ACHIEVEMENTS, rates)},
             "recent_success_rate": {a: float(r) for a, r in zip(ACHIEVEMENTS, recent_rates)},
         }
@@ -470,6 +519,11 @@ if __name__ == "__main__":
     ap.add_argument("--rarity_bonus", type=float, default=0.0,
                     help="beta of RarityBonus (improvement experiment; 0 = paper reward)")
     ap.add_argument("--rarity_window", type=int, default=200)
+    ap.add_argument("--vitals", type=float, default=0.0,
+                    help="alpha of VitalsShaping (survival-signal experiment; 0 = off)")
+    ap.add_argument("--vitals_gamma", type=float, default=None,
+                    help="gamma inside the shaping term (default: the config's). 1.0 gives Phi(s') - Phi(s), "
+                         "which has no per-step cost while alive (not strictly policy-invariant under gamma < 1)")
     ap.add_argument("--recent", type=int, default=100, help="episodes in the 'recent' window")
     ap.add_argument("--clip_every", type=int, default=40_000, help="mean env steps between clips (0=off)")
     ap.add_argument("--clip_len", type=int, default=400)

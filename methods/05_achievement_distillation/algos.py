@@ -201,3 +201,23 @@ class MBPPOADAlgorithm(_MicroBatchMixin, PPOADAlgorithm):
         })
         del old_model
         return train_stats
+
+
+def goals_from_successes(self, obs, rewards, successes):
+    """Buffer.get_goals using the achievement flags only.
+
+    Upstream finds goal steps twice, from rewards (> 0.1) and from success flags, and asserts
+    they agree. That holds for the game's reward (and for RarityBonus, which only adds reward on
+    unlocks), but VitalsShaping adds small positive rewards without an unlock. The flags carry the
+    same information as the unshaped reward, so this gives upstream's goals for any shaping.
+    """
+    goal_conds_s = (successes[1:] != successes[:-1]).any(dim=-1)
+    goal_steps = goal_conds_s.nonzero().squeeze(dim=-1) + 1
+    if len(goal_steps) == 0:
+        goal_obs = th.zeros(0, *obs.shape[1:])
+        goal_next_obs = th.zeros(0, *obs.shape[1:])
+    else:
+        goal_obs = obs[goal_steps - 1]
+        goal_next_obs = obs[goal_steps]
+    return {"goal_steps": goal_steps, "goal_obs": goal_obs, "goal_next_obs": goal_next_obs}
+

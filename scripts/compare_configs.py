@@ -22,7 +22,9 @@ NIGHT = 0.3
 LABELS = {"ppo": "PPO, γ = 0.95", "ppo-rarity2": "PPO + rarity β=2, γ = 0.95 (home laptop)",
           "ppo-rarity2-5090": "PPO + rarity β=2, γ = 0.95 (rerun here)",
           "ppo-rarity2-g99": "PPO + rarity β=2, γ = 0.99",
-          "ad-ppo_ad": "AD", "ad-rarity2": "AD + rarity β=2", "ad-rarity2-gru": "AD + rarity β=2 + GRU memory"}
+          "ad-ppo_ad": "AD", "ad-rarity2": "AD + rarity β=2", "ad-rarity2-gru": "AD + rarity β=2 + GRU memory",
+          "ad-rarity2-vit1": "AD + rarity β=2 + survival signal (α = 1)",
+          "ad-rarity2-vit1u": "AD + rarity β=2 + survival signal, no per-step cost"}
 KEY = ["make_stone_pickaxe", "collect_iron", "make_iron_pickaxe", "wake_up"]
 
 

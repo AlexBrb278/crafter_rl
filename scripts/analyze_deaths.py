@@ -31,6 +31,8 @@ CONFIGS = [
     ("ad-rarity1", "AD + rarity β=1"),
     ("ad-rarity2", "AD + rarity β=2"),
     ("ad-rarity2-gru", "AD + rarity β=2 + GRU"),
+    ("ad-rarity2-vit1", "AD + rarity β=2 + survival"),
+    ("ad-rarity2-vit1u", "AD + rarity β=2 + survival, no drift"),
 ]
 # raw cause -> display group
 GROUPS = ["zombie, awake", "zombie, asleep", "skeleton arrow", "thirst", "hunger / fatigue", "lava"]

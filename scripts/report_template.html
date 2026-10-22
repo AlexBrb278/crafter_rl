@@ -1,4 +1,4 @@
-<title>Crafter on 4 GB</title>
+<title>Crafter RL report</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -135,10 +135,15 @@ footer { color: var(--muted); font-size: var(--step--1); }
 <main>
   <header class="top">
     <span class="eyebrow">crafter_rl · run log · __DATE__</span>
-    <h1>Crafter on a 4&nbsp;GB laptop GPU</h1>
+    <h1>Chasing the diamond in Crafter</h1>
     <p class="lede prose">__LEDE__</p>
     <div class="formula">score = exp( mean<sub>i=1..22</sub> ln(1 + s<sub>i</sub>) ) − 1 &nbsp;·&nbsp; s<sub>i</sub> = % of all training episodes in the first 1M steps that unlocked achievement i</div>
   </header>
+
+  <section class="stack">
+    <h2>__IMPROVE_TITLE__</h2>
+    <div class="prose stack">__IMPROVE_TEXT__</div>
+  </section>
 
   <section class="stack">
     <span class="eyebrow">Results at 1M environment steps (seed 0)</span>
@@ -156,7 +161,7 @@ footer { color: var(--muted); font-size: var(--step--1); }
 
   <section class="stack">
     <h2>How far up the tech tree each agent got</h2>
-    <p class="prose">Crafter's achievements form a crafting tree. Each box is shaded by the share of training episodes that unlocked it. Because the score is a geometric mean, the pale boxes on the right decide most of it. The last two buttons pool three seeds each, AD + rarity β = 2 with and without the GRU memory. Below 1% a box also shows how many episodes got there, so the handful of iron pickaxes and swords stays visible.</p>
+    <p class="prose">Crafter's achievements form a crafting tree. Each box is shaded by the share of training episodes that unlocked it. Because the score is a geometric mean, the pale boxes on the right decide most of it. The last four buttons pool three seeds each: AD + rarity β = 2 on its own, with the GRU memory, and with both survival signals. Below 1% a box also shows how many episodes got there, so the handful of iron pickaxes and swords stays visible.</p>
     <div class="tree-wrap">
       <div class="tree-head">
         <div class="seg" role="group" aria-label="Choose run" id="treeRuns"></div>
@@ -216,14 +221,9 @@ footer { color: var(--muted); font-size: var(--step--1); }
 __EXPERIMENTS__
 
   <section class="stack">
-    <h2>What it took to run this on a 4 GB laptop</h2>
-    <p class="prose">The method's maths is the official code's. Every change below is engineering, and each was checked against the original.</p>
+    <h2>Engineering notes: the first runs on a 4 GB laptop</h2>
+    <p class="prose">The first 15 runs, PPO with β = 0, 1, 2 and 4 (three seeds each) and AD, AD + rarity β = 1 and AD + rarity β = 2 (seed 0), were trained on a Windows laptop with an RTX 3050 and 4 GB of GPU memory. Getting the official code to run there took the changes below. All later runs used a Linux laptop with an RTX 5090 (24 GB). There the same code ran, with micro-batching kept only where it was needed to match the first runs' settings or to fit three runs on one GPU. The method's maths is the official code's. Every change below is engineering, and each was checked against the original.</p>
     <div class="findings">__FINDINGS__</div>
-  </section>
-
-  <section class="stack">
-    <h2>__IMPROVE_TITLE__</h2>
-    <div class="prose stack">__IMPROVE_TEXT__</div>
   </section>
 
   <section class="stack">
@@ -279,7 +279,7 @@ const binOf = v => { let b = 0; BINS.forEach(([t], i) => { if (v >= t && !(v ===
 let treeRun = 0, treeWin = "all";
 const TREE_EXTRA = JSON.parse(document.getElementById("treeExtra").textContent || "[]");
 const TREE = RUNS.concat(TREE_EXTRA);
-const treeSwatch = i => i < RUNS.length ? `var(${SER[i]})` : `var(${["--rare", "--q5", "--q3"][i - RUNS.length]})`;
+const treeSwatch = i => i < RUNS.length ? `var(${SER[i]})` : `var(${["--rare", "--q5", "--q3", "--q2"][i - RUNS.length]})`;
 function treeCount(r, n, last) {  // episodes that unlocked n (pooled entries carry exact counts)
   const c = last ? r.counts_last300 : r.counts;
   if (c) return c[n];

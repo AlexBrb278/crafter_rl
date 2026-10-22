@@ -429,3 +429,88 @@ Over all 3,000 episodes:
   - Diamond: 0 in both.
 - **Learning curves:** window buttons (all / 0–300k / 300k–700k / 700k–1M / last 120k). The y-axis re-fits to the lines in view; legend clicks toggle runs.
 - **Git:** the 4 commits pushed from the Windows laptop carry `Co-Authored-By: Claude Opus 5.5` trailers, and GitHub credits that address to Claude. The user rewrites the messages and force-pushes. Also needed: the author email on their GitHub account, and `"attribution": {"commit": "", "pr": ""}` in `~/.claude/settings.json` on both machines.
+
+---
+
+## 2026-10-21 (night) — Survival signal: AD + rarity β=2 + potential-based vitals shaping
+
+**Motivation:**
+- 54% of all 4,800 diagnosed deaths happen with food, water or energy at 0 (water alone ~45%).
+- The furthest-reaching agents (iron pickaxe and iron sword, diamond 4 tiles away) die of thirst and fatigue.
+- Agents sleep through only ~4% of the night.
+
+**Method** (`VitalsShaping` in `methods/05_achievement_distillation/train.py`, flag `--vitals α`)
+- Potential Φ(s) = α Σ_{food, drink, energy} (1 − ((9 − v)/9)²). Shaping F = γΦ(s') − Φ(s), with Φ = 0 after death (timeouts are not deaths).
+- This is potential-based shaping (Ng, Harada & Russell 1999), so the optimal policy is unchanged. It pays most for topping up a nearly empty vital, costs a little as vitals run down, and costs Φ(s) on death. Logged rewards and the score stay the game's.
+- Unit test passes: the discounted sum of F over an episode = −Φ(s₀) (−3.0 for α = 1), whatever the agent does.
+- **Bug found by the smoke test:** upstream AD finds goal steps from rewards > 0.1 and asserts that this agrees with the success flags. The shaping breaks that, since drinking when thirsty gives +0.1 with no unlock.
+  - Fix: with `--vitals`, `Buffer.get_goals` uses the success flags only (`algos.goals_from_successes`).
+  - Verified identical to upstream on unshaped reward. Runs without `--vitals` keep the upstream code path.
+- **Config:** α = 1, γ 0.95, rarity β = 2, AD paper config, micro 256 / aux 128 (same as the `ad-rarity2-s*` baseline, 23.65 ± 1.05).
+- **Runs:** `ad-rarity2-vit1-s0/1/2` via `scripts/queue_vitals.sh`, started 00:51, ~4.5 h estimated, spectators every 15 min.
+
+**Results** (2026-10-21 06:02; `results/vitals_summary.csv`, report section "Survival signal")
+
+| config (3 seeds each, same settings) | score | per seed | eval median life | water 0 at death | thirst deaths | zombie deaths | drink (train) | stone pickaxe (train) | iron tools in 800 eval eps | collected iron in 800 eval eps |
+|---|---|---|---|---|---|---|---|---|---|---|
+| AD + rarity β=2 | **23.65 ± 1.05** | 23.08 / 24.87 / 23.01 | 242 | 45% | 18% | 46% | 54–57% | 25–31% | 2 | 204 |
+| + GRU memory | 20.28 ± 1.97 | 20.91 / 21.86 / 18.07 | 234 | 48% | 21% | 48% | – | 10–27% | 4 | 206 |
+| + survival signal α=1 | 17.80 ± 4.11 | 22.26 / 16.98 / 14.17 | 232 | **39%** | **15%** | 52% | **54–67%** | 5–21% | 0 | 130 |
+
+- **The signal hits its own target.** The agent drinks more; there are fewer deaths with water at 0 and fewer thirst deaths.
+- **But it doesn't live longer.** Zombie deaths rise, the tech tree is delayed, the score drops, and the seed spread grows.
+- **Likely mechanism:** with γ = 0.95, γΦ' − Φ includes a −(1−γ)Φ ≈ −0.15 cost per step alive, while death costs ≈ −3. With GAE λ = 0.65 the advantage is short-sighted, so staying alive looks barely better than dying. Seeds 1–2 indeed had more, shorter episodes (5,013 / 5,214 vs ~4,600). The optimal policy is unchanged only in theory.
+- **Next variant if we continue this line:** undiscounted Φ(s') − Φ(s) (no per-step drift), or a refill-only bonus. Possibly smaller α.
+- **Videos:**
+  - The seed-0 final agent stands next to a diamond at step 157 with 3 stone pickaxes and 3 wood swords but no iron pickaxe.
+  - A 456-step, 18-achievement life ends in hunger and fatigue beside 2 furnaces and a lake.
+  - Asleep in the open, killed by a zombie.
+- **Report:** new section, table, 4 videos; tech tree gets a "survival (3 seeds)" entry; seeds table has a new row.
+
+**Overall status of the improvement experiments** (AD + rarity β=2 = 23.65 ± 1.05 remains our best, above the paper's AD at 21.79):
+- γ = 0.99: worse.
+- GRU memory: worse.
+- Survival shaping α=1: worse.
+- **Common thread:** anything that adds learning signal or capacity without directly helping the tech tree slows progress within 1M steps.
+
+---
+
+## 2026-10-21 (morning) — Survival signal without the per-step cost
+
+**Change:** `--vitals_gamma 1.0` uses F = Φ(s') − Φ(s) instead of γΦ(s') − Φ(s).
+- No reward while vitals are unchanged (previously −(1−γ)Φ ≈ −0.15 per step alive).
+- Drinking from empty: +0.21. Death: −Φ(s).
+- The formal policy-invariance guarantee is lost under γ = 0.95. Relative to the invariant form, it adds (1−γ)Φ(s') per step, a small "comfortable and alive" bonus.
+- Unit test: 0 when nothing changes; the episode sum is still −Φ(s₀).
+
+**Runs:** `ad-rarity2-vit1u-s0/1/2`. Otherwise identical to `ad-rarity2-vit1` and the `ad-rarity2` baseline (α = 1, rarity β = 2, γ 0.95, micro 256 / aux 128). Started 09:09 via `scripts/queue_vitals.sh ad-rarity2-vit1u --vitals_gamma 1.0`, now generalised to take a prefix and extra flags.
+
+**Report restructure (2026-10-21, requested by the user)**
+- "Our change: reward rare achievements" moved to right after the header. It explains the idea every later section uses.
+- Its outdated "next step: two more AD seeds" line was replaced with the 3-seed result.
+- Two claims corrected:
+  - Iron tools also appeared once in plain PPO seed 2, so not "only in bonus runs".
+  - Eat plant is near zero, not zero.
+- "What it took to run this on a 4 GB laptop" was renamed "Engineering notes: the first runs on a 4 GB laptop" and moved to the end. Its intro now says which 15 runs used the 4 GB laptop, and that later runs used the RTX 5090.
+- Title "Crafter on 4 GB" → "Crafter RL report"; h1 → "Chasing the diamond in Crafter".
+- The lede now mentions both machines and the three follow-ups. The date runs to 10-21.
+
+**Results** (2026-10-21 14:22; `results/vitals_summary.csv`, report section "Survival signal without the per-step cost")
+
+| config (3 seeds, same settings) | score | per seed | eval median life | alive at 300 | water 0 at death | thirst | lava | arrows | hunger/fatigue | zombies | stone pickaxe (train) | iron collected / iron tools in 800 eval eps |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| AD + rarity β=2 | **23.65 ± 1.05** | 23.08 / 24.87 / 23.01 | 242 | 21.5% | 45% | 18% | 10% | 20% | 7% | 46% | 25–31% | 204 / 2 |
+| + survival, γΦ'−Φ | 17.80 ± 4.11 | 22.26 / 16.98 / 14.17 | 232 | 19.8% | 39% | 15% | 8% | 20% | 6% | 52% | 5–21% | 130 / 0 |
+| **+ survival, Φ'−Φ (no drift)** | 22.07 ± 1.35 | 20.64 / 23.32 / 22.25 | **266** | **36.0%** | **30%** | 14% | **4%** | **13%** | 20% | 49% | 17–29% | **264** / 0 |
+
+- **Removing the per-step cost fixes the first version.** +4.3 points, and the seeds agree again.
+- **It is the first intervention that measurably lengthens life:**
+  - median +10%;
+  - +67% of agents alive at step 300;
+  - training episodes 284 vs 252 steps.
+- **Deaths shift from thirst, lava and arrows to hunger and fatigue,** which is consistent with living longer.
+- **It collects iron most often of any configuration but crafts no iron tools.** An iron pickaxe needs a table + furnace nearby + wood + coal.
+- **The longest evaluated life of any run:** 515 steps into the second night (s1, `death_hunger_1.mp4`).
+- **Score is still 1.6 below the baseline,** because the tech tree is slightly slower.
+- **Candidate building block:** survival without drift + something that turns extra time into iron tools (e.g. Plan C, a tech-tree subgoal planner).
+- **Report:** new section, table, 4 videos; tech-tree entry "+ survival, no drift (3 seeds)"; seeds table row; lede updated.
