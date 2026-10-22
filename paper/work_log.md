@@ -514,3 +514,14 @@ Over all 3,000 episodes:
 - **Score is still 1.6 below the baseline,** because the tech tree is slightly slower.
 - **Candidate building block:** survival without drift + something that turns extra time into iron tools (e.g. Plan C, a tech-tree subgoal planner).
 - **Report:** new section, table, 4 videos; tech-tree entry "+ survival, no drift (3 seeds)"; seeds table row; lede updated.
+
+---
+
+## 2026-10-22 — Dashboard: runs grouped by configuration, in creation order
+
+- `scripts/dashboard.py` `/api/runs` now returns each run's configuration (prefix of `<config>-s<seed>`), a description (`CONFIGS`), the seed, and its start time (first TensorBoard event file, else config.json mtime). Runs are sorted by configuration (first start) and then by seed.
+- `scripts/dashboard.html`:
+  - The run dropdown uses numbered `<optgroup>`s (1. AD paper config … 12. survival no-drift). Each option shows seed · final score · start date.
+  - The score / recent-score charts show the selected configuration's seeds, with a "Compare: all runs" switch. Previously they drew all 30 runs.
+- **Status of the improvement search:** AD + rarity β=2 (23.65 ± 1.05) is still the best. γ 0.99, GRU, and both survival variants are below it. Only the no-drift survival signal improves survival.
+- **Proposed next direction:** our own world-model agent with rarity-guided imagination. Stage 1 is a "dream vs reality" world model without RL. A design note comes first, for the user to challenge.

@@ -72,10 +72,14 @@ th:first-child, td:first-child { text-align: left; }
 
 <div class="wrap">
   <header>
-    <h1>Crafter RL · live<small id="sub">Achievement Distillation on Crafter, 1M-step protocol</small></h1>
+    <h1>Crafter RL · live<small id="sub">PPO and Achievement Distillation on Crafter, 1M-step protocol</small></h1>
     <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
       <span class="updated" id="updated"></span>
-      <label>Run <select id="runSel"></select></label>
+      <label>Run <select id="runSel" title="Configurations in the order they were trained, first at the top"></select></label>
+      <label>Compare <select id="cmpSel">
+        <option value="config">this configuration's seeds</option>
+        <option value="all">all runs</option>
+      </select></label>
     </div>
   </header>
 
@@ -106,8 +110,8 @@ th:first-child, td:first-child { text-align: left; }
   </div>
 
   <div class="grid2">
-    <div class="card"><h2>Crafter score</h2><p class="note">Geometric mean of the 22 success rates over all training episodes so far · one line per run</p><div class="chartbox"><canvas id="cScore"></canvas></div></div>
-    <div class="card"><h2>Recent score</h2><p class="note">Same formula over the last 100 episodes · one line per run</p><div class="chartbox"><canvas id="cRecent"></canvas></div></div>
+    <div class="card"><h2>Crafter score</h2><p class="note">Geometric mean of the 22 success rates over all training episodes so far · one line per seed of the selected configuration (or every run, see Compare)</p><div class="chartbox"><canvas id="cScore"></canvas></div></div>
+    <div class="card"><h2>Recent score</h2><p class="note">Same formula over the last 100 episodes · same runs as the chart on the left</p><div class="chartbox"><canvas id="cRecent"></canvas></div></div>
     <div class="card"><h2>Episode reward</h2><p class="note">Mean over episodes finished in each update · selected run</p><div class="chartbox"><canvas id="cReward"></canvas></div></div>
     <div class="card"><h2>Episode length</h2><p class="note">Steps survived (cap 10,000) · selected run</p><div class="chartbox"><canvas id="cLength"></canvas></div></div>
   </div>
@@ -198,23 +202,35 @@ async function refresh() {
     const active = [...runs].sort((a, b) => b.mtime - a.mtime)[0];
     current = active ? active.name : null;
   }
-  sel.innerHTML = runs.map(r => `<option ${r.name === current ? "selected" : ""}>${r.name}</option>`).join("");
+  // grouped by configuration, in the order the configurations were first trained (server sorts)
+  const groups = [];
+  for (const r of runs) {
+    if (!groups.length || groups[groups.length - 1].config !== r.config) groups.push({ config: r.config, label: r.config_label, runs: [] });
+    groups[groups.length - 1].runs.push(r);
+  }
+  const day = t => new Date(t * 1000).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  const optLabel = r => `${r.seed != null ? "seed " + r.seed : r.name} · ${r.final ? r.final.score.toFixed(2) : "running…"} · ${day(r.started)}`;
+  sel.innerHTML = groups.map((g, i) => `<optgroup label="${i + 1}. ${g.label}">` +
+    g.runs.map(r => `<option value="${r.name}" ${r.name === current ? "selected" : ""}>${optLabel(r)}</option>`).join("") +
+    `</optgroup>`).join("");
   if (!current) return;
+  const curRun = runs.find(r => r.name === current);
+  const shown = document.getElementById("cmpSel").value === "all" ? runs : runs.filter(r => r.config === curRun.config);
 
-  // all-runs comparison charts (color follows the run, by its position in the sorted list)
+  // comparison charts: the selected configuration's seeds (or every run), color by position in that list
   const pal = SER();
-  const all = await Promise.all(runs.map(r => getJSON("/api/run/" + encodeURIComponent(r.name))));
+  const all = await Promise.all(shown.map(r => getJSON("/api/run/" + encodeURIComponent(r.name))));
   for (const [id, key] of [["cScore", "score"], ["cRecent", "recent_score"]]) {
     charts[id].data.datasets = all.map((d, i) => ({
-      label: runs[i].name, data: series(d.metrics, key),
+      label: shown[i].name, data: series(d.metrics, key),
       borderColor: pal[i % 8], backgroundColor: pal[i % 8],
-      borderWidth: runs[i].name === current ? 2.5 : 1.5,
+      borderWidth: shown[i].name === current ? 2.5 : 1.5,
     }));
-    charts[id].options.plugins.legend.display = runs.length > 1;
+    charts[id].options.plugins.legend.display = shown.length > 1;
     charts[id].update();
   }
 
-  const d = all[names.indexOf(current)];
+  const d = all[shown.findIndex(r => r.name === current)];
   lastData = d;
   const M = d.metrics, last = M[M.length - 1] || {};
   const st = runs.find(r => r.name === current).status || {};
@@ -296,6 +312,7 @@ function play(it, auto = false) {
 }
 
 document.getElementById("runSel").onchange = e => { current = e.target.value; shownClip = null; autoFollow = true; refresh(); };
+document.getElementById("cmpSel").onchange = () => refresh();
 
 lineChart("cScore", "score %", true);
 lineChart("cRecent", "score %", true);

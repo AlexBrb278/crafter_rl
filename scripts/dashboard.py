@@ -39,6 +39,38 @@ def read_json(path):
         return None
 
 
+# What each configuration (run-name prefix <config>-s<seed>) is, for the run selector.
+CONFIGS = {
+    "ad-ppo_ad": "Achievement Distillation (paper config)",
+    "ad-rarity1": "AD + rarity bonus β=1",
+    "ppo": "PPO (paper config)",
+    "ppo-rarity1": "PPO + rarity bonus β=1",
+    "ppo-rarity2": "PPO + rarity bonus β=2",
+    "ppo-rarity4": "PPO + rarity bonus β=4",
+    "ad-rarity2": "AD + rarity bonus β=2 (best)",
+    "ppo-rarity2-5090": "PPO + rarity β=2, rerun on the RTX 5090",
+    "ppo-rarity2-g99": "PPO + rarity β=2, longer horizon γ=0.99",
+    "ad-rarity2-gru": "AD + rarity β=2 + GRU memory",
+    "ad-rarity2-vit1": "AD + rarity β=2 + survival signal",
+    "ad-rarity2-vit1u": "AD + rarity β=2 + survival signal, no per-step cost",
+}
+
+
+def run_info(name, d):
+    """Config prefix, seed and start time (first TensorBoard event file, else config.json mtime)."""
+    m = re.fullmatch(r"(.+)-s(\d+)", name)
+    config, seed = (m.group(1), int(m.group(2))) if m else (name, None)
+    starts = []
+    if os.path.isdir(os.path.join(d, "tb")):
+        for f in os.listdir(os.path.join(d, "tb")):
+            t = re.search(r"tfevents\.(\d+)", f)
+            if t:
+                starts.append(int(t.group(1)))
+    cfg = os.path.join(d, "config.json")
+    started = min(starts) if starts else (os.path.getmtime(cfg) if os.path.exists(cfg) else 0)
+    return {"config": config, "config_label": CONFIGS.get(config, config), "seed": seed, "started": started}
+
+
 class Handler(BaseHTTPRequestHandler):
     def log_message(self, *args):
         pass
@@ -64,10 +96,15 @@ class Handler(BaseHTTPRequestHandler):
             for name in sorted(os.listdir(RUNS)) if os.path.isdir(RUNS) else []:
                 d = os.path.join(RUNS, name)
                 if os.path.isfile(os.path.join(d, "metrics.jsonl")):
-                    runs.append({"name": name,
+                    runs.append({"name": name, **run_info(name, d),
                                  "status": read_json(os.path.join(d, "status.json")),
                                  "final": read_json(os.path.join(d, "final.json")),
                                  "mtime": os.path.getmtime(os.path.join(d, "metrics.jsonl"))})
+            # configurations in the order they were first started, seeds in order within each
+            first = {}
+            for r in runs:
+                first[r["config"]] = min(first.get(r["config"], r["started"]), r["started"])
+            runs.sort(key=lambda r: (first[r["config"]], r["seed"] if r["seed"] is not None else -1, r["started"]))
             return self._json(runs)
         m = re.fullmatch(r"/api/run/([\w.\-]+)", path)
         if m:
