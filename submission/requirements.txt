@@ -1,0 +1,8 @@
+torch>=2.0
+numpy
+crafter==1.8.3
+POT>=0.9          # optimal transport for AD's matching loss
+numba             # optional, makes Crafter's world generation ~20x faster (identical worlds)
+matplotlib        # plot.py
+imageio           # evaluate.py --video
+imageio-ffmpeg

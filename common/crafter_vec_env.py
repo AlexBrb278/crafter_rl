@@ -10,17 +10,35 @@ Semantics match SubprocVecEnv + VecMonitor:
 
 Extra: `step(actions, render_idx=i, render_size=S)` also returns a high-resolution
 frame of env i (used by `common.video.ClipRecorder` to make clips).
+
+`pixel_map=True`: each env also keeps a `common.pixel_map.PixelMap` (built from its own frames and
+actions only) and observations become (64, 64, 6): the frame, then the rendered egocentric map. Clip
+frames then show the map to the right of the game.
 """
 import multiprocessing as mp
 
 import numpy as np
 
 
-def _worker(remote, parent_remote, seeds, env_kwargs):
+def _worker(remote, parent_remote, seeds, env_kwargs, pixel_map=False):
     parent_remote.close()
     import crafter  # imported here so the parent process never pays for it
 
     envs = [crafter.Env(seed=int(s), **env_kwargs) for s in seeds]
+    maps = None
+    if pixel_map:
+        from common.pixel_map import PixelMap
+        maps = [PixelMap() for _ in envs]
+
+    def with_map(i, o):
+        return np.concatenate([o, maps[i].render()], -1) if maps else o
+
+    def first_obs(i, o):
+        if maps:
+            maps[i].reset_episode()
+            maps[i].observe(o)
+        return with_map(i, o)
+
     ep_ret = np.zeros(len(envs), np.float64)
     ep_len = np.zeros(len(envs), np.int64)
     try:
@@ -29,7 +47,7 @@ def _worker(remote, parent_remote, seeds, env_kwargs):
             if cmd == "reset":
                 ep_ret[:] = 0
                 ep_len[:] = 0
-                remote.send(np.stack([e.reset() for e in envs]))
+                remote.send(np.stack([first_obs(i, e.reset()) for i, e in enumerate(envs)]))
             elif cmd == "step":
                 actions, render_local, render_size = data
                 obs, rews, dones, infos, frame = [], [], [], [], None
@@ -37,6 +55,9 @@ def _worker(remote, parent_remote, seeds, env_kwargs):
                     if render_local == i:
                         # Frame *before* the step, so the clip shows what the agent saw.
                         frame = env.render((render_size, render_size))
+                        if maps:
+                            from common.pixel_map import video_panel
+                            frame = np.concatenate([frame, video_panel(maps[i].render(), render_size // 64)], 1)
                     o, r, d, info = env.step(int(a))
                     ep_ret[i] += r
                     ep_len[i] += 1
@@ -51,7 +72,11 @@ def _worker(remote, parent_remote, seeds, env_kwargs):
                         small["episode"] = {"r": float(ep_ret[i]), "l": int(ep_len[i])}
                         ep_ret[i] = 0
                         ep_len[i] = 0
-                        o = env.reset()
+                        o = first_obs(i, env.reset())
+                    else:
+                        if maps:
+                            maps[i].observe(o, a)
+                        o = with_map(i, o)
                     obs.append(o)
                     rews.append(r)
                     dones.append(d)
@@ -72,7 +97,7 @@ class CrafterVecEnv:
     num_actions = 17
     obs_shape = (64, 64, 3)
 
-    def __init__(self, seeds, envs_per_worker=1, env_kwargs=None):
+    def __init__(self, seeds, envs_per_worker=1, env_kwargs=None, pixel_map=False):
         self.num_envs = len(seeds)
         assert self.num_envs % envs_per_worker == 0
         self.envs_per_worker = envs_per_worker
@@ -82,7 +107,7 @@ class CrafterVecEnv:
         for w in range(n_workers):
             parent, child = ctx.Pipe()
             chunk = seeds[w * envs_per_worker:(w + 1) * envs_per_worker]
-            p = ctx.Process(target=_worker, args=(child, parent, list(chunk), env_kwargs or {}),
+            p = ctx.Process(target=_worker, args=(child, parent, list(chunk), env_kwargs or {}, pixel_map),
                             daemon=True)
             p.start()
             child.close()

@@ -96,9 +96,12 @@ def load_model(run, ckpt="agent-e250.pt"):
     import torch as th
     from achievement_distillation.model import PPOADModel, PPOModel
     from recurrent import PPOADGRUModel
+    from map_model import PPOADMapModel
     cfg = json.load(open(os.path.join(ROOT, "runs", run, "config.json")))["config"]
-    cls = {"PPOADModel": PPOADModel, "PPOModel": PPOModel, "PPOADGRUModel": PPOADGRUModel}[cfg["model_cls"]]
-    model = cls(observation_space=gymnasium.spaces.Box(0, 1, (3, 64, 64)),
+    cls = {"PPOADModel": PPOADModel, "PPOModel": PPOModel, "PPOADGRUModel": PPOADGRUModel,
+           "PPOADMapModel": PPOADMapModel}[cfg["model_cls"]]
+    chans = 6 if cfg["model_cls"] == "PPOADMapModel" else 3
+    model = cls(observation_space=gymnasium.spaces.Box(0, 1, (chans, 64, 64)),
                 action_space=gymnasium.spaces.Discrete(17), **cfg["model_kwargs"])
     sd = th.load(os.path.join(ROOT, "runs", run, "checkpoints", ckpt),
                  map_location="cpu", weights_only=False)
@@ -131,8 +134,15 @@ def diagnose(run, episodes, n_envs, video, videos_per_cause, device, seed0, ckpt
     import torch.nn.functional as F
     model, cfg = load_model(run, ckpt)
     model.to(device)
-    is_ad = cfg["model_cls"] in ("PPOADModel", "PPOADGRUModel")
+    is_ad = cfg["model_cls"] in ("PPOADModel", "PPOADGRUModel", "PPOADMapModel")
     gru = cfg["model_cls"] == "PPOADGRUModel"  # carry the GRU state per env, zero at episode start
+    use_map = cfg["model_cls"] == "PPOADMapModel"  # the agent's own pixel map, rebuilt here per episode
+    if use_map:
+        from common.pixel_map import PixelMap, video_panel
+        maps = {}
+
+    def model_obs(i, o):
+        return np.concatenate([o, maps[i].render()], -1) if use_map else o
     hid = cfg["model_kwargs"]["hidsize"]
     out_path = os.path.join(out_dir or os.path.join(ROOT, "results", "deaths"), f"{run}.jsonl")
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
@@ -155,6 +165,9 @@ def diagnose(run, episodes, n_envs, video, videos_per_cause, device, seed0, ckpt
         rec = {"seed": s, "episode": started, "sleep_steps": 0, "night_steps": 0,
                "night_sleep_steps": 0, "hits_asleep": 0}
         started += 1
+        if use_map:
+            maps.setdefault(i, PixelMap()).reset_episode()
+            maps[i].observe(o)
         if i < len(envs):
             envs[i], obs[i], frames[i], stats[i] = env, o, [], rec
             states[i].zero_()
@@ -172,7 +185,7 @@ def diagnose(run, episodes, n_envs, video, videos_per_cause, device, seed0, ckpt
     done_n = 0
     t0 = time.time()
     while active:
-        x = th.from_numpy(np.stack([obs[i] for i in active])).to(device).permute(0, 3, 1, 2).float() / 255.0
+        x = th.from_numpy(np.stack([model_obs(i, obs[i]) for i in active])).to(device).permute(0, 3, 1, 2).float() / 255.0
         st = th.stack([states[i] for i in active])
         mem = {"hiddens": th.stack([hiddens[i] for i in active])} if gru else {}
         with th.no_grad():
@@ -184,11 +197,15 @@ def diagnose(run, episodes, n_envs, video, videos_per_cause, device, seed0, ckpt
             filming = video and (bool(keep_if) or rec["episode"] < n_envs * 2)
             if filming:
                 frame = env.render((384, 384))
+                if use_map:
+                    frame = np.concatenate([frame, video_panel(maps[i].render(), 6)], 1)
             prev_ach = {k for k, v in env._player.achievements.items() if v > 0}
             o, r, done, info = env.step(int(acts[j]))
             if gru:
                 hiddens[i] = out["hiddens"][j]
             obs[i] = o
+            if use_map:
+                maps[i].observe(o, int(acts[j]))
             p, daylight = env._player, env._world.daylight
             ach = {k for k, v in info["achievements"].items() if v > 0}
             rec["sleep_steps"] += p.sleeping
@@ -198,7 +215,7 @@ def diagnose(run, episodes, n_envs, video, videos_per_cause, device, seed0, ckpt
                 frames[i].append((frame, info["inventory"], ach, daylight))
             if is_ad and ach - prev_ach:
                 with th.no_grad():
-                    nxt = model.encode(th.from_numpy(o).to(device).permute(2, 0, 1)[None].float() / 255.0)
+                    nxt = model.encode(th.from_numpy(model_obs(i, o)).to(device).permute(2, 0, 1)[None].float() / 255.0)
                 states[i] = F.normalize(nxt[0] - out["latents"][j], dim=-1)
             if not done:
                 next_active.append(i)

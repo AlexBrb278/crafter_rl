@@ -1,0 +1,8215 @@
+{
+ "run": "v4:model_refit.pt",
+ "ks": [
+  0,
+  3,
+  7,
+  15
+ ],
+ "samples": 32,
+ "slack": 2,
+ "splits": {
+  "train": {
+   "events": [
+    [
+     "iron_pickaxe",
+     "runs/wm/data/ad-rarity2-gru-s1_agent-e250_b/ep_00042.npz",
+     189
+    ],
+    [
+     "iron_pickaxe",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00304.npz",
+     200
+    ],
+    [
+     "iron_pickaxe",
+     "runs/wm/data/ad-rarity2-s2_agent-e250_b/ep_00123.npz",
+     265
+    ],
+    [
+     "iron_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00001.npz",
+     197
+    ],
+    [
+     "diamond",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00304.npz",
+     206
+    ]
+   ],
+   "T0": {
+    "diamond": {
+     "k0": {
+      "cases": 1,
+      "dreams": 1,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.0
+     },
+     "k3": {
+      "cases": 1,
+      "dreams": 1,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.0
+     },
+     "k7": {
+      "cases": 1,
+      "dreams": 1,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.0
+     },
+     "k15": {
+      "cases": 1,
+      "dreams": 1,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.0
+     }
+    },
+    "iron_pickaxe": {
+     "k0": {
+      "cases": 4,
+      "dreams": 4,
+      "dream_shows_it": 0.5,
+      "head_p_rise": 0.558
+     },
+     "k3": {
+      "cases": 4,
+      "dreams": 4,
+      "dream_shows_it": 0.5,
+      "head_p_rise": 0.45
+     },
+     "k7": {
+      "cases": 4,
+      "dreams": 4,
+      "dream_shows_it": 0.5,
+      "head_p_rise": 0.289
+     },
+     "k15": {
+      "cases": 4,
+      "dreams": 4,
+      "dream_shows_it": 0.25,
+      "head_p_rise": 0.259
+     }
+    }
+   },
+   "T0_cases": [
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295387864112854
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.8332562446594238
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": true,
+     "p_rise": 0.5716482996940613
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": true,
+     "p_rise": 0.6052737236022949
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0006881862063892186
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0006413924274966121
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0009133054409176111
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.3108721673488617
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.03511372208595276
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.08912201970815659
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6564248204231262
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": true,
+     "p_rise": 0.549065351486206
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.34135398268699646
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00024356247740797698
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 8.717674063518643e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00010000456677516922
+    }
+   ],
+   "T1": {
+    "diamond": {
+     "k0": {
+      "cases": 1,
+      "dreams": 32,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.0
+     },
+     "k3": {
+      "cases": 1,
+      "dreams": 32,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.0
+     },
+     "k7": {
+      "cases": 1,
+      "dreams": 32,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.0
+     },
+     "k15": {
+      "cases": 1,
+      "dreams": 32,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.0
+     }
+    },
+    "iron_pickaxe": {
+     "k0": {
+      "cases": 4,
+      "dreams": 128,
+      "dream_shows_it": 0.5,
+      "head_p_rise": 0.558
+     },
+     "k3": {
+      "cases": 4,
+      "dreams": 128,
+      "dream_shows_it": 0.375,
+      "head_p_rise": 0.373
+     },
+     "k7": {
+      "cases": 4,
+      "dreams": 128,
+      "dream_shows_it": 0.086,
+      "head_p_rise": 0.194
+     },
+     "k15": {
+      "cases": 4,
+      "dreams": 128,
+      "dream_shows_it": 0.07,
+      "head_p_rise": 0.192
+     }
+    }
+   },
+   "T1_cases": [
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.9295400977134705
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.8491469025611877
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.646852433681488
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.7200271487236023
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6694716215133667
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.22584666311740875
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.8026881217956543
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.4766651391983032
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.3171454966068268
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.4735642671585083
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.3849169611930847
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.8365416526794434
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.20104354619979858
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.7970740795135498
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.3885137140750885
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.5653760433197021
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.5770847797393799
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.7554660439491272
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.3718256950378418
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.8150108456611633
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.7384799718856812
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.28209546208381653
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.7964171767234802
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.764584481716156
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6334580779075623
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.24230092763900757
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.7852011322975159
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.678813636302948
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6067038178443909
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.7581010460853577
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.8072320818901062
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.25520867109298706
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6515675187110901
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.35271209478378296
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": true,
+     "p_rise": 0.5912889242172241
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.25336623191833496
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.45618024468421936
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.41132205724716187
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.2158733606338501
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.38942381739616394
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.2875288724899292
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.18206925690174103
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.3700294494628906
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.467240571975708
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": true,
+     "p_rise": 0.5372861623764038
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.23231272399425507
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.1777556985616684
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.3537566065788269
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.2785123288631439
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.4557523727416992
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.21313200891017914
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.420360803604126
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.4326159656047821
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.5089442729949951
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.39152875542640686
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.23103715479373932
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.3659728467464447
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.31802767515182495
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.17329658567905426
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.418213814496994
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.3016836941242218
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.37512505054473877
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.34505951404571533
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": true,
+     "p_rise": 0.8377351760864258
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.4498252868652344
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": true,
+     "p_rise": 0.532962441444397
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.25599241256713867
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.2636888921260834
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.3646143972873688
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.30939799547195435
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.12254484742879868
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.4792477786540985
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.5003490447998047
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.2312307208776474
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": true,
+     "p_rise": 0.6056749224662781
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.34153711795806885
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.4101390540599823
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": true,
+     "p_rise": 0.49031466245651245
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.5085345506668091
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.40405014157295227
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.3792848587036133
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.4293748438358307
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.3382469415664673
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": true,
+     "p_rise": 0.6750898957252502
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.5175740718841553
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.48568087816238403
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.5154029726982117
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.16978290677070618
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.06914171576499939
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.4104670584201813
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": true,
+     "p_rise": 0.5899637341499329
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.32745659351348877
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": true,
+     "p_rise": 0.5775027871131897
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.5040165781974792
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.3699309527873993
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.30156856775283813
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 743,
+     "t": 189,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.2823563516139984
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0004602406988851726
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0002836097846738994
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0004191633779555559
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00028149737045168877
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00021844411094207317
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00013902255159337074
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00021419086260721087
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0007013031281530857
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00018517803982831538
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0003557579475454986
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0003352440835442394
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0003926437930203974
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0002689368848223239
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00030610591056756675
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00013378399307839572
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.000513521721586585
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.000146900158142671
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00028995858156122267
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00031903336639516056
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0003073962579946965
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0002333955781068653
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0002651716349646449
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00014984930749051273
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00030651086126454175
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00023750906984787434
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.000310062721837312
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0003424574970267713
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0002427711006021127
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0002998413401655853
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00031907044467516243
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0004620917607098818
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00034784211311489344
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00032751617254689336
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.000237189611652866
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00090477813500911
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0005987155600450933
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0003473107353784144
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00020346292876638472
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.000390298489946872
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0003754234057851136
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0002718959585763514
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00041465822141617537
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0011758320033550262
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00028386953636072576
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00022719870321452618
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00029903306858614087
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0005957242101430893
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0003235400654375553
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0007376984576694667
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0012473651440814137
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0005344381788745522
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00021754452609457076
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00017160477000288665
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00035993021447211504
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0007970086298882961
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 5.85850139032118e-05
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0003928986261598766
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00044653177610598505
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0003751932526938617
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0003480169107206166
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00019865736248902977
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00015353555500041693
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00020242840400896966
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0002628446673043072
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00015260315558407456
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.001402193563990295
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0007613552734255791
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00021678736084140837
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0003117275482509285
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0003279510128777474
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0006652887095697224
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00040803797310218215
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0006643278175033629
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00033222517231479287
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.001392960431985557
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00039112233207561076
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0001929436402861029
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0002493756473995745
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.000234409817494452
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00029983455897308886
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00032567628659307957
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.000302050553727895
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0001300791191169992
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0005527088651433587
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 7.879496115492657e-05
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0001963356917258352
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0003337329544592649
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0003515260759741068
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0012025717878714204
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0004554330662358552
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0002737388131208718
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00048169447109103203
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00032694925903342664
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0003969561366830021
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00014698802260681987
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0013591551687568426
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 1526,
+     "t": 200,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0007508703274652362
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.40873977541923523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.28469330072402954
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.30556201934814453
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.3220656216144562
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.30452612042427063
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.36681312322616577
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.29364508390426636
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.3528469502925873
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.3269623816013336
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.2899205684661865
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.37256234884262085
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.039019130170345306
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.3178740441799164
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.30313339829444885
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.18621766567230225
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.2958386540412903
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.10994938760995865
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.3103035092353821
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.3396369516849518
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.16080528497695923
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.41292038559913635
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.162043958902359
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.2782352864742279
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.39932486414909363
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.3803216814994812
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.2868417501449585
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.3850536346435547
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.39886271953582764
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.11681048572063446
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.08414953202009201
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.23401252925395966
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.31498947739601135
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.32512983679771423
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.03075605444610119
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.01962786726653576
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.04012354835867882
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.022509068250656128
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.02817421779036522
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.023081345483660698
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.03717181086540222
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.29210078716278076
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.015817565843462944
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.027461964637041092
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.29657676815986633
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0087784668430686
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.031323157250881195
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.03751397877931595
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.023865872994065285
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.015536818653345108
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.03075188770890236
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.02259920723736286
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.03511219844222069
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0518743060529232
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.03431088104844093
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.15197166800498962
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.25472766160964966
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.026837924495339394
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.05456305667757988
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.24757015705108643
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.023400653153657913
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.01768777146935463
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.043038900941610336
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.28430962562561035
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.01666472852230072
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.115324966609478
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.029628058895468712
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.037666432559490204
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.18379926681518555
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.5248672962188721
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.05147868022322655
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.01996171660721302
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.059449754655361176
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.07746998965740204
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.08110085129737854
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.08341343700885773
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.07207480818033218
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.01213795691728592
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00852189864963293
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.09390689432621002
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.008071253076195717
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.06653990596532822
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.017631463706493378
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.03896017372608185
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.07122857123613358
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.07554809004068375
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.11676180362701416
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.057099469006061554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.08073541522026062
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0768602266907692
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.03000015579164028
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0991581380367279
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.012834492139518261
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.062324296683073044
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.03340769559144974
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.11279100179672241
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.18667681515216827
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 3477,
+     "t": 265,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.07515036314725876
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 0,
+     "hit": true,
+     "p_rise": 0.8917168974876404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6920144557952881
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.7243896722793579
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.5610852837562561
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.556782066822052
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.4692282974720001
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6097996234893799
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.7022094130516052
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.8404265642166138
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6549166440963745
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.46506717801094055
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.5124833583831787
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6310635209083557
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.463510125875473
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6463171243667603
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6198725700378418
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.48361432552337646
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6576355695724487
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.5891643166542053
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.5030542612075806
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.7054732441902161
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.5861064195632935
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6576365232467651
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.7059977054595947
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.4814128279685974
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.5089753270149231
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.5942535996437073
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.8450216054916382
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6117740273475647
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6066938638687134
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.6791954040527344
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.68311607837677
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 3,
+     "hit": true,
+     "p_rise": 0.7474908232688904
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0946456640958786
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.30845752358436584
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": true,
+     "p_rise": 0.6189048290252686
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": true,
+     "p_rise": 0.6582996845245361
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.16066506505012512
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.04526475816965103
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.2519976794719696
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.10274617373943329
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.15317115187644958
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.3208240866661072
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.2003774493932724
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": true,
+     "p_rise": 0.5384569764137268
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.20863135159015656
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.14175647497177124
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.40532487630844116
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.30733978748321533
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": true,
+     "p_rise": 0.5564078092575073
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": true,
+     "p_rise": 0.5404434204101562
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.177704855799675
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": true,
+     "p_rise": 0.7356787919998169
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": true,
+     "p_rise": 0.6346476674079895
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.30785003304481506
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.3249756097793579
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": true,
+     "p_rise": 0.6550882458686829
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.1254166066646576
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.05011938139796257
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.4948636591434479
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.33240464329719543
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.04607510566711426
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.4596163034439087
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.35247325897216797
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.4006770849227905
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.4901288151741028
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": true,
+     "p_rise": 0.5200952291488647
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.1633327603340149
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.05679291486740112
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.449592649936676
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.19898833334445953
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.41040199995040894
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.4686075747013092
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.29971975088119507
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.26496514678001404
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": true,
+     "p_rise": 0.6306536197662354
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": true,
+     "p_rise": 0.3921270966529846
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.23582154512405396
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.2889435291290283
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.4692389667034149
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.20081287622451782
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.39338305592536926
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.13629330694675446
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.2905498147010803
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.23651517927646637
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.12400902807712555
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.27205851674079895
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.21207189559936523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.22907549142837524
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.2906912863254547
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.38708654046058655
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.388422429561615
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.24990174174308777
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.058098629117012024
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.16505584120750427
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.023570530116558075
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 6033,
+     "t": 197,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.25434553623199463
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.00015341810649260879
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0001603802666068077
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 3.978242602897808e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 4.345482011558488e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00013980934454593807
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 3.652367740869522e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 2.984841376019176e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00010441342601552606
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00010873206338146701
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 6.648937414865941e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 7.277913391590118e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 3.330934850964695e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 3.420649591134861e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0002057052042800933
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00010361137537984177
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 5.083201904199086e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 3.8313450204441324e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 7.512619777116925e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 4.3454365368233994e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 3.88754706364125e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 6.297853542491794e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 6.624544766964391e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 6.170181586639956e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 9.155366569757462e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00010830727842403576
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 9.248303831554949e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 7.088336860761046e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 3.621949872467667e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 9.711988968774676e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 4.2146210034843534e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 9.955264977179468e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00010370100062573329
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 3,
+     "hit": false,
+     "p_rise": 5.7847653806675225e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 5.460348620545119e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 6.93285110173747e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 7.157736399676651e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 6.018192652845755e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 3.0967457860242575e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 3.077463406953029e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 3.9344668039120734e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 6.994048453634605e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 8.143924060277641e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 3.881805241690017e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 7.217203528853133e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 3.0499026252073236e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 5.0227277824888006e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 3.397583350306377e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 5.9994374169036746e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00014666817151010036
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 3.699180524563417e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 2.6958783564623445e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 3.4299508115509525e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 3.8892791053513065e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 3.18476086249575e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0002669976092875004
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 2.6034427719423547e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 3.0217543098842725e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 3.0149925805744715e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 2.8529873816296458e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 4.226470991852693e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 3.279764496255666e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 4.0535836888011545e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 3.62686587322969e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 7.246116729220375e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 7,
+     "hit": false,
+     "p_rise": 3.4321361454203725e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 3.369677142472938e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 4.046444155392237e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 4.974546027369797e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 4.716521652881056e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 2.529974517528899e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 3.764148641494103e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 3.2983374694595113e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 7.388554513454437e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 5.670743121299893e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 4.1916318878065795e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 3.8880294596310705e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 7.129499863367528e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 4.711115252575837e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00021851126803085208
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 3.54834264726378e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 5.460306419990957e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 2.641816172399558e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 3.7974165024934337e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 4.968456050846726e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 4.210678525851108e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 4.855467705056071e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 3.5205397580284625e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 2.6410685677547008e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 3.984397335443646e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 5.4106574680190533e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 3.214459866285324e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00023583430447615683
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 3.3122872991953045e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 4.156621434958652e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 5.3399777243612334e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 3.9235514122992754e-05
+    },
+    {
+     "item": "diamond",
+     "ep": 1526,
+     "t": 206,
+     "k": 15,
+     "hit": false,
+     "p_rise": 4.7405308578163385e-05
+    }
+   ]
+  },
+  "test": {
+   "events": [
+    [
+     "iron_pickaxe",
+     "runs/wm/data/ppo-rarity2-s0_agent-e250/ep_00067.npz",
+     298
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00065.npz",
+     166
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00042.npz",
+     98
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250_b/ep_00140.npz",
+     337
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250_b/ep_00100.npz",
+     392
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00231.npz",
+     247
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250_b/ep_00192.npz",
+     145
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00325.npz",
+     134
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00085.npz",
+     94
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250_b/ep_00192.npz",
+     152
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00045.npz",
+     138
+    ],
+    [
+     "iron",
+     "runs/wm/data/ppo-rarity2-5090-s0_agent-e250_b/ep_00107.npz",
+     146
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s2_agent-e250_b/ep_00241.npz",
+     146
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00245.npz",
+     125
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250/ep_00172.npz",
+     123
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00079.npz",
+     176
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00073.npz",
+     247
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00173.npz",
+     180
+    ],
+    [
+     "iron",
+     "runs/wm/data/ppo-rarity2-g99-s0_agent-e250_b/ep_00046.npz",
+     148
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250/ep_00146.npz",
+     147
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-gru-s1_agent-e250_b/ep_00144.npz",
+     114
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e150/ep_00142.npz",
+     141
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00236.npz",
+     190
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00007.npz",
+     121
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00247.npz",
+     95
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00328.npz",
+     130
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1-s1_agent-e250_b/ep_00138.npz",
+     492
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00004.npz",
+     167
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00105.npz",
+     135
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e150/ep_00109.npz",
+     161
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-gru-s1_agent-e250_b/ep_00144.npz",
+     116
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e100/ep_00083.npz",
+     148
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250_b/ep_00200.npz",
+     168
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00236.npz",
+     351
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00261.npz",
+     134
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00231.npz",
+     245
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00194.npz",
+     348
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00016.npz",
+     106
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s2_agent-e250_b/ep_00212.npz",
+     474
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250_b/ep_00028.npz",
+     438
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1-s0_agent-e250_b/ep_00078.npz",
+     137
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250/ep_00172.npz",
+     140
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250_b/ep_00154.npz",
+     149
+    ],
+    [
+     "iron",
+     "runs/wm/data/ppo-rarity4-s0_agent-e250_b/ep_00062.npz",
+     181
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250/ep_00274.npz",
+     173
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00236.npz",
+     353
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250/ep_00310.npz",
+     116
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00025.npz",
+     133
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00225.npz",
+     163
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00007.npz",
+     172
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00095.npz",
+     185
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00236.npz",
+     192
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250/ep_00274.npz",
+     182
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-gru-s1_agent-e250_b/ep_00197.npz",
+     150
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s2_agent-e250_b/ep_00212.npz",
+     450
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00065.npz",
+     133
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250_b/ep_00154.npz",
+     125
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250/ep_00274.npz",
+     170
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00131.npz",
+     130
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00128.npz",
+     240
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250/ep_00118.npz",
+     134
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00033.npz",
+     106
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250_b/ep_00200.npz",
+     272
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00210.npz",
+     124
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-gru-s2_agent-e250_b/ep_00231.npz",
+     173
+    ],
+    [
+     "iron",
+     "runs/wm/data/ppo-rarity2-5090-s0_agent-e250_b/ep_00125.npz",
+     80
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1-s0_agent-e250_b/ep_00049.npz",
+     106
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00079.npz",
+     247
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e150/ep_00142.npz",
+     136
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250_b/ep_00154.npz",
+     138
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250/ep_00138.npz",
+     98
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00085.npz",
+     98
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250_b/ep_00019.npz",
+     304
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00079.npz",
+     245
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250_b/ep_00083.npz",
+     78
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00160.npz",
+     78
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e150/ep_00145.npz",
+     131
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250_b/ep_00154.npz",
+     142
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250_b/ep_00077.npz",
+     80
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-gru-s1_agent-e250_b/ep_00114.npz",
+     107
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00073.npz",
+     253
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00007.npz",
+     153
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1-s0_agent-e100_b/ep_00019.npz",
+     251
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s2_agent-e250_b/ep_00241.npz",
+     148
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s2_agent-e250_b/ep_00169.npz",
+     86
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1-s0_agent-e250_b/ep_00140.npz",
+     137
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1-s0_agent-e250_b/ep_00140.npz",
+     140
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e150/ep_00010.npz",
+     191
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00050.npz",
+     251
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e250/ep_00211.npz",
+     284
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s1_agent-e150/ep_00010.npz",
+     167
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-s2_agent-e250_b/ep_00235.npz",
+     259
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00278.npz",
+     179
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00042.npz",
+     105
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e150_b/ep_00072.npz",
+     141
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00247.npz",
+     156
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-gru-s1_agent-e250_b/ep_00010.npz",
+     108
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity1-s0_agent-e250_b/ep_00019.npz",
+     254
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-gru-s2_agent-e250_b/ep_00041.npz",
+     178
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250_b/ep_00026.npz",
+     279
+    ],
+    [
+     "iron",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00079.npz",
+     174
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00236.npz",
+     335
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00257.npz",
+     98
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00079.npz",
+     131
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00114.npz",
+     144
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s2_agent-e100/ep_00017.npz",
+     233
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-gru-s2_agent-e250_b/ep_00190.npz",
+     98
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity1-s0_agent-e250_b/ep_00050.npz",
+     296
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00224.npz",
+     83
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00014.npz",
+     101
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e150/ep_00150.npz",
+     174
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e150/ep_00011.npz",
+     171
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00131.npz",
+     99
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00261.npz",
+     121
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250_b/ep_00127.npz",
+     90
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00194.npz",
+     298
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00025.npz",
+     96
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00092.npz",
+     98
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-gru-s2_agent-e250_b/ep_00165.npz",
+     105
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00231.npz",
+     94
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ppo-rarity4-s0_agent-e250_b/ep_00062.npz",
+     105
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s1_agent-e250/ep_00322.npz",
+     208
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250_b/ep_00019.npz",
+     80
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1-s0_agent-e250_b/ep_00101.npz",
+     91
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00314.npz",
+     279
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1-s0_agent-e250_b/ep_00093.npz",
+     108
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00147.npz",
+     105
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00079.npz",
+     162
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1-s0_agent-e250_b/ep_00198.npz",
+     87
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250_b/ep_00051.npz",
+     102
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-gru-s2_agent-e250_b/ep_00231.npz",
+     114
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00200.npz",
+     136
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00266.npz",
+     157
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00155.npz",
+     106
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00329.npz",
+     160
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00053.npz",
+     100
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00005.npz",
+     177
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s2_agent-e250_b/ep_00235.npz",
+     459
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00050.npz",
+     135
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00004.npz",
+     121
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e150/ep_00147.npz",
+     128
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00019.npz",
+     145
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00198.npz",
+     259
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00262.npz",
+     181
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s1_agent-e150/ep_00103.npz",
+     178
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00194.npz",
+     400
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00041.npz",
+     79
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00245.npz",
+     88
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00047.npz",
+     323
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00172.npz",
+     195
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s2_agent-e150/ep_00017.npz",
+     308
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1-s0_agent-e250_b/ep_00119.npz",
+     126
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ppo-rarity2-s0_agent-e250/ep_00067.npz",
+     122
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00016.npz",
+     91
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ppo-rarity2-g99-s0_agent-e250_b/ep_00046.npz",
+     140
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00021.npz",
+     143
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00236.npz",
+     165
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250_b/ep_00144.npz",
+     251
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250_b/ep_00100.npz",
+     412
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00239.npz",
+     110
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250_b/ep_00013.npz",
+     151
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ppo-rarity2-5090-s0_agent-e250_b/ep_00144.npz",
+     337
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00320.npz",
+     86
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250_b/ep_00073.npz",
+     125
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ppo-rarity2-g99-s0_agent-e250_b/ep_00012.npz",
+     177
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00268.npz",
+     326
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00021.npz",
+     201
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00225.npz",
+     92
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00081.npz",
+     381
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00236.npz",
+     390
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00236.npz",
+     330
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e150/ep_00078.npz",
+     140
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00066.npz",
+     136
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00268.npz",
+     404
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00233.npz",
+     130
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00071.npz",
+     221
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00282.npz",
+     133
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s2_agent-e150/ep_00005.npz",
+     159
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-gru-s1_agent-e250_b/ep_00118.npz",
+     105
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00282.npz",
+     86
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00214.npz",
+     102
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00272.npz",
+     94
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s1_agent-e100/ep_00016.npz",
+     118
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00191.npz",
+     164
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00188.npz",
+     134
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00130.npz",
+     397
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-gru-s1_agent-e250_b/ep_00122.npz",
+     129
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00014.npz",
+     86
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00143.npz",
+     84
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00268.npz",
+     240
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00190.npz",
+     90
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e150/ep_00089.npz",
+     181
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s1_agent-e100/ep_00016.npz",
+     109
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00049.npz",
+     143
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-gru-s2_agent-e250_b/ep_00126.npz",
+     140
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00050.npz",
+     119
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00172.npz",
+     125
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00082.npz",
+     363
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00268.npz",
+     325
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ad-rarity2-s1_agent-e250/ep_00154.npz",
+     100
+    ],
+    [
+     "stone_pickaxe",
+     "runs/wm/data/ppo-rarity2-5090-s0_agent-e250_b/ep_00132.npz",
+     83
+    ],
+    [
+     "coal",
+     "runs/wm/data/ppo-rarity1-s0_agent-e250_b/ep_00031.npz",
+     185
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s2_agent-e250_b/ep_00249.npz",
+     164
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s1_agent-e150/ep_00125.npz",
+     295
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1-s0_agent-e250_b/ep_00129.npz",
+     131
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e150/ep_00089.npz",
+     137
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s2_agent-e250_b/ep_00202.npz",
+     153
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1-s1_agent-e250_b/ep_00190.npz",
+     106
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s1_agent-e250_b/ep_00100.npz",
+     92
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1-s1_agent-e250_b/ep_00165.npz",
+     101
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00079.npz",
+     133
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00110.npz",
+     165
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00266.npz",
+     83
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e150/ep_00033.npz",
+     158
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00138.npz",
+     102
+    ],
+    [
+     "coal",
+     "runs/wm/data/ppo-rarity2-5090-s0_agent-e250_b/ep_00038.npz",
+     109
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s1_agent-e100/ep_00074.npz",
+     128
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00253.npz",
+     89
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00079.npz",
+     286
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00002.npz",
+     123
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s1_agent-e050/ep_00019.npz",
+     156
+    ],
+    [
+     "coal",
+     "runs/wm/data/ppo-rarity2-5090-s0_agent-e250_b/ep_00029.npz",
+     80
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1-s0_agent-e250_b/ep_00036.npz",
+     147
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250_b/ep_00139.npz",
+     130
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00210.npz",
+     114
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e100/ep_00077.npz",
+     118
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s2_agent-e150_b/ep_00069.npz",
+     177
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00102.npz",
+     109
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00236.npz",
+     95
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00055.npz",
+     154
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250_b/ep_00026.npz",
+     268
+    ],
+    [
+     "coal",
+     "runs/wm/data/ppo-rarity2-g99-s0_agent-e250_b/ep_00064.npz",
+     147
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s1_agent-e150/ep_00086.npz",
+     156
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00223.npz",
+     182
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00066.npz",
+     166
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00187.npz",
+     149
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity1-s0_agent-e250_b/ep_00079.npz",
+     159
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity1-s0_agent-e250_b/ep_00050.npz",
+     158
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00214.npz",
+     106
+    ],
+    [
+     "coal",
+     "runs/wm/data/ppo-rarity2-s0_agent-e250/ep_00109.npz",
+     141
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00239.npz",
+     125
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250_b/ep_00009.npz",
+     96
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00070.npz",
+     183
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00110.npz",
+     183
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e150_b/ep_00072.npz",
+     134
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e150/ep_00011.npz",
+     137
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00314.npz",
+     232
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00049.npz",
+     185
+    ],
+    [
+     "coal",
+     "runs/wm/data/ppo-rarity2-g99-s0_agent-e250_b/ep_00046.npz",
+     228
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s1_agent-e250_b/ep_00100.npz",
+     202
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e150/ep_00050.npz",
+     138
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-ppo_ad-s0_agent-e250/ep_00104.npz",
+     169
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s2_agent-e250_b/ep_00069.npz",
+     198
+    ],
+    [
+     "coal",
+     "runs/wm/data/ppo-rarity2-5090-s0_agent-e250_b/ep_00125.npz",
+     93
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00325.npz",
+     84
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1-s0_agent-e250_b/ep_00119.npz",
+     180
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00201.npz",
+     136
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00294.npz",
+     101
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s1_agent-e250/ep_00138.npz",
+     221
+    ],
+    [
+     "coal",
+     "runs/wm/data/ppo-rarity4-s0_agent-e250_b/ep_00089.npz",
+     113
+    ],
+    [
+     "coal",
+     "runs/wm/data/ppo-rarity4-s0_agent-e250_b/ep_00089.npz",
+     141
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250_b/ep_00109.npz",
+     128
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s2_agent-e250_b/ep_00069.npz",
+     191
+    ],
+    [
+     "coal",
+     "runs/wm/data/ppo-s1_agent-e250_b/ep_00066.npz",
+     108
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00142.npz",
+     258
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e150/ep_00089.npz",
+     113
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s1_agent-e250/ep_00064.npz",
+     84
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00042.npz",
+     145
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00129.npz",
+     85
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00037.npz",
+     118
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250_b/ep_00100.npz",
+     383
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250_b/ep_00127.npz",
+     111
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e150/ep_00133.npz",
+     158
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00014.npz",
+     95
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00095.npz",
+     187
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00138.npz",
+     224
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00268.npz",
+     371
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s1_agent-e150/ep_00020.npz",
+     122
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00009.npz",
+     162
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s1_agent-e150_b/ep_00065.npz",
+     134
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s0_agent-e250/ep_00173.npz",
+     143
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s1_agent-e250_b/ep_00194.npz",
+     222
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00258.npz",
+     148
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1-s2_agent-e250_b/ep_00172.npz",
+     103
+    ],
+    [
+     "coal",
+     "runs/wm/data/ppo-rarity2-s0_agent-e250/ep_00062.npz",
+     251
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00038.npz",
+     134
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s2_agent-e250_b/ep_00222.npz",
+     167
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s0_agent-e250/ep_00207.npz",
+     156
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00142.npz",
+     183
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1u-s2_agent-e250/ep_00239.npz",
+     127
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-vit1-s1_agent-e250_b/ep_00190.npz",
+     92
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s0_agent-e250_b/ep_00220.npz",
+     248
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s1_agent-e250/ep_00172.npz",
+     179
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s2_agent-e150/ep_00017.npz",
+     303
+    ],
+    [
+     "coal",
+     "runs/wm/data/ppo-rarity2-s0_agent-e250/ep_00056.npz",
+     179
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s0_agent-e250_b/ep_00037.npz",
+     144
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-gru-s1_agent-e250_b/ep_00100.npz",
+     129
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00007.npz",
+     434
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s2_agent-e250_b/ep_00212.npz",
+     303
+    ],
+    [
+     "coal",
+     "runs/wm/data/ad-rarity2-s2_agent-e250/ep_00267.npz",
+     133
+    ],
+    [
+     "coal",
+     "runs/wm/data/ppo-rarity2-g99-s0_agent-e250_b/ep_00023.npz",
+     221
+    ]
+   ],
+   "T0": {
+    "coal": {
+     "k0": {
+      "cases": 100,
+      "dreams": 100,
+      "dream_shows_it": 0.97,
+      "head_p_rise": 0.942
+     },
+     "k3": {
+      "cases": 100,
+      "dreams": 100,
+      "dream_shows_it": 0.93,
+      "head_p_rise": 0.913
+     },
+     "k7": {
+      "cases": 100,
+      "dreams": 100,
+      "dream_shows_it": 0.82,
+      "head_p_rise": 0.814
+     },
+     "k15": {
+      "cases": 100,
+      "dreams": 100,
+      "dream_shows_it": 0.75,
+      "head_p_rise": 0.722
+     }
+    },
+    "iron": {
+     "k0": {
+      "cases": 99,
+      "dreams": 99,
+      "dream_shows_it": 0.808,
+      "head_p_rise": 0.768
+     },
+     "k3": {
+      "cases": 99,
+      "dreams": 99,
+      "dream_shows_it": 0.818,
+      "head_p_rise": 0.772
+     },
+     "k7": {
+      "cases": 99,
+      "dreams": 99,
+      "dream_shows_it": 0.808,
+      "head_p_rise": 0.758
+     },
+     "k15": {
+      "cases": 99,
+      "dreams": 99,
+      "dream_shows_it": 0.586,
+      "head_p_rise": 0.555
+     }
+    },
+    "iron_pickaxe": {
+     "k0": {
+      "cases": 1,
+      "dreams": 1,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.001
+     },
+     "k3": {
+      "cases": 1,
+      "dreams": 1,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.002
+     },
+     "k7": {
+      "cases": 1,
+      "dreams": 1,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.002
+     },
+     "k15": {
+      "cases": 1,
+      "dreams": 1,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.002
+     }
+    },
+    "stone_pickaxe": {
+     "k0": {
+      "cases": 99,
+      "dreams": 99,
+      "dream_shows_it": 0.879,
+      "head_p_rise": 0.86
+     },
+     "k3": {
+      "cases": 99,
+      "dreams": 99,
+      "dream_shows_it": 0.879,
+      "head_p_rise": 0.832
+     },
+     "k7": {
+      "cases": 99,
+      "dreams": 99,
+      "dream_shows_it": 0.899,
+      "head_p_rise": 0.866
+     },
+     "k15": {
+      "cases": 99,
+      "dreams": 99,
+      "dream_shows_it": 0.485,
+      "head_p_rise": 0.476
+     }
+    }
+   },
+   "T0_cases": [
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00154506741091609
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00154506741091609
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0018464698223397136
+    }
+   ],
+   "T1": {
+    "coal": {
+     "k0": {
+      "cases": 100,
+      "dreams": 3200,
+      "dream_shows_it": 0.97,
+      "head_p_rise": 0.942
+     },
+     "k3": {
+      "cases": 100,
+      "dreams": 3200,
+      "dream_shows_it": 0.95,
+      "head_p_rise": 0.924
+     },
+     "k7": {
+      "cases": 100,
+      "dreams": 3200,
+      "dream_shows_it": 0.838,
+      "head_p_rise": 0.813
+     },
+     "k15": {
+      "cases": 100,
+      "dreams": 3200,
+      "dream_shows_it": 0.745,
+      "head_p_rise": 0.725
+     }
+    },
+    "iron": {
+     "k0": {
+      "cases": 99,
+      "dreams": 3168,
+      "dream_shows_it": 0.808,
+      "head_p_rise": 0.768
+     },
+     "k3": {
+      "cases": 99,
+      "dreams": 3168,
+      "dream_shows_it": 0.815,
+      "head_p_rise": 0.766
+     },
+     "k7": {
+      "cases": 99,
+      "dreams": 3168,
+      "dream_shows_it": 0.797,
+      "head_p_rise": 0.75
+     },
+     "k15": {
+      "cases": 99,
+      "dreams": 3168,
+      "dream_shows_it": 0.575,
+      "head_p_rise": 0.542
+     }
+    },
+    "iron_pickaxe": {
+     "k0": {
+      "cases": 1,
+      "dreams": 32,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.001
+     },
+     "k3": {
+      "cases": 1,
+      "dreams": 32,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.001
+     },
+     "k7": {
+      "cases": 1,
+      "dreams": 32,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.001
+     },
+     "k15": {
+      "cases": 1,
+      "dreams": 32,
+      "dream_shows_it": 0.0,
+      "head_p_rise": 0.001
+     }
+    },
+    "stone_pickaxe": {
+     "k0": {
+      "cases": 99,
+      "dreams": 3168,
+      "dream_shows_it": 0.879,
+      "head_p_rise": 0.86
+     },
+     "k3": {
+      "cases": 99,
+      "dreams": 3168,
+      "dream_shows_it": 0.884,
+      "head_p_rise": 0.846
+     },
+     "k7": {
+      "cases": 99,
+      "dreams": 3168,
+      "dream_shows_it": 0.872,
+      "head_p_rise": 0.839
+     },
+     "k15": {
+      "cases": 99,
+      "dreams": 3168,
+      "dream_shows_it": 0.474,
+      "head_p_rise": 0.464
+     }
+    }
+   },
+   "T1_cases": [
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 0,
+     "hit": false,
+     "p_rise": 0.0005760855856351554
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0007278943667188287
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.001371606718748808
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0006268661236390471
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00154506741091609
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00154506741091609
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.000649241148494184
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0007214230136014521
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0006415039533749223
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.000649241148494184
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0013878224417567253
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0006373326177708805
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0015245607355609536
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0006245049880817533
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0006476112175732851
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00154506741091609
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0007278943667188287
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.000649241148494184
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0014742242638021708
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0006245049880817533
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0006125326617620885
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.000649241148494184
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0006192675791680813
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0006192675791680813
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00154506741091609
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0013913939474150538
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.000649241148494184
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.001418865635059774
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0006245049880817533
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.00154506741091609
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0014267838560044765
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0006476112175732851
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 3,
+     "hit": false,
+     "p_rise": 0.0006245049880817533
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0005956524983048439
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0006248985882848501
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0005884078564122319
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0005377582274377346
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0013251459458842874
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0005833099130541086
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0005734518053941429
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0005841408274136484
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00154506741091609
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0006457126000896096
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0006324040587060153
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0006481086602434516
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0006373326177708805
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0006232166197150946
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00154506741091609
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0013913939474150538
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0006099750753492117
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0005091335624456406
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0014741158811375499
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0006481086602434516
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.000592841999605298
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0006421598372980952
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0008897472871467471
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0005732688005082309
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0003277203650213778
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00020918900554534048
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.000739316688850522
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.00022376637207344174
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0014742242638021708
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0006243853131309152
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0006233019521459937
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 7,
+     "hit": false,
+     "p_rise": 0.0006481086602434516
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00039251847192645073
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0005118169938214123
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0010419412283226848
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0007638417882844806
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.000734466768335551
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0017227026401087642
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0006984722567722201
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0005654036067426205
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0015930600930005312
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0007594521157443523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0007841078331694007
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0007792271208018064
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0018071007216349244
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0006406039465218782
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0005973913939669728
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.001662421622313559
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0019928300753235817
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0009077939903363585
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0005519605474546552
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0002439558447804302
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0005336965550668538
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0006171665154397488
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00026859884383156896
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0005965553573332727
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0007201329572126269
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.000721584539860487
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0007888554246164858
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0007594521157443523
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0007986001437529922
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.00034636014606803656
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0006519195158034563
+    },
+    {
+     "item": "iron_pickaxe",
+     "ep": 772,
+     "t": 298,
+     "k": 15,
+     "hit": false,
+     "p_rise": 0.0070645930245518684
+    }
+   ]
+  }
+ }
+}

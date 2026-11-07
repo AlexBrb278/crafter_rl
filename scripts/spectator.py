@@ -26,6 +26,7 @@ def main(args):
     import torch as th
     from achievement_distillation.model import PPOADModel, PPOModel
     from recurrent import PPOADGRUModel
+    from map_model import PPOADMapModel
     from train import record_episode
 
     th.set_num_threads(args.threads)
@@ -47,8 +48,10 @@ def main(args):
                 continue
             if ck["epoch"] != last_epoch:
                 cfg = json.load(open(os.path.join(run_dir, "config.json")))["config"]
-                cls = {"PPOADModel": PPOADModel, "PPOModel": PPOModel, "PPOADGRUModel": PPOADGRUModel}[cfg["model_cls"]]
-                model = cls(observation_space=gymnasium.spaces.Box(0, 1, (3, 64, 64)),
+                cls = {"PPOADModel": PPOADModel, "PPOModel": PPOModel, "PPOADGRUModel": PPOADGRUModel,
+                       "PPOADMapModel": PPOADMapModel}[cfg["model_cls"]]
+                pixel_map = cfg["model_cls"] == "PPOADMapModel"
+                model = cls(observation_space=gymnasium.spaces.Box(0, 1, (6 if pixel_map else 3, 64, 64)),
                             action_space=gymnasium.spaces.Discrete(17), **cfg["model_kwargs"])
                 model.load_state_dict(ck["model"])
                 step = int(ck["global_step"])
@@ -56,7 +59,7 @@ def main(args):
                 t = time.time()
                 res = record_episode(model, cfg, th.device("cpu"), os.path.join(vid_dir, name),
                                      seed=int(rng.integers(2**31 - 1)), max_steps=args.steps,
-                                     label=f"{args.run} checkpoint @ {step:,} steps")
+                                     label=f"{args.run} checkpoint @ {step:,} steps", pixel_map=pixel_map)
                 res.update(file=name, step=step, epoch=int(ck["epoch"]), seconds=round(time.time() - t, 1))
                 with open(index, "a") as f:
                     f.write(json.dumps(res) + "\n")

@@ -53,6 +53,13 @@ CONFIGS = {
     "ad-rarity2-gru": "AD + rarity β=2 + GRU memory",
     "ad-rarity2-vit1": "AD + rarity β=2 + survival signal",
     "ad-rarity2-vit1u": "AD + rarity β=2 + survival signal, no per-step cost",
+    "ad-rarity2-map": "AD + rarity β=2 + own top-down map (pixels only)",
+    "ad-rarity2-map-vit1u": "AD + rarity β=2 + own map + survival signal, no per-step cost",
+    "ad-rarity2-dream": "AD + rarity β=2 + practice in world-model dreams (Stage 2a, diagnostic)",
+    "ad-rarity2-dream-craft": "AD + rarity β=2 + dreams with the shared craft rule (Stage 2a, diagnostic)",
+    "ad-rarity2-dream-iron": "AD + rarity β=2 + dreams with the craft rule, a quarter started with iron in hand (Stage 2a, diagnostic)",
+    "ad-rarity2-dream-ready": "AD + rarity β=2 + dreams with the craft rule, iron starts with 15% ready to craft (Stage 2a, diagnostic)",
+    "ad-rarity2-dream-pool": "AD + rarity β=2 + dreams with the craft rule, ready (15%) and craftable (5%) starts kept across epochs (Stage 2a, diagnostic)",
 }
 
 

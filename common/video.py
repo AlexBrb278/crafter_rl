@@ -31,7 +31,8 @@ class HUD:
     def draw(self, frame, line1, line2, new_achievements=()):
         for a in new_achievements:
             self.flash.append(("+ " + a.replace("_", " "), 45))
-        img = Image.new("RGB", (self.width, frame.shape[0] + HUD_H), (20, 20, 24))
+        width = max(self.width, frame.shape[1])  # wider frames: game + map side by side
+        img = Image.new("RGB", (width, frame.shape[0] + HUD_H), (20, 20, 24))
         img.paste(Image.fromarray(frame), (0, HUD_H))
         d = ImageDraw.Draw(img)
         d.text((6, 4), line1, fill=(235, 235, 235), font=self.font)
@@ -39,7 +40,7 @@ class HUD:
         y = HUD_H + 6
         for text, _ in self.flash[-4:]:
             w = d.textlength(text, font=self.font)
-            d.rectangle((self.width - w - 14, y - 2, self.width - 4, y + 18), fill=(0, 0, 0))
+            d.rectangle((self.width - w - 14, y - 2, self.width - 4, y + 18), fill=(0, 0, 0))  # over the game
             d.text((self.width - w - 9, y), text, fill=(255, 220, 90), font=self.font)
             y += 22
         self.flash = [(t, n - 1) for t, n in self.flash if n > 1]

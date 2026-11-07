@@ -24,7 +24,14 @@ LABELS = {"ppo": "PPO, γ = 0.95", "ppo-rarity2": "PPO + rarity β=2, γ = 0.95 
           "ppo-rarity2-g99": "PPO + rarity β=2, γ = 0.99",
           "ad-ppo_ad": "AD", "ad-rarity2": "AD + rarity β=2", "ad-rarity2-gru": "AD + rarity β=2 + GRU memory",
           "ad-rarity2-vit1": "AD + rarity β=2 + survival signal (α = 1)",
-          "ad-rarity2-vit1u": "AD + rarity β=2 + survival signal, no per-step cost"}
+          "ad-rarity2-vit1u": "AD + rarity β=2 + survival signal, no per-step cost",
+          "ad-rarity2-map": "AD + rarity β=2 + own map (pixels only)",
+          "ad-rarity2-map-vit1u": "AD + rarity β=2 + own map + survival, no drift",
+          "ad-rarity2-dream": "AD + rarity β=2 + practice in dreams (Stage 2a)",
+          "ad-rarity2-dream-craft": "AD + rarity β=2 + dreams with the craft rule (Stage 2a)",
+          "ad-rarity2-dream-iron": "AD + rarity β=2 + dreams, craft rule + iron-in-hand starts (Stage 2a)",
+          "ad-rarity2-dream-ready": "AD + rarity β=2 + dreams, craft rule + ready-to-craft starts (Stage 2a)",
+          "ad-rarity2-dream-pool": "AD + rarity β=2 + dreams, craft rule + ready / craftable starts + start pool (Stage 2a)"}
 KEY = ["make_stone_pickaxe", "collect_iron", "make_iron_pickaxe", "wake_up"]
 
 

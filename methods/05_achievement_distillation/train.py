@@ -126,7 +126,7 @@ class VitalsShaping:
 class TorchVecEnv:
     """Adapts CrafterVecEnv to the interface of upstream's VecPyTorch (+ clip recording)."""
 
-    def __init__(self, venv, device, recorder=None, on_episode=None, reward_fn=None):
+    def __init__(self, venv, device, recorder=None, on_episode=None, reward_fn=None, tracker=None):
         import torch as th
         self.th = th
         self.venv = venv
@@ -134,6 +134,7 @@ class TorchVecEnv:
         self.recorder = recorder
         self.on_episode = on_episode
         self.reward_fn = reward_fn  # optional shaping of the reward fed to the learner
+        self.tracker = tracker      # optional dream_env.RealTracker (Stage 2: dreams start from real states)
         self.global_step = 0
 
     def _obs(self, obs):
@@ -141,7 +142,10 @@ class TorchVecEnv:
         return th.from_numpy(obs).to(self.device).permute(0, 3, 1, 2).float().div_(255.0)
 
     def reset(self):
-        return self._obs(self.venv.reset())
+        obs = self.venv.reset()
+        if self.tracker is not None:
+            self.tracker.reset(obs[..., :3])
+        return self._obs(obs)
 
     def step(self, actions):
         from common.crafter_score import ACHIEVEMENTS
@@ -156,6 +160,8 @@ class TorchVecEnv:
         self.global_step += self.venv.num_envs
         if rec is not None and render_idx is not None:
             rec.add(frame, rews[render_idx], dones[render_idx], infos[render_idx], self.global_step)
+        if self.tracker is not None:
+            self.tracker.step(obs[..., :3], actions.squeeze(-1).cpu().numpy(), dones, infos)
 
         n = len(infos)
         ep_len = np.zeros(n, np.int64)
@@ -182,15 +188,87 @@ class TorchVecEnv:
                 out_infos)
 
 
-def record_episode(model, cfg, device, path, seed=123, max_steps=3000, label=""):
-    """Play one episode (stochastic policy, as in training) and save it as MP4."""
+DREAM_KEY = ("collect_coal", "place_furnace", "make_stone_pickaxe", "collect_iron", "make_iron_pickaxe",
+             "collect_diamond")
+
+
+def dream_metrics(s, storage, names):
+    """Per 1,000 steps, dreamed vs real (real: steps at episode step >= 63, where dreams start): unlocks (all, and along the iron chain), deaths; plus the gate's
+    rejections, health change and reward per dreamed step. A dream paying out far more than reality is
+    a sign the policy exploits the model (design note P17); dream starts are biased to the iron chain,
+    so the chain rates are expected to be higher there."""
+    succ, masks = storage.successes, storage.masks
+    # real steps from episode step 63 on: dreams need a 64-step context, so they never start earlier
+    late = (storage.timesteps[:-1] >= 63).float()  # (nstep, nproc, 1)
+    new = ((succ[1:] > succ[:-1]) & (masks[1:] > 0)).float() * late  # (nstep, nproc, 22)
+    n_real = max(float(late.sum()), 1.0)
+    real_per = new.sum((0, 1)).cpu().numpy() * 1000 / n_real
+    k = 1000 / max(s["steps"], 1)
+    m = {"dream_unlocks_per_k": s["unlocks"] * k, "real_unlocks_per_k": float(real_per.sum()),
+         "dream_rejected_per_k": s["rejected"] * k, "dream_deaths_per_k": s["deaths"] * k,
+         "real_deaths_per_k": float(((masks[1:] == 0).float() * late).sum().item() * 1000 / n_real),
+         "real_late_share": n_real / late.numel(),
+         "dream_health_per_step": s["health_change"] / max(s["steps"], 1),
+         "dream_reward_per_step": s["reward"] / max(s["steps"], 1),
+         "dream_frontier_share": s["frontier_starts"] / max(s["starts"], 1),
+         "dream_iron_share": s["iron_starts"] / max(s["starts"], 1),
+         "dream_ready_share": s["ready_starts"] / max(s["starts"], 1),
+         "dream_reach_share": s["reach_starts"] / max(s["starts"], 1),
+         "dream_pool_share": s["pool_starts"] / max(s["starts"], 1),
+         "dream_pool_size": s["pool_size"], "dream_pool_reach": s["pool_reach"],
+         "dream_pool_state_cos": s.get("pool_state_cos"),
+         "real_iron_share": s["iron_candidates"] / max(s["candidates"], 1),
+         "real_ready_share": s["ready_candidates"] / max(s["candidates"], 1),
+         "real_reach_share": s["reach_candidates"] / max(s["candidates"], 1)}
+    for a in DREAM_KEY:
+        m[f"dream_{a}_per_k"] = s["per_ach"].get(a, 0.0) * k
+        m[f"real_{a}_per_k"] = float(real_per[names.index(a)])
+    m["dream_ach_per_k"] = {a: round(v * k, 3) for a, v in s["per_ach"].items()}
+    m["dream_rejected_ach_per_k"] = {a: round(v * k, 3) for a, v in s["rejected_ach"].items()}
+    m["real_ach_per_k"] = {a: round(float(v), 3) for a, v in zip(names, real_per) if v > 0}
+    return m
+
+
+def save_dream_video(dstore, path, n=4, scale=4):
+    """The first `n` dream slots of this epoch side by side, one frame per dreamed step, with the reward."""
+    from PIL import Image, ImageDraw, ImageFont
+    from common.video import write_mp4
+    obs = (dstore.obs[:, :n].permute(0, 1, 3, 4, 2).clamp(0, 1) * 255).byte().cpu().numpy()  # (T+1, n, 64, 64, 3)
+    rew, masks = dstore.rewards[:, :n, 0].cpu().numpy(), dstore.masks[:, :n, 0].cpu().numpy()
+    font = ImageFont.load_default(size=12)
+    frames = []
+    for t in range(obs.shape[0]):
+        row = np.concatenate([np.kron(o, np.ones((scale, scale, 1), np.uint8)) for o in obs[t]], 1)
+        img = Image.new("RGB", (row.shape[1], row.shape[0] + 22), (20, 20, 24))
+        img.paste(Image.fromarray(row), (0, 22))
+        dr = ImageDraw.Draw(img)
+        for j in range(n):
+            txt = "real start" if t == 0 else f"dream {t}  r {rew[t - 1, j]:+.2f}" + ("  NEW START" if masks[t, j] == 0 else "")
+            dr.text((j * 64 * scale + 4, 4), txt, fill=(255, 220, 90) if t else (170, 200, 255), font=font)
+        frames.append(np.asarray(img))
+    write_mp4(path, frames, fps=4)
+
+
+def record_episode(model, cfg, device, path, seed=123, max_steps=3000, label="", pixel_map=False):
+    """Play one episode (stochastic policy, as in training) and save it as MP4.
+    With `pixel_map`, the agent also gets its map, and the video shows it to the right of the game."""
     import crafter
     import torch as th
     import torch.nn.functional as F
+    from common.pixel_map import PixelMap, video_panel
     from common.video import HUD, write_mp4
 
     env = crafter.Env(seed=seed)
-    obs = env.reset()
+    raw = env.reset()
+    pmap = PixelMap() if pixel_map else None
+
+    def with_map(o, a=None):
+        if pmap is None:
+            return o
+        pmap.observe(o, a)
+        return np.concatenate([o, pmap.render()], -1)
+
+    obs = with_map(raw)
     hud = HUD(384)
     model.eval()
     states = th.zeros(1, cfg["model_kwargs"]["hidsize"], device=device)
@@ -202,10 +280,14 @@ def record_episode(model, cfg, device, path, seed=123, max_steps=3000, label="")
 
     for t in range(1, max_steps + 1):
         frame = env.render((384, 384))
+        if pmap is not None:
+            frame = np.concatenate([frame, video_panel(pmap.render(), 6)], 1)
         out = model.act(to_t(obs), states=states, **mem)
         if mem:
             mem["hiddens"] = out["hiddens"]
-        obs, r, done, info = env.step(int(out["actions"].item()))
+        a = int(out["actions"].item())
+        raw, r, done, info = env.step(a)
+        obs = with_map(raw, a)
         ret += r
         ach = {k for k, v in info["achievements"].items() if v > 0}
         new = sorted(ach - prev)
@@ -215,7 +297,7 @@ def record_episode(model, cfg, device, path, seed=123, max_steps=3000, label="")
             frame, f"{label}  evaluation episode   t={t}   return {ret:.1f}",
             f"health {inv['health']}  food {inv['food']}  drink {inv['drink']}  "
             f"energy {inv['energy']}   achievements: {len(ach)}/22", new))
-        if new and cfg["model_cls"] in ("PPOADModel", "PPOADGRUModel"):
+        if new and cfg["model_cls"] in ("PPOADModel", "PPOADGRUModel", "PPOADMapModel"):
             with th.no_grad():
                 next_lat = model.encode(to_t(obs))
             states = F.normalize(next_lat - out["latents"], dim=-1)
@@ -285,12 +367,15 @@ def main(args):
         # raising OOM, which is ~10x slower. A cap makes PyTorch free its cache and retry first.
         th.cuda.set_per_process_memory_fraction(args.vram_frac)
 
-    obs_space = gymnasium.spaces.Box(low=0, high=1, shape=(3, 64, 64))
+    if args.pixel_map:  # the agent also sees its own top-down map (common/pixel_map.py)
+        assert cfg["model_cls"] == "PPOADModel", "--pixel_map is implemented for the AD model"
+        cfg["model_cls"] = "PPOADMapModel"
+    obs_space = gymnasium.spaces.Box(low=0, high=1, shape=(6 if args.pixel_map else 3, 64, 64))
     act_space = gymnasium.spaces.Discrete(17)
 
     # --- env + recorder ---
     seeds = np.random.randint(0, 2**31 - 1, size=cfg["nproc"])
-    venv = CrafterVecEnv(seeds, envs_per_worker=1)
+    venv = CrafterVecEnv(seeds, envs_per_worker=1, pixel_map=bool(args.pixel_map))
     recorder = None
     if args.clip_every > 0:
         recorder = ClipRecorder(os.path.join(run_dir, "videos"), cfg["nproc"],
@@ -318,12 +403,34 @@ def main(args):
         for f in shapers:
             rews = f(rews, dones, infos)
         return rews
-    env = TorchVecEnv(venv, device, recorder, on_episode, reward_fn=reward_fn if shapers else None)
+    tracker = dreams = None
+    if args.dream:  # Stage 2: a frozen world model; real moments are tracked so dreams can start there
+        assert not args.pixel_map and cfg["model_cls"] == "PPOADModel", "--dream is implemented for plain AD"
+        sys.path.insert(0, os.path.join(ROOT, "methods", "08_world_model"))
+        from evaluate import load as load_world_model
+        from dream_env import DreamRollout, MixedStorage, RealTracker
+        wm, wm_tok, _ = load_world_model(args.dream, device)
+        for p in list(wm.parameters()) + list(wm_tok.parameters()):
+            p.requires_grad_(False)
+        tracker = RealTracker(cfg["nproc"], wm_tok, device)
+        craft = None
+        if args.dream_craft:  # the shared craft rule (craft_layer.py, paper/designs/world_model_craft_rule.md)
+            from craft_layer import load_layer
+            craft = load_layer(args.dream, device, untied=args.dream_craft == "untied")
+        dreams = DreamRollout(wm, wm_tok, args.dream_envs, args.dream_steps, device, ACHIEVEMENTS,
+                              temperature=args.dream_temp, frontier_share=args.dream_frontier,
+                              gate=args.dream_gate, seed=args.seed, craft=craft, iron_share=args.dream_iron,
+                              ready_share=args.dream_ready, reach_share=args.dream_reach,
+                              pool_size=args.dream_pool, pool_age=args.dream_pool_age)
+    env = TorchVecEnv(venv, device, recorder, on_episode, reward_fn=reward_fn if shapers else None,
+                      tracker=tracker)
     obs = env.reset()
 
     # --- model / algorithm (upstream) ---
     from recurrent import PPOADGRUModel, RecurrentBuffer, RecurrentRolloutStorage
-    model_cls = {"PPOModel": PPOModel, "PPOADModel": PPOADModel, "PPOADGRUModel": PPOADGRUModel}[cfg["model_cls"]]
+    from map_model import PPOADMapModel
+    model_cls = {"PPOModel": PPOModel, "PPOADModel": PPOADModel, "PPOADGRUModel": PPOADGRUModel,
+                 "PPOADMapModel": PPOADMapModel}[cfg["model_cls"]]
     recurrent = cfg["model_cls"] == "PPOADGRUModel"
     model = model_cls(observation_space=obs_space, action_space=act_space,
                       **cfg["model_kwargs"]).to(device)
@@ -332,7 +439,8 @@ def main(args):
              "check_fast_aux": args.check_fast_aux} if cfg["algorithm_cls"] == "PPOADAlgorithm" else {}
     algorithm = algo_cls(model=model, micro_batch=args.micro_batch, amp=args.amp,
                          **extra, **cfg["algorithm_kwargs"])
-    batch = cfg["nstep"] * cfg["nproc"] // cfg["algorithm_kwargs"]["ppo_nbatch"]
+    dream_n = args.dream_envs * args.dream_steps if args.dream else 0  # dreamed samples join every minibatch
+    batch = (cfg["nstep"] * cfg["nproc"] + dream_n) // cfg["algorithm_kwargs"]["ppo_nbatch"]
     if args.micro_batch and args.micro_batch < batch:
         # Keep the value normaliser's EWMA time constant identical despite
         # k forward passes per optimizer step instead of one.
@@ -354,6 +462,9 @@ def main(args):
     else:
         storage = RolloutStorage(**storage_kw)
     storage.obs[0].copy_(obs)
+    dstore = None
+    if dreams is not None:
+        dstore = RolloutStorage(**{**storage_kw, "nstep": args.dream_steps, "nproc": args.dream_envs})
 
     # --- resume ---
     start_epoch, total_successes, t_offset = 1, np.zeros((0, 22), np.int32), 0.0
@@ -392,12 +503,26 @@ def main(args):
 
     for epoch in range(start_epoch, cfg["nepoch"] + 1):
         t_ep = time.time()
+        if tracker is not None:
+            tracker.begin_epoch()
         rollout_stats = sample_rollouts(env, model, storage)
         t_roll = time.time() - t_ep
         storage.compute_returns(cfg["gamma"], cfg["gae_lambda"])
+        update_storage, dream_m, t_dream = storage, {}, 0.0
+        if dreams is not None:
+            t_d = time.time()
+            if dreams.run(model, dstore, storage, tracker.refs, bonus.rates() if bonus else None,
+                          args.rarity_bonus):
+                dstore.compute_returns(cfg["gamma"], cfg["gae_lambda"])
+                update_storage = MixedStorage(storage, dstore)
+                dream_m = dream_metrics(dreams.stats, storage, ACHIEVEMENTS)
+                if args.dream_video_every and epoch % args.dream_video_every == 0:
+                    save_dream_video(dstore, os.path.join(run_dir, "videos", f"dream_{epoch:03d}.mp4"))
+            t_dream = time.time() - t_d
+        t_roll += t_dream
         if device.type == "cuda":
             th.cuda.reset_peak_memory_stats()
-        train_stats = algorithm.update(storage)
+        train_stats = algorithm.update(update_storage)
         storage.reset()
         t_upd = time.time() - t_ep - t_roll
 
@@ -424,6 +549,7 @@ def main(args):
             **{k: float(v) for k, v in train_stats.items()},
             **({"rarity_bonus_total": bonus.total} if bonus is not None else {}),
             **({"vitals_shaping_total": vitals.total} if vitals is not None else {}),
+            **({"dream_s": round(t_dream, 2), **dream_m} if dreams is not None else {}),
             "success_rate": {a: float(r) for a, r in zip(ACHIEVEMENTS, rates)},
             "recent_success_rate": {a: float(r) for a, r in zip(ACHIEVEMENTS, recent_rates)},
         }
@@ -449,6 +575,10 @@ def main(args):
         rw = f"{m['reward_mean']:.2f}" if m["reward_mean"] is not None else "  -  "
         extra = f" match {train_stats['match_loss']:.3f} pred {train_stats['pred_loss']:.3f}" \
             if "match_loss" in train_stats else ""
+        if dream_m:
+            extra += (f" | dream {t_dream:.1f}s unlocks/k {dream_m['dream_unlocks_per_k']:.1f} "
+                      f"(real {dream_m['real_unlocks_per_k']:.1f}) iron/k {dream_m['dream_collect_iron_per_k']:.2f} "
+                      f"(real {dream_m['real_collect_iron_per_k']:.2f}) rej/k {dream_m['dream_rejected_per_k']:.1f}")
         print(f"[{run_name}] ep {epoch:3d}/{cfg['nepoch']} step {step/1e6:.3f}M | score {score:5.2f} "
               f"(recent {recent_score:5.2f}) | reward {rw} | eps {len(total_successes):4d} | "
               f"{m['sps']:.0f} sps (roll {t_roll:.1f}s upd {t_upd:.1f}s) | mem {m['gpu_mem_gb']}GB | "
@@ -491,7 +621,7 @@ def main(args):
     if args.final_video:
         final["eval_episode"] = record_episode(
             model, cfg, device, os.path.join(run_dir, "videos", "final_episode.mp4"),
-            label=run_name)
+            label=run_name, pixel_map=bool(args.pixel_map))
     with open(os.path.join(run_dir, "final.json"), "w") as f:
         json.dump(final, f, indent=2)
     print(json.dumps(final, indent=2), flush=True)
@@ -524,6 +654,33 @@ if __name__ == "__main__":
     ap.add_argument("--vitals_gamma", type=float, default=None,
                     help="gamma inside the shaping term (default: the config's). 1.0 gives Phi(s') - Phi(s), "
                          "which has no per-step cost while alive (not strictly policy-invariant under gamma < 1)")
+    ap.add_argument("--pixel_map", type=int, default=0,
+                    help="1: the agent also sees its own top-down map, built from its frames and actions only")
+    ap.add_argument("--dream", default="",
+                    help="world model (methods/08_world_model, e.g. v4:model_refit.pt): PPO also learns from "
+                         "dreamed rollouts started at real states (Stage 2, paper/designs/world_model_stage2.md)")
+    ap.add_argument("--dream_envs", type=int, default=256)
+    ap.add_argument("--dream_steps", type=int, default=16)
+    ap.add_argument("--dream_temp", type=float, default=1.0, help="sampling temperature of dreams (0 = greedy)")
+    ap.add_argument("--dream_frontier", type=float, default=0.5,
+                    help="share of dream starts on the iron chain (stone pickaxe made, no diamond yet)")
+    ap.add_argument("--dream_iron", type=float, default=0.0,
+                    help="part of --dream_frontier started where iron is in hand and an iron tool is missing")
+    ap.add_argument("--dream_ready", type=float, default=0.0,
+                    help="part of --dream_iron started where the iron craft is ready: wood and coal held, table and "
+                         "furnace in view (needs --dream_craft)")
+    ap.add_argument("--dream_reach", type=float, default=0.0,
+                    help="part of --dream_ready started where the iron craft works now: table and furnace both in "
+                         "the 3 x 3 (needs --dream_craft)")
+    ap.add_argument("--dream_pool", type=int, default=0,
+                    help="keep this many ready and this many craftable moments across epochs for those starts (0 = off)")
+    ap.add_argument("--dream_pool_age", type=int, default=25, help="pool entries at most this many epochs old")
+    ap.add_argument("--dream_gate", type=int, default=2,
+                    help="0: unlocks from the world model's unlock head; 1: head, paid only if the dreamed inventory "
+                         "agrees; 2: as 1, but collect/make unlocks are read off the dreamed inventory (dream_env.py)")
+    ap.add_argument("--dream_craft", default="", choices=["", "tied", "untied"],
+                    help="dreams use the learned shared craft rule (methods/08_world_model/craft_layer.py)")
+    ap.add_argument("--dream_video_every", type=int, default=25, help="epochs between dream videos (0 = off)")
     ap.add_argument("--recent", type=int, default=100, help="episodes in the 'recent' window")
     ap.add_argument("--clip_every", type=int, default=40_000, help="mean env steps between clips (0=off)")
     ap.add_argument("--clip_len", type=int, default=400)

@@ -38,3 +38,6 @@ runs/**
 !runs/report/*.json
 !runs/report/media/**
 runs/report/*test*
+
+# Moodle uploads (built from submission/ and paper/deck/)
+deliverables/

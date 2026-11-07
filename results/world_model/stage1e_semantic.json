@@ -1,0 +1,168 @@
+{
+ "v4:model_refit.pt": {
+  "run": "v4:model_refit.pt",
+  "1": {
+   "dream": {
+    "terrain_acc": 0.9842591821437495,
+    "creature_recall": 0.6041666666666666,
+    "creature_precision": 0.7435897435897436,
+    "ghost_rate": 0.15
+   },
+   "copy": {
+    "terrain_acc": 0.8938164170362313,
+    "creature_recall": 0.3888888888888889,
+    "creature_precision": 0.4307692307692308,
+    "ghost_rate": 0.37
+   },
+   "grader_on_real": {
+    "terrain_acc": 0.9878687162442875,
+    "creature_recall": 0.9583333333333334,
+    "creature_precision": 1.0,
+    "ghost_rate": 0.0
+   }
+  },
+  "5": {
+   "dream": {
+    "terrain_acc": 0.9438333333333333,
+    "creature_recall": 0.26,
+    "creature_precision": 0.5064935064935064,
+    "ghost_rate": 0.19
+   },
+   "copy": {
+    "terrain_acc": 0.7400637263122589,
+    "creature_recall": 0.22,
+    "creature_precision": 0.25384615384615383,
+    "ghost_rate": 0.485
+   },
+   "grader_on_real": {
+    "terrain_acc": 0.9847125290794284,
+    "creature_recall": 0.9266666666666666,
+    "creature_precision": 1.0,
+    "ghost_rate": 0.0
+   }
+  },
+  "15": {
+   "dream": {
+    "terrain_acc": 0.8480289148524838,
+    "creature_recall": 0.039473684210526314,
+    "creature_precision": 0.10526315789473684,
+    "ghost_rate": 0.255
+   },
+   "copy": {
+    "terrain_acc": 0.6176495473390303,
+    "creature_recall": 0.06578947368421052,
+    "creature_precision": 0.07692307692307693,
+    "ghost_rate": 0.6
+   },
+   "grader_on_real": {
+    "terrain_acc": 0.9835146443514644,
+    "creature_recall": 0.9013157894736842,
+    "creature_precision": 1.0,
+    "ghost_rate": 0.0
+   }
+  },
+  "50": {
+   "dream": {
+    "terrain_acc": 0.6561224489795918,
+    "creature_recall": 0.017699115044247787,
+    "creature_precision": 0.07272727272727272,
+    "ghost_rate": 0.255
+   },
+   "copy": {
+    "terrain_acc": 0.4903945111492281,
+    "creature_recall": 0.022123893805309734,
+    "creature_precision": 0.038461538461538464,
+    "ghost_rate": 0.625
+   },
+   "grader_on_real": {
+    "terrain_acc": 0.9812230398376046,
+    "creature_recall": 0.9336283185840708,
+    "creature_precision": 0.9906103286384976,
+    "ghost_rate": 0.01
+   }
+  }
+ },
+ "v4_nou:model_refit.pt": {
+  "run": "v4_nou:model_refit.pt",
+  "1": {
+   "dream": {
+    "terrain_acc": 0.9837635303913406,
+    "creature_recall": 0.6111111111111112,
+    "creature_precision": 0.7457627118644068,
+    "ghost_rate": 0.15
+   },
+   "copy": {
+    "terrain_acc": 0.8938164170362313,
+    "creature_recall": 0.3888888888888889,
+    "creature_precision": 0.4307692307692308,
+    "ghost_rate": 0.37
+   },
+   "grader_on_real": {
+    "terrain_acc": 0.9878687162442875,
+    "creature_recall": 0.9583333333333334,
+    "creature_precision": 1.0,
+    "ghost_rate": 0.0
+   }
+  },
+  "5": {
+   "dream": {
+    "terrain_acc": 0.943731243747916,
+    "creature_recall": 0.24,
+    "creature_precision": 0.45569620253164556,
+    "ghost_rate": 0.215
+   },
+   "copy": {
+    "terrain_acc": 0.7400637263122589,
+    "creature_recall": 0.22,
+    "creature_precision": 0.25384615384615383,
+    "ghost_rate": 0.485
+   },
+   "grader_on_real": {
+    "terrain_acc": 0.9847125290794284,
+    "creature_recall": 0.9266666666666666,
+    "creature_precision": 1.0,
+    "ghost_rate": 0.0
+   }
+  },
+  "15": {
+   "dream": {
+    "terrain_acc": 0.8498989218328841,
+    "creature_recall": 0.05921052631578947,
+    "creature_precision": 0.13043478260869565,
+    "ghost_rate": 0.3
+   },
+   "copy": {
+    "terrain_acc": 0.6176495473390303,
+    "creature_recall": 0.06578947368421052,
+    "creature_precision": 0.07692307692307693,
+    "ghost_rate": 0.6
+   },
+   "grader_on_real": {
+    "terrain_acc": 0.9835146443514644,
+    "creature_recall": 0.9013157894736842,
+    "creature_precision": 1.0,
+    "ghost_rate": 0.0
+   }
+  },
+  "50": {
+   "dream": {
+    "terrain_acc": 0.6546462063086104,
+    "creature_recall": 0.01327433628318584,
+    "creature_precision": 0.05263157894736842,
+    "ghost_rate": 0.27
+   },
+   "copy": {
+    "terrain_acc": 0.4903945111492281,
+    "creature_recall": 0.022123893805309734,
+    "creature_precision": 0.038461538461538464,
+    "ghost_rate": 0.625
+   },
+   "grader_on_real": {
+    "terrain_acc": 0.9812230398376046,
+    "creature_recall": 0.9336283185840708,
+    "creature_precision": 0.9906103286384976,
+    "ghost_rate": 0.01
+   }
+  }
+ }
+}

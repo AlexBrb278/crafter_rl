@@ -33,6 +33,13 @@ CONFIGS = [
     ("ad-rarity2-gru", "AD + rarity β=2 + GRU"),
     ("ad-rarity2-vit1", "AD + rarity β=2 + survival"),
     ("ad-rarity2-vit1u", "AD + rarity β=2 + survival, no drift"),
+    ("ad-rarity2-map", "AD + rarity β=2 + own map"),
+    ("ad-rarity2-map-vit1u", "AD + rarity β=2 + map + survival, no drift"),
+    ("ad-rarity2-dream", "AD + rarity β=2 + dreams (Stage 2a)"),
+    ("ad-rarity2-dream-craft", "AD + rarity β=2 + dreams + craft rule"),
+    ("ad-rarity2-dream-iron", "AD + rarity β=2 + dreams + craft rule + iron starts"),
+    ("ad-rarity2-dream-ready", "AD + rarity β=2 + dreams + craft rule + ready-to-craft starts"),
+    ("ad-rarity2-dream-pool", "AD + rarity β=2 + dreams + craft rule + craftable starts + start pool"),
 ]
 # raw cause -> display group
 GROUPS = ["zombie, awake", "zombie, asleep", "skeleton arrow", "thirst", "hunger / fatigue", "lava"]

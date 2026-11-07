@@ -1,0 +1,333 @@
+{
+ "tied": {
+  "gamma": 26.56,
+  "recipes": {
+   "wood_pickaxe": {
+    "requires": {
+     "wood": 1
+    },
+    "stations": [
+     "table"
+    ],
+    "effect": {
+     "wood": -1,
+     "wood_pickaxe": 1
+    },
+    "matches_crafter": true
+   },
+   "stone_pickaxe": {
+    "requires": {
+     "wood": 1,
+     "stone": 1
+    },
+    "stations": [
+     "table"
+    ],
+    "effect": {
+     "wood": -1,
+     "stone": -1,
+     "stone_pickaxe": 1
+    },
+    "matches_crafter": true
+   },
+   "iron_pickaxe": {
+    "requires": {
+     "wood": 1,
+     "coal": 1,
+     "iron": 1
+    },
+    "stations": [
+     "table",
+     "furnace"
+    ],
+    "effect": {
+     "wood": -1,
+     "coal": -1,
+     "iron": -1,
+     "iron_pickaxe": 1
+    },
+    "matches_crafter": true
+   },
+   "wood_sword": {
+    "requires": {
+     "wood": 1
+    },
+    "stations": [
+     "table"
+    ],
+    "effect": {
+     "wood": -1,
+     "wood_sword": 1
+    },
+    "matches_crafter": true
+   },
+   "stone_sword": {
+    "requires": {
+     "wood": 1,
+     "stone": 1
+    },
+    "stations": [
+     "table"
+    ],
+    "effect": {
+     "wood": -1,
+     "stone": -1,
+     "stone_sword": 1
+    },
+    "matches_crafter": true
+   },
+   "iron_sword": {
+    "requires": {
+     "wood": 1,
+     "coal": 1,
+     "iron": 1
+    },
+    "stations": [
+     "table",
+     "furnace"
+    ],
+    "effect": {
+     "wood": -1,
+     "coal": -1,
+     "iron": -1,
+     "iron_sword": 1
+    },
+    "matches_crafter": true
+   }
+  },
+  "test_presses": {
+   "wood_pickaxe": {
+    "presses": 3217,
+    "met": 878,
+    "worked": 867,
+    "p_on_worked": 0.9977,
+    "p_on_met_failed": 0.0908,
+    "p_on_not_met": 1.3143478554411558e-06
+   },
+   "stone_pickaxe": {
+    "presses": 4349,
+    "met": 538,
+    "worked": 499,
+    "p_on_worked": 1.0,
+    "p_on_met_failed": 0.1222,
+    "p_on_not_met": 1.3589402669822448e-06
+   },
+   "iron_pickaxe": {
+    "presses": 2002,
+    "met": 1,
+    "worked": 1,
+    "p_on_worked": 1.0,
+    "p_on_met_failed": null,
+    "p_on_not_met": 8.312678687616426e-07
+   },
+   "wood_sword": {
+    "presses": 3568,
+    "met": 856,
+    "worked": 840,
+    "p_on_worked": 0.9993,
+    "p_on_met_failed": 0.0319,
+    "p_on_not_met": 1.384931579195836e-06
+   },
+   "stone_sword": {
+    "presses": 5570,
+    "met": 571,
+    "worked": 496,
+    "p_on_worked": 1.0,
+    "p_on_met_failed": 0.0006,
+    "p_on_not_met": 1.1705586757670972e-06
+   },
+   "iron_sword": {
+    "presses": 1770,
+    "met": 0,
+    "worked": 0,
+    "p_on_worked": null,
+    "p_on_met_failed": null,
+    "p_on_not_met": 8.18944386082876e-07
+   }
+  },
+  "false_crafts_per_10k_not_met": 0.012,
+  "not_met_presses": 17632,
+  "max_p_not_met": 1.708360287011601e-06,
+  "recall_worked": 0.999,
+  "worked": 2703,
+  "p_on_met_failed": 0.0448,
+  "met_failed": 141
+ },
+ "untied": {
+  "gamma": 22.68,
+  "recipes": {
+   "wood_pickaxe": {
+    "requires": {
+     "wood": 1
+    },
+    "stations": [
+     "table"
+    ],
+    "effect": {
+     "wood": -1,
+     "wood_pickaxe": 1
+    },
+    "matches_crafter": true
+   },
+   "stone_pickaxe": {
+    "requires": {
+     "wood": 1,
+     "stone": 1
+    },
+    "stations": [
+     "table"
+    ],
+    "effect": {
+     "wood": -1,
+     "stone": -1,
+     "stone_pickaxe": 1
+    },
+    "matches_crafter": true
+   },
+   "iron_pickaxe": {
+    "requires": {
+     "wood": 1,
+     "coal": 1,
+     "iron": 1
+    },
+    "stations": [
+     "table",
+     "furnace"
+    ],
+    "effect": {
+     "wood": -1,
+     "coal": -1,
+     "iron": -1,
+     "iron_pickaxe": 1
+    },
+    "matches_crafter": true
+   },
+   "wood_sword": {
+    "requires": {
+     "wood": 1
+    },
+    "stations": [
+     "table"
+    ],
+    "effect": {
+     "wood": -1,
+     "wood_sword": 1
+    },
+    "matches_crafter": true
+   },
+   "stone_sword": {
+    "requires": {
+     "wood": 1,
+     "stone": 1
+    },
+    "stations": [
+     "table"
+    ],
+    "effect": {
+     "wood": -1,
+     "stone": -1,
+     "stone_sword": 1
+    },
+    "matches_crafter": true
+   },
+   "iron_sword": {
+    "requires": {},
+    "stations": [
+     "table",
+     "furnace"
+    ],
+    "effect": {},
+    "matches_crafter": false
+   }
+  },
+  "test_presses": {
+   "wood_pickaxe": {
+    "presses": 3217,
+    "met": 878,
+    "worked": 867,
+    "p_on_worked": 0.9956,
+    "p_on_met_failed": 0.0754,
+    "p_on_not_met": 8.519436050846707e-06
+   },
+   "stone_pickaxe": {
+    "presses": 4349,
+    "met": 538,
+    "worked": 499,
+    "p_on_worked": 0.997,
+    "p_on_met_failed": 0.1074,
+    "p_on_not_met": 8.812428859528154e-06
+   },
+   "iron_pickaxe": {
+    "presses": 2002,
+    "met": 1,
+    "worked": 1,
+    "p_on_worked": 0.9999,
+    "p_on_met_failed": null,
+    "p_on_not_met": 5.031506134400843e-06
+   },
+   "wood_sword": {
+    "presses": 3568,
+    "met": 856,
+    "worked": 840,
+    "p_on_worked": 0.999,
+    "p_on_met_failed": 0.0133,
+    "p_on_not_met": 9.04225180420326e-06
+   },
+   "stone_sword": {
+    "presses": 5570,
+    "met": 571,
+    "worked": 496,
+    "p_on_worked": 0.9987,
+    "p_on_met_failed": 0.0056,
+    "p_on_not_met": 7.088775873853592e-06
+   },
+   "iron_sword": {
+    "presses": 1770,
+    "met": 0,
+    "worked": 0,
+    "p_on_worked": null,
+    "p_on_met_failed": null,
+    "p_on_not_met": 0.00341407535597682
+   }
+  },
+  "false_crafts_per_10k_not_met": 3.497,
+  "not_met_presses": 17632,
+  "max_p_not_met": 0.9999604225158691,
+  "recall_worked": 0.9975,
+  "worked": 2703,
+  "p_on_met_failed": 0.0401,
+  "met_failed": 141
+ },
+ "hud": {
+  "cells_right_where_known": 1.0,
+  "test_cells_with_unknown_pair": 4e-05,
+  "unknown_pairs": [
+   [
+    "stone_pickaxe",
+    7
+   ],
+   [
+    "stone_pickaxe",
+    9
+   ],
+   [
+    "stone_sword",
+    7
+   ]
+  ]
+ },
+ "stations": {
+  "table": {
+   "codes": 14,
+   "recall": 0.9972,
+   "false_detections": 0,
+   "presses_without": 13716
+  },
+  "furnace": {
+   "codes": 11,
+   "recall": 0.9883,
+   "false_detections": 0,
+   "presses_without": 18941
+  }
+ }
+}

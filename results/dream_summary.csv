@@ -1,0 +1,6 @@
+config,label,n,score_mean,score_std,reward,train_len_last300,make_stone_pickaxe,collect_iron,make_iron_pickaxe,wake_up,eval_episodes,eval_median_len,alive_300,zombie_deaths,night_deaths,night_asleep,scores
+ad-rarity2,AD + rarity β=2,3,23.65,1.05,9.28,252.43,28.01,7.38,0.01,71.70,600,242.00,21.50,46.17,46.83,1.91,23.08/24.87/23.01
+ad-rarity2-vit1u,AD + rarity β=2 + survival signal, no per-step cost,3,22.07,1.35,8.84,284.40,22.75,5.20,0.01,72.92,600,266.00,36.00,48.83,42.83,0.35,20.64/23.32/22.25
+ad-rarity2-map,AD + rarity β=2 + own map (pixels only),3,22.31,1.00,9.10,254.63,21.30,3.67,0.01,72.22,600,248.00,27.50,41.67,46.67,1.76,21.46/22.06/23.42
+ad-rarity2-map-vit1u,AD + rarity β=2 + own map + survival, no drift,3,20.53,0.46,8.68,288.07,15.01,1.93,0.02,75.90,600,256.50,35.17,48.00,45.17,5.49,20.00/20.78/20.81
+ad-rarity2-dream,AD + rarity β=2 + practice in dreams (Stage 2a),3,26.10,0.75,9.75,261.98,38.51,15.42,0.09,44.22,600,251.00,28.67,43.33,46.33,10.33,25.62/25.73/26.96

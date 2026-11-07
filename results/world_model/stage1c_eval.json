@@ -1,0 +1,683 @@
+{
+ "v2:model_refit.pt": {
+  "run": "v2:model_refit.pt",
+  "test_set": "stage1",
+  "horizon": {
+   "1": {
+    "token_acc": 0.77625,
+    "token_acc_copy": 0.622734375,
+    "psnr": 27.83311653137207,
+    "psnr_copy": 20.615840911865234,
+    "psnr_copy_raw": 20.593671798706055,
+    "psnr_ceiling": 36.329795837402344,
+    "inv_exact": 0.96,
+    "inv_exact_copy": 0.74,
+    "inv_slot_acc": 0.9975,
+    "items_exact": 0.985,
+    "items_exact_copy": 0.805
+   },
+   "5": {
+    "token_acc": 0.59703125,
+    "token_acc_copy": 0.3125,
+    "psnr": 21.05670928955078,
+    "psnr_copy": 15.81599235534668,
+    "psnr_copy_raw": 15.79352855682373,
+    "psnr_ceiling": 36.12416076660156,
+    "inv_exact": 0.79,
+    "inv_exact_copy": 0.28,
+    "inv_slot_acc": 0.98375,
+    "items_exact": 0.93,
+    "items_exact_copy": 0.54
+   },
+   "15": {
+    "token_acc": 0.419921875,
+    "token_acc_copy": 0.17328125,
+    "psnr": 17.336029052734375,
+    "psnr_copy": 14.186158180236816,
+    "psnr_copy_raw": 14.163216590881348,
+    "psnr_ceiling": 35.55373001098633,
+    "inv_exact": 0.42,
+    "inv_exact_copy": 0.03,
+    "inv_slot_acc": 0.9409375,
+    "items_exact": 0.62,
+    "items_exact_copy": 0.32
+   },
+   "50": {
+    "token_acc": 0.265078125,
+    "token_acc_copy": 0.0890625,
+    "psnr": 15.039567947387695,
+    "psnr_copy": 12.953032493591309,
+    "psnr_copy_raw": 12.93306827545166,
+    "psnr_ceiling": 34.67668914794922,
+    "inv_exact": 0.035,
+    "inv_exact_copy": 0.0,
+    "inv_slot_acc": 0.8178125,
+    "items_exact": 0.155,
+    "items_exact_copy": 0.145
+   },
+   "100": {
+    "token_acc": 0.20359375,
+    "token_acc_copy": 0.06375,
+    "psnr": 16.774337768554688,
+    "psnr_copy": 12.54298210144043,
+    "psnr_copy_raw": 12.523801803588867,
+    "psnr_ceiling": 32.37165451049805,
+    "inv_exact": 0.01,
+    "inv_exact_copy": 0.0,
+    "inv_slot_acc": 0.729375,
+    "items_exact": 0.125,
+    "items_exact_copy": 0.09
+   }
+  },
+  "creature_psnr": {
+   "1": {
+    "dream": 15.42275333404541,
+    "copy": 15.113580703735352
+   },
+   "5": {
+    "dream": 13.90769100189209,
+    "copy": 13.643165588378906
+   }
+  },
+  "night_corr": 0.6616490858871857,
+  "unlock": {
+   "collect_coal": {
+    "precision": 0.9780701754385965,
+    "recall": 0.9955357142857143,
+    "events": 224
+   },
+   "collect_diamond": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 0
+   },
+   "collect_drink": {
+    "precision": 0.8184818481848185,
+    "recall": 0.9393939393939394,
+    "events": 264
+   },
+   "collect_iron": {
+    "precision": 0.9310344827586207,
+    "recall": 0.9152542372881356,
+    "events": 59
+   },
+   "collect_sapling": {
+    "precision": 0.0898876404494382,
+    "recall": 0.11976047904191617,
+    "events": 334
+   },
+   "collect_stone": {
+    "precision": 0.875,
+    "recall": 0.9808917197452229,
+    "events": 314
+   },
+   "collect_wood": {
+    "precision": 0.9408866995073891,
+    "recall": 0.9845360824742269,
+    "events": 388
+   },
+   "defeat_skeleton": {
+    "precision": 0.336283185840708,
+    "recall": 0.44970414201183434,
+    "events": 169
+   },
+   "defeat_zombie": {
+    "precision": 0.36772486772486773,
+    "recall": 0.54296875,
+    "events": 256
+   },
+   "eat_cow": {
+    "precision": 0.5150812064965197,
+    "recall": 0.7449664429530202,
+    "events": 298
+   },
+   "eat_plant": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 0
+   },
+   "make_iron_pickaxe": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 1
+   },
+   "make_iron_sword": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 0
+   },
+   "make_stone_pickaxe": {
+    "precision": 0.9635416666666666,
+    "recall": 1.0,
+    "events": 185
+   },
+   "make_stone_sword": {
+    "precision": 0.9297297297297298,
+    "recall": 0.9772727272727273,
+    "events": 176
+   },
+   "make_wood_pickaxe": {
+    "precision": 0.9889807162534435,
+    "recall": 1.0,
+    "events": 359
+   },
+   "make_wood_sword": {
+    "precision": 0.9760479041916168,
+    "recall": 0.9969418960244648,
+    "events": 327
+   },
+   "place_furnace": {
+    "precision": 0.5860215053763441,
+    "recall": 0.8934426229508197,
+    "events": 244
+   },
+   "place_plant": {
+    "precision": 0.8602150537634409,
+    "recall": 0.960960960960961,
+    "events": 333
+   },
+   "place_stone": {
+    "precision": 0.7515151515151515,
+    "recall": 0.8464163822525598,
+    "events": 293
+   },
+   "place_table": {
+    "precision": 0.8793503480278422,
+    "recall": 0.994750656167979,
+    "events": 381
+   },
+   "wake_up": {
+    "precision": 0.9227941176470589,
+    "recall": 0.9920948616600791,
+    "events": 253
+   }
+  },
+  "unlock_recall_all": 0.8542610127624537,
+  "unlock_precision_all": 0.7308911588587531,
+  "inv_exact_after_unlock": 0.8566131025957973,
+  "water_memory": {
+   "cases": 200,
+   "dream_shows_water": 0.17,
+   "detector_on_real": 0.965,
+   "gap_median": 14.0,
+   "skip_shows_water": 0.3411764705882353,
+   "skip_cases": 170
+  },
+  "rare_chain": {
+   "collect_iron": {
+    "precision": 0.9310344827586207,
+    "recall": 0.9152542372881356,
+    "events": 59
+   },
+   "make_iron_pickaxe": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 1
+   },
+   "make_iron_sword": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 0
+   },
+   "collect_diamond": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 0
+   }
+  }
+ },
+ "v2_long:model_refit.pt": {
+  "run": "v2_long:model_refit.pt",
+  "test_set": "stage1",
+  "horizon": {
+   "1": {
+    "token_acc": 0.78265625,
+    "token_acc_copy": 0.622734375,
+    "psnr": 27.873018264770508,
+    "psnr_copy": 20.615840911865234,
+    "psnr_copy_raw": 20.593671798706055,
+    "psnr_ceiling": 36.329795837402344,
+    "inv_exact": 0.955,
+    "inv_exact_copy": 0.74,
+    "inv_slot_acc": 0.996875,
+    "items_exact": 0.985,
+    "items_exact_copy": 0.805
+   },
+   "5": {
+    "token_acc": 0.61296875,
+    "token_acc_copy": 0.3125,
+    "psnr": 21.216243743896484,
+    "psnr_copy": 15.81599235534668,
+    "psnr_copy_raw": 15.79352855682373,
+    "psnr_ceiling": 36.12416076660156,
+    "inv_exact": 0.8,
+    "inv_exact_copy": 0.28,
+    "inv_slot_acc": 0.985,
+    "items_exact": 0.935,
+    "items_exact_copy": 0.54
+   },
+   "15": {
+    "token_acc": 0.439609375,
+    "token_acc_copy": 0.17328125,
+    "psnr": 17.555784225463867,
+    "psnr_copy": 14.186158180236816,
+    "psnr_copy_raw": 14.163216590881348,
+    "psnr_ceiling": 35.55373001098633,
+    "inv_exact": 0.4,
+    "inv_exact_copy": 0.03,
+    "inv_slot_acc": 0.9409375,
+    "items_exact": 0.57,
+    "items_exact_copy": 0.32
+   },
+   "50": {
+    "token_acc": 0.27609375,
+    "token_acc_copy": 0.0890625,
+    "psnr": 15.088088989257812,
+    "psnr_copy": 12.953032493591309,
+    "psnr_copy_raw": 12.93306827545166,
+    "psnr_ceiling": 34.67668914794922,
+    "inv_exact": 0.04,
+    "inv_exact_copy": 0.0,
+    "inv_slot_acc": 0.814375,
+    "items_exact": 0.15,
+    "items_exact_copy": 0.145
+   },
+   "100": {
+    "token_acc": 0.21359375,
+    "token_acc_copy": 0.06375,
+    "psnr": 16.704479217529297,
+    "psnr_copy": 12.54298210144043,
+    "psnr_copy_raw": 12.523801803588867,
+    "psnr_ceiling": 32.37165451049805,
+    "inv_exact": 0.02,
+    "inv_exact_copy": 0.0,
+    "inv_slot_acc": 0.73625,
+    "items_exact": 0.115,
+    "items_exact_copy": 0.09
+   }
+  },
+  "creature_psnr": {
+   "1": {
+    "dream": 15.48379898071289,
+    "copy": 15.113580703735352
+   },
+   "5": {
+    "dream": 13.732097625732422,
+    "copy": 13.643165588378906
+   }
+  },
+  "night_corr": 0.6648998162643701,
+  "unlock": {
+   "collect_coal": {
+    "precision": 0.9824561403508771,
+    "recall": 1.0,
+    "events": 224
+   },
+   "collect_diamond": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 0
+   },
+   "collect_drink": {
+    "precision": 0.8112582781456954,
+    "recall": 0.928030303030303,
+    "events": 264
+   },
+   "collect_iron": {
+    "precision": 0.9454545454545454,
+    "recall": 0.8813559322033898,
+    "events": 59
+   },
+   "collect_sapling": {
+    "precision": 0.09394572025052192,
+    "recall": 0.1347305389221557,
+    "events": 334
+   },
+   "collect_stone": {
+    "precision": 0.8721590909090909,
+    "recall": 0.9777070063694268,
+    "events": 314
+   },
+   "collect_wood": {
+    "precision": 0.9385749385749386,
+    "recall": 0.9845360824742269,
+    "events": 388
+   },
+   "defeat_skeleton": {
+    "precision": 0.3622448979591837,
+    "recall": 0.42011834319526625,
+    "events": 169
+   },
+   "defeat_zombie": {
+    "precision": 0.3868194842406877,
+    "recall": 0.52734375,
+    "events": 256
+   },
+   "eat_cow": {
+    "precision": 0.542997542997543,
+    "recall": 0.7416107382550335,
+    "events": 298
+   },
+   "eat_plant": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 0
+   },
+   "make_iron_pickaxe": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 1
+   },
+   "make_iron_sword": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 0
+   },
+   "make_stone_pickaxe": {
+    "precision": 0.9484536082474226,
+    "recall": 0.9945945945945946,
+    "events": 185
+   },
+   "make_stone_sword": {
+    "precision": 0.9197860962566845,
+    "recall": 0.9772727272727273,
+    "events": 176
+   },
+   "make_wood_pickaxe": {
+    "precision": 0.9808743169398907,
+    "recall": 1.0,
+    "events": 359
+   },
+   "make_wood_sword": {
+    "precision": 0.9732142857142857,
+    "recall": 1.0,
+    "events": 327
+   },
+   "place_furnace": {
+    "precision": 0.5896739130434783,
+    "recall": 0.889344262295082,
+    "events": 244
+   },
+   "place_plant": {
+    "precision": 0.8582887700534759,
+    "recall": 0.963963963963964,
+    "events": 333
+   },
+   "place_stone": {
+    "precision": 0.7202380952380952,
+    "recall": 0.825938566552901,
+    "events": 293
+   },
+   "place_table": {
+    "precision": 0.871264367816092,
+    "recall": 0.994750656167979,
+    "events": 381
+   },
+   "wake_up": {
+    "precision": 0.9127272727272727,
+    "recall": 0.9920948616600791,
+    "events": 253
+   }
+  },
+  "unlock_recall_all": 0.8509674763277069,
+  "unlock_precision_all": 0.7321997874601488,
+  "inv_exact_after_unlock": 0.8572311495673671,
+  "water_memory": {
+   "cases": 200,
+   "dream_shows_water": 0.23,
+   "detector_on_real": 0.965,
+   "gap_median": 14.0,
+   "skip_shows_water": 0.3941176470588235,
+   "skip_cases": 170
+  },
+  "rare_chain": {
+   "collect_iron": {
+    "precision": 0.9454545454545454,
+    "recall": 0.8813559322033898,
+    "events": 59
+   },
+   "make_iron_pickaxe": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 1
+   },
+   "make_iron_sword": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 0
+   },
+   "collect_diamond": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 0
+   }
+  }
+ },
+ "v2_pos:model_refit.pt": {
+  "run": "v2_pos:model_refit.pt",
+  "test_set": "stage1",
+  "horizon": {
+   "1": {
+    "token_acc": 0.779140625,
+    "token_acc_copy": 0.622734375,
+    "psnr": 28.10904312133789,
+    "psnr_copy": 20.615840911865234,
+    "psnr_copy_raw": 20.593671798706055,
+    "psnr_ceiling": 36.329795837402344,
+    "inv_exact": 0.935,
+    "inv_exact_copy": 0.74,
+    "inv_slot_acc": 0.995625,
+    "items_exact": 0.985,
+    "items_exact_copy": 0.805
+   },
+   "5": {
+    "token_acc": 0.611875,
+    "token_acc_copy": 0.3125,
+    "psnr": 21.302682876586914,
+    "psnr_copy": 15.81599235534668,
+    "psnr_copy_raw": 15.79352855682373,
+    "psnr_ceiling": 36.12416076660156,
+    "inv_exact": 0.815,
+    "inv_exact_copy": 0.28,
+    "inv_slot_acc": 0.9859375,
+    "items_exact": 0.945,
+    "items_exact_copy": 0.54
+   },
+   "15": {
+    "token_acc": 0.438203125,
+    "token_acc_copy": 0.17328125,
+    "psnr": 17.55693817138672,
+    "psnr_copy": 14.186158180236816,
+    "psnr_copy_raw": 14.163216590881348,
+    "psnr_ceiling": 35.55373001098633,
+    "inv_exact": 0.42,
+    "inv_exact_copy": 0.03,
+    "inv_slot_acc": 0.9428125,
+    "items_exact": 0.62,
+    "items_exact_copy": 0.32
+   },
+   "50": {
+    "token_acc": 0.27078125,
+    "token_acc_copy": 0.0890625,
+    "psnr": 14.978499412536621,
+    "psnr_copy": 12.953032493591309,
+    "psnr_copy_raw": 12.93306827545166,
+    "psnr_ceiling": 34.67668914794922,
+    "inv_exact": 0.06,
+    "inv_exact_copy": 0.0,
+    "inv_slot_acc": 0.8184375,
+    "items_exact": 0.195,
+    "items_exact_copy": 0.145
+   },
+   "100": {
+    "token_acc": 0.21234375,
+    "token_acc_copy": 0.06375,
+    "psnr": 16.689624786376953,
+    "psnr_copy": 12.54298210144043,
+    "psnr_copy_raw": 12.523801803588867,
+    "psnr_ceiling": 32.37165451049805,
+    "inv_exact": 0.01,
+    "inv_exact_copy": 0.0,
+    "inv_slot_acc": 0.7271875,
+    "items_exact": 0.13,
+    "items_exact_copy": 0.09
+   }
+  },
+  "creature_psnr": {
+   "1": {
+    "dream": 15.517282485961914,
+    "copy": 15.113580703735352
+   },
+   "5": {
+    "dream": 13.786081314086914,
+    "copy": 13.643165588378906
+   }
+  },
+  "night_corr": 0.6572124131001913,
+  "unlock": {
+   "collect_coal": {
+    "precision": 0.9824561403508771,
+    "recall": 1.0,
+    "events": 224
+   },
+   "collect_diamond": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 0
+   },
+   "collect_drink": {
+    "precision": 0.8104575163398693,
+    "recall": 0.9393939393939394,
+    "events": 264
+   },
+   "collect_iron": {
+    "precision": 0.9310344827586207,
+    "recall": 0.9152542372881356,
+    "events": 59
+   },
+   "collect_sapling": {
+    "precision": 0.09849056603773584,
+    "recall": 0.781437125748503,
+    "events": 334
+   },
+   "collect_stone": {
+    "precision": 0.8714285714285714,
+    "recall": 0.9713375796178344,
+    "events": 314
+   },
+   "collect_wood": {
+    "precision": 0.9385749385749386,
+    "recall": 0.9845360824742269,
+    "events": 388
+   },
+   "defeat_skeleton": {
+    "precision": 0.3384615384615385,
+    "recall": 0.3905325443786982,
+    "events": 169
+   },
+   "defeat_zombie": {
+    "precision": 0.3854748603351955,
+    "recall": 0.5390625,
+    "events": 256
+   },
+   "eat_cow": {
+    "precision": 0.5538847117794486,
+    "recall": 0.7416107382550335,
+    "events": 298
+   },
+   "eat_plant": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 0
+   },
+   "make_iron_pickaxe": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 1
+   },
+   "make_iron_sword": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 0
+   },
+   "make_stone_pickaxe": {
+    "precision": 0.9735449735449735,
+    "recall": 0.9945945945945946,
+    "events": 185
+   },
+   "make_stone_sword": {
+    "precision": 0.9202127659574468,
+    "recall": 0.9829545454545454,
+    "events": 176
+   },
+   "make_wood_pickaxe": {
+    "precision": 0.9916897506925207,
+    "recall": 0.9972144846796658,
+    "events": 359
+   },
+   "make_wood_sword": {
+    "precision": 0.9674556213017751,
+    "recall": 1.0,
+    "events": 327
+   },
+   "place_furnace": {
+    "precision": 0.5934959349593496,
+    "recall": 0.8975409836065574,
+    "events": 244
+   },
+   "place_plant": {
+    "precision": 0.8552278820375335,
+    "recall": 0.9579579579579579,
+    "events": 333
+   },
+   "place_stone": {
+    "precision": 0.7530864197530864,
+    "recall": 0.8327645051194539,
+    "events": 293
+   },
+   "place_table": {
+    "precision": 0.8793503480278422,
+    "recall": 0.994750656167979,
+    "events": 381
+   },
+   "wake_up": {
+    "precision": 0.9227941176470589,
+    "recall": 0.9920948616600791,
+    "events": 253
+   }
+  },
+  "unlock_recall_all": 0.8960477562783038,
+  "unlock_precision_all": 0.5583632632119035,
+  "inv_exact_after_unlock": 0.8553770086526576,
+  "water_memory": {
+   "cases": 200,
+   "dream_shows_water": 0.21,
+   "detector_on_real": 0.965,
+   "gap_median": 14.0,
+   "skip_shows_water": 0.38235294117647056,
+   "skip_cases": 170
+  },
+  "rare_chain": {
+   "collect_iron": {
+    "precision": 0.9310344827586207,
+    "recall": 0.9152542372881356,
+    "events": 59
+   },
+   "make_iron_pickaxe": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 1
+   },
+   "make_iron_sword": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 0
+   },
+   "collect_diamond": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "events": 0
+   }
+  }
+ }
+}
